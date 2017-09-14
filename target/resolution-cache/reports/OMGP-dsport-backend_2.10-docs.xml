@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="ivy-report.xsl"?>
+<ivy-report version="1.0">
+	<info
+		organisation="OMGP"
+		module="dsport-backend_2.10"
+		revision="1.0-SNAPSHOT"
+		conf="docs"
+		confs="universal, universal-docs, universal-src, compile, runtime, test, provided, optional, windows, docker, linux, rpm, debian, compile-internal, runtime-internal, test-internal, plugin, sources, docs, pom, scala-tool"
+		date="20170909213623"/>
+	<dependencies>
+		<module organisation="com.typesafe.play" name="play-omnidoc_2.10">
+			<revision name="2.6.3" error="not found" downloaded="false" searched="false" conf="default(compile)" position="-1">
+				<caller organisation="OMGP" name="dsport-backend_2.10" conf="docs" rev="2.6.3" rev-constraint-default="2.6.3" rev-constraint-dynamic="2.6.3" callerrev="1.0-SNAPSHOT"/>
+				<artifacts>
+				</artifacts>
+			</revision>
+		</module>
+	</dependencies>
+</ivy-report>

@@ -1,0 +1,8 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Testing
+#GET                 /test/insert         main.resources.controllers.TestController.insertRandom()
+
+POST                 /user                  controllers.UserController.add

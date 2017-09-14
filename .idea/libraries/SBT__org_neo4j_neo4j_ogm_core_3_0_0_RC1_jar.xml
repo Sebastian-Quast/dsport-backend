@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="SBT: org.neo4j:neo4j-ogm-core:3.0.0-RC1:jar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.ivy2/cache/org.neo4j/neo4j-ogm-core/jars/neo4j-ogm-core-3.0.0-RC1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.ivy2/cache/org.neo4j/neo4j-ogm-core/srcs/neo4j-ogm-core-3.0.0-RC1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,0 +1,638 @@
+2017-09-14 22:49:38,171 [INFO] from application in play-dev-mode-akka.actor.default-dispatcher-2 - Creating Pool for datasource 'neo4j'
+2017-09-14 22:49:38,185 [ERROR] from com.zaxxer.hikari.HikariConfig in play-dev-mode-akka.actor.default-dispatcher-2 - HikariPool-1 - dataSource or dataSourceClassName or jdbcUrl is required.
+2017-09-14 22:49:38,200 [INFO] from application in play-dev-mode-akka.actor.default-dispatcher-2 - Creating Pool for datasource 'neo4j'
+2017-09-14 22:49:38,201 [ERROR] from com.zaxxer.hikari.HikariConfig in play-dev-mode-akka.actor.default-dispatcher-2 - HikariPool-2 - dataSource or dataSourceClassName or jdbcUrl is required.
+2017-09-14 22:49:38,397 [ERROR] from application in play-dev-mode-akka.actor.default-dispatcher-2 - 
+
+! @75b69ban7 - Internal server error, for (POST) [/user] ->
+ 
+play.api.Configuration$$anon$1: Configuration error[Cannot connect to database [neo4j]]
+	at play.api.Configuration$.configError(Configuration.scala:155)
+	at play.api.Configuration.reportError(Configuration.scala:984)
+	at play.api.db.DefaultDBApi$$anonfun$connect$1.apply(DefaultDBApi.scala:48)
+	at play.api.db.DefaultDBApi$$anonfun$connect$1.apply(DefaultDBApi.scala:42)
+	at scala.collection.immutable.List.foreach(List.scala:381)
+	at play.api.db.DefaultDBApi.connect(DefaultDBApi.scala:42)
+	at play.api.db.DBApiProvider.get$lzycompute(DBModule.scala:86)
+	at play.api.db.DBApiProvider.get(DBModule.scala:75)
+	at play.api.db.DBApiProvider.get(DBModule.scala:56)
+	at com.google.inject.internal.ProviderInternalFactory.provision(ProviderInternalFactory.java:81)
+	at com.google.inject.internal.BoundProviderFactory.provision(BoundProviderFactory.java:72)
+	at com.google.inject.internal.ProviderInternalFactory.circularGet(ProviderInternalFactory.java:61)
+	at com.google.inject.internal.BoundProviderFactory.get(BoundProviderFactory.java:62)
+	at com.google.inject.internal.SingleFieldInjector.inject(SingleFieldInjector.java:54)
+	at com.google.inject.internal.MembersInjectorImpl.injectMembers(MembersInjectorImpl.java:132)
+	at com.google.inject.internal.MembersInjectorImpl$1.call(MembersInjectorImpl.java:93)
+	at com.google.inject.internal.MembersInjectorImpl$1.call(MembersInjectorImpl.java:80)
+	at com.google.inject.internal.InjectorImpl.callInContext(InjectorImpl.java:1092)
+	at com.google.inject.internal.MembersInjectorImpl.injectAndNotify(MembersInjectorImpl.java:80)
+	at com.google.inject.internal.MembersInjectorImpl.injectMembers(MembersInjectorImpl.java:62)
+	at com.google.inject.internal.InjectorImpl.injectMembers(InjectorImpl.java:987)
+	at com.google.inject.util.Providers$GuicifiedProviderWithDependencies.initialize(Providers.java:149)
+	at com.google.inject.util.Providers$GuicifiedProviderWithDependencies$$FastClassByGuice$$2a7177aa.invoke(<generated>)
+	at com.google.inject.internal.SingleMethodInjector$1.invoke(SingleMethodInjector.java:54)
+	at com.google.inject.internal.SingleMethodInjector.inject(SingleMethodInjector.java:89)
+	at com.google.inject.internal.MembersInjectorImpl.injectMembers(MembersInjectorImpl.java:132)
+	at com.google.inject.internal.MembersInjectorImpl$1.call(MembersInjectorImpl.java:93)
+	at com.google.inject.internal.MembersInjectorImpl$1.call(MembersInjectorImpl.java:80)
+	at com.google.inject.internal.InjectorImpl.callInContext(InjectorImpl.java:1085)
+	at com.google.inject.internal.MembersInjectorImpl.injectAndNotify(MembersInjectorImpl.java:80)
+	at com.google.inject.internal.Initializer$InjectableReference.get(Initializer.java:223)
+	at com.google.inject.internal.Initializer.injectAll(Initializer.java:132)
+	at com.google.inject.internal.InternalInjectorCreator.injectDynamically(InternalInjectorCreator.java:174)
+	at com.google.inject.internal.InternalInjectorCreator.build(InternalInjectorCreator.java:110)
+	at com.google.inject.Guice.createInjector(Guice.java:99)
+	at com.google.inject.Guice.createInjector(Guice.java:84)
+	at play.api.inject.guice.GuiceBuilder.injector(GuiceInjectorBuilder.scala:185)
+	at play.api.inject.guice.GuiceApplicationBuilder.build(GuiceApplicationBuilder.scala:137)
+	at play.api.inject.guice.GuiceApplicationLoader.load(GuiceApplicationLoader.scala:21)
+	at play.core.server.DevServerStart$$anonfun$mainDev$1$$anon$1$$anonfun$1.apply(DevServerStart.scala:174)
+	at play.core.server.DevServerStart$$anonfun$mainDev$1$$anon$1$$anonfun$1.apply(DevServerStart.scala:171)
+	at play.utils.Threads$.withContextClassLoader(Threads.scala:21)
+	at play.core.server.DevServerStart$$anonfun$mainDev$1$$anon$1.reload(DevServerStart.scala:171)
+	at play.core.server.DevServerStart$$anonfun$mainDev$1$$anon$1.get(DevServerStart.scala:124)
+	at play.core.server.AkkaHttpServer.play$core$server$AkkaHttpServer$$modelConversion(AkkaHttpServer.scala:183)
+	at play.core.server.AkkaHttpServer.play$core$server$AkkaHttpServer$$handleRequest(AkkaHttpServer.scala:189)
+	at play.core.server.AkkaHttpServer$$anonfun$5.apply(AkkaHttpServer.scala:106)
+	at play.core.server.AkkaHttpServer$$anonfun$5.apply(AkkaHttpServer.scala:106)
+	at akka.stream.impl.fusing.MapAsync$$anon$23.onPush(Ops.scala:1172)
+	at akka.stream.impl.fusing.GraphInterpreter.processPush(GraphInterpreter.scala:499)
+	at akka.stream.impl.fusing.GraphInterpreter.processEvent(GraphInterpreter.scala:462)
+	at akka.stream.impl.fusing.GraphInterpreter.execute(GraphInterpreter.scala:368)
+	at akka.stream.impl.fusing.GraphInterpreterShell.runBatch(ActorGraphInterpreter.scala:571)
+	at akka.stream.impl.fusing.GraphInterpreterShell$AsyncInput.execute(ActorGraphInterpreter.scala:457)
+	at akka.stream.impl.fusing.GraphInterpreterShell.processEvent(ActorGraphInterpreter.scala:546)
+	at akka.stream.impl.fusing.ActorGraphInterpreter.akka$stream$impl$fusing$ActorGraphInterpreter$$processEvent(ActorGraphInterpreter.scala:725)
+	at akka.stream.impl.fusing.ActorGraphInterpreter$$anonfun$receive$1.applyOrElse(ActorGraphInterpreter.scala:740)
+	at akka.actor.Actor$class.aroundReceive(Actor.scala:514)
+	at akka.stream.impl.fusing.ActorGraphInterpreter.aroundReceive(ActorGraphInterpreter.scala:650)
+	at akka.actor.ActorCell.receiveMessage(ActorCell.scala:527)
+	at akka.actor.ActorCell.invoke(ActorCell.scala:496)
+	at akka.dispatch.Mailbox.processMailbox(Mailbox.scala:257)
+	at akka.dispatch.Mailbox.run(Mailbox.scala:224)
+	at akka.dispatch.Mailbox.exec(Mailbox.scala:234)
+	at akka.dispatch.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260)
+	at akka.dispatch.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339)
+	at akka.dispatch.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979)
+	at akka.dispatch.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107)
+Caused by: play.api.Configuration$$anon$1: Configuration error[dataSource or dataSourceClassName or jdbcUrl is required.]
+	at play.api.Configuration$.configError(Configuration.scala:155)
+	at play.api.Configuration.reportError(Configuration.scala:984)
+	at play.api.db.HikariCPConnectionPool.create(HikariCPModule.scala:63)
+	at play.api.db.PooledDatabase.createDataSource(Databases.scala:199)
+	at play.api.db.DefaultDatabase.dataSource$lzycompute(Databases.scala:123)
+	at play.api.db.DefaultDatabase.dataSource(Databases.scala:121)
+	at play.api.db.DefaultDatabase.getConnection(Databases.scala:142)
+	at play.api.db.DefaultDatabase.getConnection(Databases.scala:138)
+	at play.api.db.DefaultDBApi$$anonfun$connect$1.apply(DefaultDBApi.scala:44)
+	... 65 common frames omitted
+Caused by: java.lang.IllegalArgumentException: dataSource or dataSourceClassName or jdbcUrl is required.
+	at com.zaxxer.hikari.HikariConfig.validate(HikariConfig.java:882)
+	at play.api.db.HikariCPConfig.toHikariConfig(HikariCPModule.scala:136)
+	at play.api.db.HikariCPConnectionPool$$anonfun$1.apply(HikariCPModule.scala:50)
+	at play.api.db.HikariCPConnectionPool$$anonfun$1.apply(HikariCPModule.scala:47)
+	at scala.util.Try$.apply(Try.scala:192)
+	at play.api.db.HikariCPConnectionPool.create(HikariCPModule.scala:47)
+	... 71 common frames omitted
+2017-09-14 22:50:25,714 [INFO] from application in play-dev-mode-akka.actor.default-dispatcher-3 - Creating Pool for datasource 'neo4j'
+2017-09-14 22:50:25,714 [ERROR] from com.zaxxer.hikari.HikariConfig in play-dev-mode-akka.actor.default-dispatcher-3 - HikariPool-3 - dataSource or dataSourceClassName or jdbcUrl is required.
+2017-09-14 22:50:25,720 [ERROR] from application in play-dev-mode-akka.actor.default-dispatcher-3 - 
+
+! @75b69e356 - Internal server error, for (POST) [/user] ->
+ 
+play.api.Configuration$$anon$1: Configuration error[dataSource or dataSourceClassName or jdbcUrl is required.]
+	at play.api.Configuration$.configError(Configuration.scala:155)
+	at play.api.Configuration.reportError(Configuration.scala:984)
+	at play.api.db.HikariCPConnectionPool.create(HikariCPModule.scala:63)
+	at play.api.db.PooledDatabase.createDataSource(Databases.scala:199)
+	at play.api.db.DefaultDatabase.dataSource$lzycompute(Databases.scala:123)
+	at play.api.db.DefaultDatabase.dataSource(Databases.scala:121)
+	at play.api.db.DefaultDatabase.shutdown(Databases.scala:180)
+	at play.api.db.DefaultDBApi$$anonfun$shutdown$1.apply(DefaultDBApi.scala:54)
+	at play.api.db.DefaultDBApi$$anonfun$shutdown$1.apply(DefaultDBApi.scala:54)
+	at scala.collection.immutable.List.foreach(List.scala:381)
+	at play.api.db.DefaultDBApi.shutdown(DefaultDBApi.scala:54)
+	at play.api.db.DBApiProvider$$anonfun$get$1.apply(DBModule.scala:85)
+	at play.api.db.DBApiProvider$$anonfun$get$1.apply(DBModule.scala:85)
+	at play.api.inject.DefaultApplicationLifecycle$$anonfun$clearHooks$1$1.apply(ApplicationLifecycle.scala:105)
+	at play.api.inject.DefaultApplicationLifecycle$$anonfun$clearHooks$1$1.apply(ApplicationLifecycle.scala:104)
+	at scala.concurrent.Future$$anonfun$flatMap$1.apply(Future.scala:251)
+	at scala.concurrent.Future$$anonfun$flatMap$1.apply(Future.scala:249)
+	at scala.concurrent.impl.CallbackRunnable.run(Promise.scala:32)
+	at play.api.libs.streams.Execution$trampoline$.execute(Execution.scala:70)
+	at scala.concurrent.impl.CallbackRunnable.executeWithValue(Promise.scala:40)
+	at scala.concurrent.impl.Promise$KeptPromise.onComplete(Promise.scala:333)
+	at scala.concurrent.Future$class.flatMap(Future.scala:249)
+	at scala.concurrent.impl.Promise$KeptPromise.flatMap(Promise.scala:322)
+	at play.api.inject.DefaultApplicationLifecycle.clearHooks$1(ApplicationLifecycle.scala:104)
+	at play.api.inject.DefaultApplicationLifecycle.stop(ApplicationLifecycle.scala:112)
+	at play.core.server.DevServerStart$$anonfun$mainDev$1$$anon$1$$anonfun$reload$2.apply(DevServerStart.scala:152)
+	at play.core.server.DevServerStart$$anonfun$mainDev$1$$anon$1$$anonfun$reload$2.apply(DevServerStart.scala:152)
+	at scala.Option.foreach(Option.scala:257)
+	at play.core.server.DevServerStart$$anonfun$mainDev$1$$anon$1.reload(DevServerStart.scala:152)
+	at play.core.server.DevServerStart$$anonfun$mainDev$1$$anon$1.get(DevServerStart.scala:124)
+	at play.core.server.AkkaHttpServer.play$core$server$AkkaHttpServer$$modelConversion(AkkaHttpServer.scala:183)
+	at play.core.server.AkkaHttpServer.play$core$server$AkkaHttpServer$$handleRequest(AkkaHttpServer.scala:189)
+	at play.core.server.AkkaHttpServer$$anonfun$5.apply(AkkaHttpServer.scala:106)
+	at play.core.server.AkkaHttpServer$$anonfun$5.apply(AkkaHttpServer.scala:106)
+	at akka.stream.impl.fusing.MapAsync$$anon$23.onPush(Ops.scala:1172)
+	at akka.stream.impl.fusing.GraphInterpreter.processPush(GraphInterpreter.scala:499)
+	at akka.stream.impl.fusing.GraphInterpreter.processEvent(GraphInterpreter.scala:462)
+	at akka.stream.impl.fusing.GraphInterpreter.execute(GraphInterpreter.scala:368)
+	at akka.stream.impl.fusing.GraphInterpreterShell.runBatch(ActorGraphInterpreter.scala:571)
+	at akka.stream.impl.fusing.GraphInterpreterShell$AsyncInput.execute(ActorGraphInterpreter.scala:457)
+	at akka.stream.impl.fusing.GraphInterpreterShell.processEvent(ActorGraphInterpreter.scala:546)
+	at akka.stream.impl.fusing.ActorGraphInterpreter.akka$stream$impl$fusing$ActorGraphInterpreter$$processEvent(ActorGraphInterpreter.scala:725)
+	at akka.stream.impl.fusing.ActorGraphInterpreter$$anonfun$receive$1.applyOrElse(ActorGraphInterpreter.scala:740)
+	at akka.actor.Actor$class.aroundReceive(Actor.scala:514)
+	at akka.stream.impl.fusing.ActorGraphInterpreter.aroundReceive(ActorGraphInterpreter.scala:650)
+	at akka.actor.ActorCell.receiveMessage(ActorCell.scala:527)
+	at akka.actor.ActorCell.invoke(ActorCell.scala:496)
+	at akka.dispatch.Mailbox.processMailbox(Mailbox.scala:257)
+	at akka.dispatch.Mailbox.run(Mailbox.scala:224)
+	at akka.dispatch.Mailbox.exec(Mailbox.scala:234)
+	at akka.dispatch.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260)
+	at akka.dispatch.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339)
+	at akka.dispatch.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979)
+	at akka.dispatch.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107)
+Caused by: java.lang.IllegalArgumentException: dataSource or dataSourceClassName or jdbcUrl is required.
+	at com.zaxxer.hikari.HikariConfig.validate(HikariConfig.java:882)
+	at play.api.db.HikariCPConfig.toHikariConfig(HikariCPModule.scala:136)
+	at play.api.db.HikariCPConnectionPool$$anonfun$1.apply(HikariCPModule.scala:50)
+	at play.api.db.HikariCPConnectionPool$$anonfun$1.apply(HikariCPModule.scala:47)
+	at scala.util.Try$.apply(Try.scala:192)
+	at play.api.db.HikariCPConnectionPool.create(HikariCPModule.scala:47)
+	... 51 common frames omitted
+2017-09-14 22:50:55,942 [WARN] from application in play-dev-mode-akka.actor.default-dispatcher-2 - Configuration not found for database: No configuration setting found for key 'db'
+2017-09-14 22:50:56,907 [INFO] from play.api.http.EnabledFilters in play-dev-mode-akka.actor.default-dispatcher-2 - Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+
+    play.filters.csrf.CSRFFilter
+    play.filters.headers.SecurityHeadersFilter
+    play.filters.hosts.AllowedHostsFilter
+    play.filters.cors.CORSFilter
+    play.filters.hosts.AllowedHostsFilter
+
+2017-09-14 22:50:57,240 [ERROR] from application in play-dev-mode-akka.actor.default-dispatcher-2 - 
+
+! @75b69fnkd - Internal server error, for (POST) [/user] ->
+ 
+play.api.UnexpectedException: Unexpected exception[ProvisionException: Unable to provision, see the following errors:
+
+1) Error injecting constructor, java.lang.NullPointerException
+  at neo4j.services.UserService.<init>(UserService.java:5)
+  while locating neo4j.services.UserService
+    for field at controllers.UserController.userService(UserController.java:13)
+  while locating controllers.UserController
+    for the 2nd parameter of router.Routes.<init>(Routes.scala:27)
+  while locating router.Routes
+  while locating play.api.inject.RoutesProvider
+  while locating play.api.routing.Router
+    for the 1st parameter of play.api.http.JavaCompatibleHttpRequestHandler.<init>(HttpRequestHandler.scala:222)
+  while locating play.api.http.JavaCompatibleHttpRequestHandler
+  while locating play.api.http.HttpRequestHandler
+    for the 6th parameter of play.api.DefaultApplication.<init>(Application.scala:236)
+  at play.api.DefaultApplication.class(Application.scala:235)
+  while locating play.api.DefaultApplication
+  while locating play.api.Application
+
+1 error]
+	at play.core.server.DevServerStart$$anonfun$mainDev$1$$anon$1.reload(DevServerStart.scala:186)
+	at play.core.server.DevServerStart$$anonfun$mainDev$1$$anon$1.get(DevServerStart.scala:124)
+	at play.core.server.AkkaHttpServer.play$core$server$AkkaHttpServer$$modelConversion(AkkaHttpServer.scala:183)
+	at play.core.server.AkkaHttpServer.play$core$server$AkkaHttpServer$$handleRequest(AkkaHttpServer.scala:189)
+	at play.core.server.AkkaHttpServer$$anonfun$5.apply(AkkaHttpServer.scala:106)
+	at play.core.server.AkkaHttpServer$$anonfun$5.apply(AkkaHttpServer.scala:106)
+	at akka.stream.impl.fusing.MapAsync$$anon$23.onPush(Ops.scala:1172)
+	at akka.stream.impl.fusing.GraphInterpreter.processPush(GraphInterpreter.scala:499)
+	at akka.stream.impl.fusing.GraphInterpreter.processEvent(GraphInterpreter.scala:462)
+	at akka.stream.impl.fusing.GraphInterpreter.execute(GraphInterpreter.scala:368)
+	at akka.stream.impl.fusing.GraphInterpreterShell.runBatch(ActorGraphInterpreter.scala:571)
+	at akka.stream.impl.fusing.GraphInterpreterShell$AsyncInput.execute(ActorGraphInterpreter.scala:457)
+	at akka.stream.impl.fusing.GraphInterpreterShell.processEvent(ActorGraphInterpreter.scala:546)
+	at akka.stream.impl.fusing.ActorGraphInterpreter.akka$stream$impl$fusing$ActorGraphInterpreter$$processEvent(ActorGraphInterpreter.scala:725)
+	at akka.stream.impl.fusing.ActorGraphInterpreter$$anonfun$receive$1.applyOrElse(ActorGraphInterpreter.scala:740)
+	at akka.actor.Actor$class.aroundReceive(Actor.scala:514)
+	at akka.stream.impl.fusing.ActorGraphInterpreter.aroundReceive(ActorGraphInterpreter.scala:650)
+	at akka.actor.ActorCell.receiveMessage(ActorCell.scala:527)
+	at akka.actor.ActorCell.invoke(ActorCell.scala:496)
+	at akka.dispatch.Mailbox.processMailbox(Mailbox.scala:257)
+	at akka.dispatch.Mailbox.run(Mailbox.scala:224)
+	at akka.dispatch.Mailbox.exec(Mailbox.scala:234)
+	at akka.dispatch.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260)
+	at akka.dispatch.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339)
+	at akka.dispatch.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979)
+	at akka.dispatch.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107)
+Caused by: com.google.inject.ProvisionException: Unable to provision, see the following errors:
+
+1) Error injecting constructor, java.lang.NullPointerException
+  at neo4j.services.UserService.<init>(UserService.java:5)
+  while locating neo4j.services.UserService
+    for field at controllers.UserController.userService(UserController.java:13)
+  while locating controllers.UserController
+    for the 2nd parameter of router.Routes.<init>(Routes.scala:27)
+  while locating router.Routes
+  while locating play.api.inject.RoutesProvider
+  while locating play.api.routing.Router
+    for the 1st parameter of play.api.http.JavaCompatibleHttpRequestHandler.<init>(HttpRequestHandler.scala:222)
+  while locating play.api.http.JavaCompatibleHttpRequestHandler
+  while locating play.api.http.HttpRequestHandler
+    for the 6th parameter of play.api.DefaultApplication.<init>(Application.scala:236)
+  at play.api.DefaultApplication.class(Application.scala:235)
+  while locating play.api.DefaultApplication
+  while locating play.api.Application
+
+1 error
+	at com.google.inject.internal.InjectorImpl$2.get(InjectorImpl.java:1028)
+	at com.google.inject.internal.InjectorImpl.getInstance(InjectorImpl.java:1054)
+	at play.api.inject.guice.GuiceInjector.instanceOf(GuiceInjectorBuilder.scala:409)
+	at play.api.inject.guice.GuiceInjector.instanceOf(GuiceInjectorBuilder.scala:404)
+	at play.api.inject.ContextClassLoaderInjector$$anonfun$instanceOf$2.apply(Injector.scala:117)
+	at play.api.inject.ContextClassLoaderInjector.withContext(Injector.scala:126)
+	at play.api.inject.ContextClassLoaderInjector.instanceOf(Injector.scala:117)
+	at play.api.inject.guice.GuiceApplicationBuilder.build(GuiceApplicationBuilder.scala:137)
+	at play.api.inject.guice.GuiceApplicationLoader.load(GuiceApplicationLoader.scala:21)
+	at play.core.server.DevServerStart$$anonfun$mainDev$1$$anon$1$$anonfun$1.apply(DevServerStart.scala:174)
+	at play.core.server.DevServerStart$$anonfun$mainDev$1$$anon$1$$anonfun$1.apply(DevServerStart.scala:171)
+	at play.utils.Threads$.withContextClassLoader(Threads.scala:21)
+	at play.core.server.DevServerStart$$anonfun$mainDev$1$$anon$1.reload(DevServerStart.scala:171)
+	... 25 common frames omitted
+Caused by: java.lang.NullPointerException: null
+	at neo4j.Neo4jSessionFactory.getNeo4jSession(Neo4jSessionFactory.java:29)
+	at neo4j.services.AbstractService.<init>(AbstractService.java:15)
+	at neo4j.services.UserService.<init>(UserService.java:5)
+	at neo4j.services.UserService$$FastClassByGuice$$d8e00a5a.newInstance(<generated>)
+	at com.google.inject.internal.DefaultConstructionProxyFactory$FastClassProxy.newInstance(DefaultConstructionProxyFactory.java:89)
+	at com.google.inject.internal.ConstructorInjector.provision(ConstructorInjector.java:111)
+	at com.google.inject.internal.ConstructorInjector.construct(ConstructorInjector.java:90)
+	at com.google.inject.internal.ConstructorBindingImpl$Factory.get(ConstructorBindingImpl.java:268)
+	at com.google.inject.internal.SingleFieldInjector.inject(SingleFieldInjector.java:54)
+	at com.google.inject.internal.MembersInjectorImpl.injectMembers(MembersInjectorImpl.java:132)
+	at com.google.inject.internal.ConstructorInjector.provision(ConstructorInjector.java:120)
+	at com.google.inject.internal.ConstructorInjector.construct(ConstructorInjector.java:90)
+	at com.google.inject.internal.ConstructorBindingImpl$Factory.get(ConstructorBindingImpl.java:268)
+	at com.google.inject.internal.SingleParameterInjector.inject(SingleParameterInjector.java:38)
+	at com.google.inject.internal.SingleParameterInjector.getAll(SingleParameterInjector.java:62)
+	at com.google.inject.internal.ConstructorInjector.provision(ConstructorInjector.java:110)
+	at com.google.inject.internal.ConstructorInjector.construct(ConstructorInjector.java:90)
+	at com.google.inject.internal.ConstructorBindingImpl$Factory.get(ConstructorBindingImpl.java:268)
+	at com.google.inject.internal.InjectorImpl$2$1.call(InjectorImpl.java:1019)
+	at com.google.inject.internal.InjectorImpl.callInContext(InjectorImpl.java:1092)
+	at com.google.inject.internal.InjectorImpl$2.get(InjectorImpl.java:1015)
+	at com.google.inject.internal.InjectorImpl.getInstance(InjectorImpl.java:1054)
+	at play.api.inject.guice.GuiceInjector.instanceOf(GuiceInjectorBuilder.scala:409)
+	at play.api.inject.ContextClassLoaderInjector$$anonfun$instanceOf$3.apply(Injector.scala:118)
+	at play.api.inject.ContextClassLoaderInjector.withContext(Injector.scala:126)
+	at play.api.inject.ContextClassLoaderInjector.instanceOf(Injector.scala:118)
+	at play.api.inject.RoutesProvider$$anonfun$2.apply(BuiltinModule.scala:104)
+	at play.api.inject.RoutesProvider$$anonfun$2.apply(BuiltinModule.scala:104)
+	at scala.Option.fold(Option.scala:158)
+	at play.api.inject.RoutesProvider.get$lzycompute(BuiltinModule.scala:104)
+	at play.api.inject.RoutesProvider.get(BuiltinModule.scala:100)
+	at play.api.inject.RoutesProvider.get(BuiltinModule.scala:99)
+	at com.google.inject.internal.ProviderInternalFactory.provision(ProviderInternalFactory.java:81)
+	at com.google.inject.internal.BoundProviderFactory.provision(BoundProviderFactory.java:72)
+	at com.google.inject.internal.ProviderInternalFactory.circularGet(ProviderInternalFactory.java:61)
+	at com.google.inject.internal.BoundProviderFactory.get(BoundProviderFactory.java:62)
+	at com.google.inject.internal.SingleParameterInjector.inject(SingleParameterInjector.java:38)
+	at com.google.inject.internal.SingleParameterInjector.getAll(SingleParameterInjector.java:62)
+	at com.google.inject.internal.ConstructorInjector.provision(ConstructorInjector.java:110)
+	at com.google.inject.internal.ConstructorInjector.construct(ConstructorInjector.java:90)
+	at com.google.inject.internal.ConstructorBindingImpl$Factory.get(ConstructorBindingImpl.java:268)
+	at com.google.inject.internal.FactoryProxy.get(FactoryProxy.java:56)
+	at com.google.inject.internal.SingleParameterInjector.inject(SingleParameterInjector.java:38)
+	at com.google.inject.internal.SingleParameterInjector.getAll(SingleParameterInjector.java:62)
+	at com.google.inject.internal.ConstructorInjector.provision(ConstructorInjector.java:110)
+	at com.google.inject.internal.ConstructorInjector.construct(ConstructorInjector.java:90)
+	at com.google.inject.internal.ConstructorBindingImpl$Factory.get(ConstructorBindingImpl.java:268)
+	at com.google.inject.internal.ProviderToInternalFactoryAdapter$1.call(ProviderToInternalFactoryAdapter.java:46)
+	at com.google.inject.internal.InjectorImpl.callInContext(InjectorImpl.java:1092)
+	at com.google.inject.internal.ProviderToInternalFactoryAdapter.get(ProviderToInternalFactoryAdapter.java:40)
+	at com.google.inject.internal.SingletonScope$1.get(SingletonScope.java:194)
+	at com.google.inject.internal.InternalFactoryToProviderAdapter.get(InternalFactoryToProviderAdapter.java:41)
+	at com.google.inject.internal.FactoryProxy.get(FactoryProxy.java:56)
+	at com.google.inject.internal.InjectorImpl$2$1.call(InjectorImpl.java:1019)
+	at com.google.inject.internal.InjectorImpl.callInContext(InjectorImpl.java:1085)
+	at com.google.inject.internal.InjectorImpl$2.get(InjectorImpl.java:1015)
+	... 37 common frames omitted
+2017-09-14 22:53:48,838 [WARN] from application in play-dev-mode-akka.actor.default-dispatcher-4 - Configuration not found for database: No configuration setting found for key 'db'
+2017-09-14 22:53:49,053 [INFO] from play.api.http.EnabledFilters in play-dev-mode-akka.actor.default-dispatcher-4 - Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+
+    play.filters.csrf.CSRFFilter
+    play.filters.headers.SecurityHeadersFilter
+    play.filters.hosts.AllowedHostsFilter
+    play.filters.cors.CORSFilter
+    play.filters.hosts.AllowedHostsFilter
+
+2017-09-14 22:53:49,118 [ERROR] from application in play-dev-mode-akka.actor.default-dispatcher-4 - 
+
+! @75b69pi0i - Internal server error, for (POST) [/user] ->
+ 
+play.api.UnexpectedException: Unexpected exception[ProvisionException: Unable to provision, see the following errors:
+
+1) Error injecting constructor, java.lang.NullPointerException
+  at neo4j.services.UserService.<init>(UserService.java:5)
+  while locating neo4j.services.UserService
+    for field at controllers.UserController.userService(UserController.java:13)
+  while locating controllers.UserController
+    for the 2nd parameter of router.Routes.<init>(Routes.scala:27)
+  while locating router.Routes
+  while locating play.api.inject.RoutesProvider
+  while locating play.api.routing.Router
+    for the 1st parameter of play.api.http.JavaCompatibleHttpRequestHandler.<init>(HttpRequestHandler.scala:222)
+  while locating play.api.http.JavaCompatibleHttpRequestHandler
+  while locating play.api.http.HttpRequestHandler
+    for the 6th parameter of play.api.DefaultApplication.<init>(Application.scala:236)
+  at play.api.DefaultApplication.class(Application.scala:235)
+  while locating play.api.DefaultApplication
+  while locating play.api.Application
+
+1 error]
+	at play.core.server.DevServerStart$$anonfun$mainDev$1$$anon$1.reload(DevServerStart.scala:186)
+	at play.core.server.DevServerStart$$anonfun$mainDev$1$$anon$1.get(DevServerStart.scala:124)
+	at play.core.server.AkkaHttpServer.play$core$server$AkkaHttpServer$$modelConversion(AkkaHttpServer.scala:183)
+	at play.core.server.AkkaHttpServer.play$core$server$AkkaHttpServer$$handleRequest(AkkaHttpServer.scala:189)
+	at play.core.server.AkkaHttpServer$$anonfun$5.apply(AkkaHttpServer.scala:106)
+	at play.core.server.AkkaHttpServer$$anonfun$5.apply(AkkaHttpServer.scala:106)
+	at akka.stream.impl.fusing.MapAsync$$anon$23.onPush(Ops.scala:1172)
+	at akka.stream.impl.fusing.GraphInterpreter.processPush(GraphInterpreter.scala:499)
+	at akka.stream.impl.fusing.GraphInterpreter.processEvent(GraphInterpreter.scala:462)
+	at akka.stream.impl.fusing.GraphInterpreter.execute(GraphInterpreter.scala:368)
+	at akka.stream.impl.fusing.GraphInterpreterShell.runBatch(ActorGraphInterpreter.scala:571)
+	at akka.stream.impl.fusing.GraphInterpreterShell$AsyncInput.execute(ActorGraphInterpreter.scala:457)
+	at akka.stream.impl.fusing.GraphInterpreterShell.processEvent(ActorGraphInterpreter.scala:546)
+	at akka.stream.impl.fusing.ActorGraphInterpreter.akka$stream$impl$fusing$ActorGraphInterpreter$$processEvent(ActorGraphInterpreter.scala:725)
+	at akka.stream.impl.fusing.ActorGraphInterpreter$$anonfun$receive$1.applyOrElse(ActorGraphInterpreter.scala:740)
+	at akka.actor.Actor$class.aroundReceive(Actor.scala:514)
+	at akka.stream.impl.fusing.ActorGraphInterpreter.aroundReceive(ActorGraphInterpreter.scala:650)
+	at akka.actor.ActorCell.receiveMessage(ActorCell.scala:527)
+	at akka.actor.ActorCell.invoke(ActorCell.scala:496)
+	at akka.dispatch.Mailbox.processMailbox(Mailbox.scala:257)
+	at akka.dispatch.Mailbox.run(Mailbox.scala:224)
+	at akka.dispatch.Mailbox.exec(Mailbox.scala:234)
+	at akka.dispatch.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260)
+	at akka.dispatch.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339)
+	at akka.dispatch.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979)
+	at akka.dispatch.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107)
+Caused by: com.google.inject.ProvisionException: Unable to provision, see the following errors:
+
+1) Error injecting constructor, java.lang.NullPointerException
+  at neo4j.services.UserService.<init>(UserService.java:5)
+  while locating neo4j.services.UserService
+    for field at controllers.UserController.userService(UserController.java:13)
+  while locating controllers.UserController
+    for the 2nd parameter of router.Routes.<init>(Routes.scala:27)
+  while locating router.Routes
+  while locating play.api.inject.RoutesProvider
+  while locating play.api.routing.Router
+    for the 1st parameter of play.api.http.JavaCompatibleHttpRequestHandler.<init>(HttpRequestHandler.scala:222)
+  while locating play.api.http.JavaCompatibleHttpRequestHandler
+  while locating play.api.http.HttpRequestHandler
+    for the 6th parameter of play.api.DefaultApplication.<init>(Application.scala:236)
+  at play.api.DefaultApplication.class(Application.scala:235)
+  while locating play.api.DefaultApplication
+  while locating play.api.Application
+
+1 error
+	at com.google.inject.internal.InjectorImpl$2.get(InjectorImpl.java:1028)
+	at com.google.inject.internal.InjectorImpl.getInstance(InjectorImpl.java:1054)
+	at play.api.inject.guice.GuiceInjector.instanceOf(GuiceInjectorBuilder.scala:409)
+	at play.api.inject.guice.GuiceInjector.instanceOf(GuiceInjectorBuilder.scala:404)
+	at play.api.inject.ContextClassLoaderInjector$$anonfun$instanceOf$2.apply(Injector.scala:117)
+	at play.api.inject.ContextClassLoaderInjector.withContext(Injector.scala:126)
+	at play.api.inject.ContextClassLoaderInjector.instanceOf(Injector.scala:117)
+	at play.api.inject.guice.GuiceApplicationBuilder.build(GuiceApplicationBuilder.scala:137)
+	at play.api.inject.guice.GuiceApplicationLoader.load(GuiceApplicationLoader.scala:21)
+	at play.core.server.DevServerStart$$anonfun$mainDev$1$$anon$1$$anonfun$1.apply(DevServerStart.scala:174)
+	at play.core.server.DevServerStart$$anonfun$mainDev$1$$anon$1$$anonfun$1.apply(DevServerStart.scala:171)
+	at play.utils.Threads$.withContextClassLoader(Threads.scala:21)
+	at play.core.server.DevServerStart$$anonfun$mainDev$1$$anon$1.reload(DevServerStart.scala:171)
+	... 25 common frames omitted
+Caused by: java.lang.NullPointerException: null
+	at neo4j.Neo4jSessionFactory.getNeo4jSession(Neo4jSessionFactory.java:29)
+	at neo4j.services.AbstractService.<init>(AbstractService.java:15)
+	at neo4j.services.UserService.<init>(UserService.java:5)
+	at neo4j.services.UserService$$FastClassByGuice$$d8e00a5a.newInstance(<generated>)
+	at com.google.inject.internal.DefaultConstructionProxyFactory$FastClassProxy.newInstance(DefaultConstructionProxyFactory.java:89)
+	at com.google.inject.internal.ConstructorInjector.provision(ConstructorInjector.java:111)
+	at com.google.inject.internal.ConstructorInjector.construct(ConstructorInjector.java:90)
+	at com.google.inject.internal.ConstructorBindingImpl$Factory.get(ConstructorBindingImpl.java:268)
+	at com.google.inject.internal.SingleFieldInjector.inject(SingleFieldInjector.java:54)
+	at com.google.inject.internal.MembersInjectorImpl.injectMembers(MembersInjectorImpl.java:132)
+	at com.google.inject.internal.ConstructorInjector.provision(ConstructorInjector.java:120)
+	at com.google.inject.internal.ConstructorInjector.construct(ConstructorInjector.java:90)
+	at com.google.inject.internal.ConstructorBindingImpl$Factory.get(ConstructorBindingImpl.java:268)
+	at com.google.inject.internal.SingleParameterInjector.inject(SingleParameterInjector.java:38)
+	at com.google.inject.internal.SingleParameterInjector.getAll(SingleParameterInjector.java:62)
+	at com.google.inject.internal.ConstructorInjector.provision(ConstructorInjector.java:110)
+	at com.google.inject.internal.ConstructorInjector.construct(ConstructorInjector.java:90)
+	at com.google.inject.internal.ConstructorBindingImpl$Factory.get(ConstructorBindingImpl.java:268)
+	at com.google.inject.internal.InjectorImpl$2$1.call(InjectorImpl.java:1019)
+	at com.google.inject.internal.InjectorImpl.callInContext(InjectorImpl.java:1092)
+	at com.google.inject.internal.InjectorImpl$2.get(InjectorImpl.java:1015)
+	at com.google.inject.internal.InjectorImpl.getInstance(InjectorImpl.java:1054)
+	at play.api.inject.guice.GuiceInjector.instanceOf(GuiceInjectorBuilder.scala:409)
+	at play.api.inject.ContextClassLoaderInjector$$anonfun$instanceOf$3.apply(Injector.scala:118)
+	at play.api.inject.ContextClassLoaderInjector.withContext(Injector.scala:126)
+	at play.api.inject.ContextClassLoaderInjector.instanceOf(Injector.scala:118)
+	at play.api.inject.RoutesProvider$$anonfun$2.apply(BuiltinModule.scala:104)
+	at play.api.inject.RoutesProvider$$anonfun$2.apply(BuiltinModule.scala:104)
+	at scala.Option.fold(Option.scala:158)
+	at play.api.inject.RoutesProvider.get$lzycompute(BuiltinModule.scala:104)
+	at play.api.inject.RoutesProvider.get(BuiltinModule.scala:100)
+	at play.api.inject.RoutesProvider.get(BuiltinModule.scala:99)
+	at com.google.inject.internal.ProviderInternalFactory.provision(ProviderInternalFactory.java:81)
+	at com.google.inject.internal.BoundProviderFactory.provision(BoundProviderFactory.java:72)
+	at com.google.inject.internal.ProviderInternalFactory.circularGet(ProviderInternalFactory.java:61)
+	at com.google.inject.internal.BoundProviderFactory.get(BoundProviderFactory.java:62)
+	at com.google.inject.internal.SingleParameterInjector.inject(SingleParameterInjector.java:38)
+	at com.google.inject.internal.SingleParameterInjector.getAll(SingleParameterInjector.java:62)
+	at com.google.inject.internal.ConstructorInjector.provision(ConstructorInjector.java:110)
+	at com.google.inject.internal.ConstructorInjector.construct(ConstructorInjector.java:90)
+	at com.google.inject.internal.ConstructorBindingImpl$Factory.get(ConstructorBindingImpl.java:268)
+	at com.google.inject.internal.FactoryProxy.get(FactoryProxy.java:56)
+	at com.google.inject.internal.SingleParameterInjector.inject(SingleParameterInjector.java:38)
+	at com.google.inject.internal.SingleParameterInjector.getAll(SingleParameterInjector.java:62)
+	at com.google.inject.internal.ConstructorInjector.provision(ConstructorInjector.java:110)
+	at com.google.inject.internal.ConstructorInjector.construct(ConstructorInjector.java:90)
+	at com.google.inject.internal.ConstructorBindingImpl$Factory.get(ConstructorBindingImpl.java:268)
+	at com.google.inject.internal.ProviderToInternalFactoryAdapter$1.call(ProviderToInternalFactoryAdapter.java:46)
+	at com.google.inject.internal.InjectorImpl.callInContext(InjectorImpl.java:1092)
+	at com.google.inject.internal.ProviderToInternalFactoryAdapter.get(ProviderToInternalFactoryAdapter.java:40)
+	at com.google.inject.internal.SingletonScope$1.get(SingletonScope.java:194)
+	at com.google.inject.internal.InternalFactoryToProviderAdapter.get(InternalFactoryToProviderAdapter.java:41)
+	at com.google.inject.internal.FactoryProxy.get(FactoryProxy.java:56)
+	at com.google.inject.internal.InjectorImpl$2$1.call(InjectorImpl.java:1019)
+	at com.google.inject.internal.InjectorImpl.callInContext(InjectorImpl.java:1085)
+	at com.google.inject.internal.InjectorImpl$2.get(InjectorImpl.java:1015)
+	... 37 common frames omitted
+2017-09-14 22:56:37,960 [WARN] from application in play-dev-mode-akka.actor.default-dispatcher-9 - Configuration not found for database: No configuration setting found for key 'db'
+2017-09-14 22:56:38,125 [INFO] from play.api.http.EnabledFilters in play-dev-mode-akka.actor.default-dispatcher-9 - Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+
+    play.filters.csrf.CSRFFilter
+    play.filters.headers.SecurityHeadersFilter
+    play.filters.hosts.AllowedHostsFilter
+    play.filters.cors.CORSFilter
+    play.filters.hosts.AllowedHostsFilter
+
+2017-09-14 22:56:38,180 [ERROR] from application in play-dev-mode-akka.actor.default-dispatcher-9 - 
+
+! @75b6a983f - Internal server error, for (POST) [/user] ->
+ 
+play.api.UnexpectedException: Unexpected exception[ProvisionException: Unable to provision, see the following errors:
+
+1) Error injecting constructor, java.lang.ClassCastException: [Ljava.lang.Object; cannot be cast to [Ljava.lang.String;
+  at neo4j.services.UserService.<init>(UserService.java:12)
+  while locating neo4j.services.UserService
+    for field at controllers.UserController.userService(UserController.java:13)
+  while locating controllers.UserController
+    for the 2nd parameter of router.Routes.<init>(Routes.scala:27)
+  while locating router.Routes
+  while locating play.api.inject.RoutesProvider
+  while locating play.api.routing.Router
+    for the 1st parameter of play.api.http.JavaCompatibleHttpRequestHandler.<init>(HttpRequestHandler.scala:222)
+  while locating play.api.http.JavaCompatibleHttpRequestHandler
+  while locating play.api.http.HttpRequestHandler
+    for the 6th parameter of play.api.DefaultApplication.<init>(Application.scala:236)
+  at play.api.DefaultApplication.class(Application.scala:235)
+  while locating play.api.DefaultApplication
+  while locating play.api.Application
+
+1 error]
+	at play.core.server.DevServerStart$$anonfun$mainDev$1$$anon$1.reload(DevServerStart.scala:186)
+	at play.core.server.DevServerStart$$anonfun$mainDev$1$$anon$1.get(DevServerStart.scala:124)
+	at play.core.server.AkkaHttpServer.play$core$server$AkkaHttpServer$$modelConversion(AkkaHttpServer.scala:183)
+	at play.core.server.AkkaHttpServer.play$core$server$AkkaHttpServer$$handleRequest(AkkaHttpServer.scala:189)
+	at play.core.server.AkkaHttpServer$$anonfun$5.apply(AkkaHttpServer.scala:106)
+	at play.core.server.AkkaHttpServer$$anonfun$5.apply(AkkaHttpServer.scala:106)
+	at akka.stream.impl.fusing.MapAsync$$anon$23.onPush(Ops.scala:1172)
+	at akka.stream.impl.fusing.GraphInterpreter.processPush(GraphInterpreter.scala:499)
+	at akka.stream.impl.fusing.GraphInterpreter.processEvent(GraphInterpreter.scala:462)
+	at akka.stream.impl.fusing.GraphInterpreter.execute(GraphInterpreter.scala:368)
+	at akka.stream.impl.fusing.GraphInterpreterShell.runBatch(ActorGraphInterpreter.scala:571)
+	at akka.stream.impl.fusing.GraphInterpreterShell$AsyncInput.execute(ActorGraphInterpreter.scala:457)
+	at akka.stream.impl.fusing.GraphInterpreterShell.processEvent(ActorGraphInterpreter.scala:546)
+	at akka.stream.impl.fusing.ActorGraphInterpreter.akka$stream$impl$fusing$ActorGraphInterpreter$$processEvent(ActorGraphInterpreter.scala:725)
+	at akka.stream.impl.fusing.ActorGraphInterpreter$$anonfun$receive$1.applyOrElse(ActorGraphInterpreter.scala:740)
+	at akka.actor.Actor$class.aroundReceive(Actor.scala:514)
+	at akka.stream.impl.fusing.ActorGraphInterpreter.aroundReceive(ActorGraphInterpreter.scala:650)
+	at akka.actor.ActorCell.receiveMessage(ActorCell.scala:527)
+	at akka.actor.ActorCell.invoke(ActorCell.scala:496)
+	at akka.dispatch.Mailbox.processMailbox(Mailbox.scala:257)
+	at akka.dispatch.Mailbox.run(Mailbox.scala:224)
+	at akka.dispatch.Mailbox.exec(Mailbox.scala:234)
+	at akka.dispatch.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260)
+	at akka.dispatch.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339)
+	at akka.dispatch.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979)
+	at akka.dispatch.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107)
+Caused by: com.google.inject.ProvisionException: Unable to provision, see the following errors:
+
+1) Error injecting constructor, java.lang.ClassCastException: [Ljava.lang.Object; cannot be cast to [Ljava.lang.String;
+  at neo4j.services.UserService.<init>(UserService.java:12)
+  while locating neo4j.services.UserService
+    for field at controllers.UserController.userService(UserController.java:13)
+  while locating controllers.UserController
+    for the 2nd parameter of router.Routes.<init>(Routes.scala:27)
+  while locating router.Routes
+  while locating play.api.inject.RoutesProvider
+  while locating play.api.routing.Router
+    for the 1st parameter of play.api.http.JavaCompatibleHttpRequestHandler.<init>(HttpRequestHandler.scala:222)
+  while locating play.api.http.JavaCompatibleHttpRequestHandler
+  while locating play.api.http.HttpRequestHandler
+    for the 6th parameter of play.api.DefaultApplication.<init>(Application.scala:236)
+  at play.api.DefaultApplication.class(Application.scala:235)
+  while locating play.api.DefaultApplication
+  while locating play.api.Application
+
+1 error
+	at com.google.inject.internal.InjectorImpl$2.get(InjectorImpl.java:1028)
+	at com.google.inject.internal.InjectorImpl.getInstance(InjectorImpl.java:1054)
+	at play.api.inject.guice.GuiceInjector.instanceOf(GuiceInjectorBuilder.scala:409)
+	at play.api.inject.guice.GuiceInjector.instanceOf(GuiceInjectorBuilder.scala:404)
+	at play.api.inject.ContextClassLoaderInjector$$anonfun$instanceOf$2.apply(Injector.scala:117)
+	at play.api.inject.ContextClassLoaderInjector.withContext(Injector.scala:126)
+	at play.api.inject.ContextClassLoaderInjector.instanceOf(Injector.scala:117)
+	at play.api.inject.guice.GuiceApplicationBuilder.build(GuiceApplicationBuilder.scala:137)
+	at play.api.inject.guice.GuiceApplicationLoader.load(GuiceApplicationLoader.scala:21)
+	at play.core.server.DevServerStart$$anonfun$mainDev$1$$anon$1$$anonfun$1.apply(DevServerStart.scala:174)
+	at play.core.server.DevServerStart$$anonfun$mainDev$1$$anon$1$$anonfun$1.apply(DevServerStart.scala:171)
+	at play.utils.Threads$.withContextClassLoader(Threads.scala:21)
+	at play.core.server.DevServerStart$$anonfun$mainDev$1$$anon$1.reload(DevServerStart.scala:171)
+	... 25 common frames omitted
+Caused by: java.lang.ClassCastException: [Ljava.lang.Object; cannot be cast to [Ljava.lang.String;
+	at neo4j.Neo4jSessionFactory.getNeo4jSession(Neo4jSessionFactory.java:27)
+	at neo4j.services.AbstractService.<init>(AbstractService.java:20)
+	at neo4j.services.UserService.<init>(UserService.java:12)
+	at neo4j.services.UserService$$FastClassByGuice$$d8e00a5a.newInstance(<generated>)
+	at com.google.inject.internal.DefaultConstructionProxyFactory$FastClassProxy.newInstance(DefaultConstructionProxyFactory.java:89)
+	at com.google.inject.internal.ConstructorInjector.provision(ConstructorInjector.java:111)
+	at com.google.inject.internal.ConstructorInjector.construct(ConstructorInjector.java:90)
+	at com.google.inject.internal.ConstructorBindingImpl$Factory.get(ConstructorBindingImpl.java:268)
+	at com.google.inject.internal.SingleFieldInjector.inject(SingleFieldInjector.java:54)
+	at com.google.inject.internal.MembersInjectorImpl.injectMembers(MembersInjectorImpl.java:132)
+	at com.google.inject.internal.ConstructorInjector.provision(ConstructorInjector.java:120)
+	at com.google.inject.internal.ConstructorInjector.construct(ConstructorInjector.java:90)
+	at com.google.inject.internal.ConstructorBindingImpl$Factory.get(ConstructorBindingImpl.java:268)
+	at com.google.inject.internal.SingleParameterInjector.inject(SingleParameterInjector.java:38)
+	at com.google.inject.internal.SingleParameterInjector.getAll(SingleParameterInjector.java:62)
+	at com.google.inject.internal.ConstructorInjector.provision(ConstructorInjector.java:110)
+	at com.google.inject.internal.ConstructorInjector.construct(ConstructorInjector.java:90)
+	at com.google.inject.internal.ConstructorBindingImpl$Factory.get(ConstructorBindingImpl.java:268)
+	at com.google.inject.internal.InjectorImpl$2$1.call(InjectorImpl.java:1019)
+	at com.google.inject.internal.InjectorImpl.callInContext(InjectorImpl.java:1092)
+	at com.google.inject.internal.InjectorImpl$2.get(InjectorImpl.java:1015)
+	at com.google.inject.internal.InjectorImpl.getInstance(InjectorImpl.java:1054)
+	at play.api.inject.guice.GuiceInjector.instanceOf(GuiceInjectorBuilder.scala:409)
+	at play.api.inject.ContextClassLoaderInjector$$anonfun$instanceOf$3.apply(Injector.scala:118)
+	at play.api.inject.ContextClassLoaderInjector.withContext(Injector.scala:126)
+	at play.api.inject.ContextClassLoaderInjector.instanceOf(Injector.scala:118)
+	at play.api.inject.RoutesProvider$$anonfun$2.apply(BuiltinModule.scala:104)
+	at play.api.inject.RoutesProvider$$anonfun$2.apply(BuiltinModule.scala:104)
+	at scala.Option.fold(Option.scala:158)
+	at play.api.inject.RoutesProvider.get$lzycompute(BuiltinModule.scala:104)
+	at play.api.inject.RoutesProvider.get(BuiltinModule.scala:100)
+	at play.api.inject.RoutesProvider.get(BuiltinModule.scala:99)
+	at com.google.inject.internal.ProviderInternalFactory.provision(ProviderInternalFactory.java:81)
+	at com.google.inject.internal.BoundProviderFactory.provision(BoundProviderFactory.java:72)
+	at com.google.inject.internal.ProviderInternalFactory.circularGet(ProviderInternalFactory.java:61)
+	at com.google.inject.internal.BoundProviderFactory.get(BoundProviderFactory.java:62)
+	at com.google.inject.internal.SingleParameterInjector.inject(SingleParameterInjector.java:38)
+	at com.google.inject.internal.SingleParameterInjector.getAll(SingleParameterInjector.java:62)
+	at com.google.inject.internal.ConstructorInjector.provision(ConstructorInjector.java:110)
+	at com.google.inject.internal.ConstructorInjector.construct(ConstructorInjector.java:90)
+	at com.google.inject.internal.ConstructorBindingImpl$Factory.get(ConstructorBindingImpl.java:268)
+	at com.google.inject.internal.FactoryProxy.get(FactoryProxy.java:56)
+	at com.google.inject.internal.SingleParameterInjector.inject(SingleParameterInjector.java:38)
+	at com.google.inject.internal.SingleParameterInjector.getAll(SingleParameterInjector.java:62)
+	at com.google.inject.internal.ConstructorInjector.provision(ConstructorInjector.java:110)
+	at com.google.inject.internal.ConstructorInjector.construct(ConstructorInjector.java:90)
+	at com.google.inject.internal.ConstructorBindingImpl$Factory.get(ConstructorBindingImpl.java:268)
+	at com.google.inject.internal.ProviderToInternalFactoryAdapter$1.call(ProviderToInternalFactoryAdapter.java:46)
+	at com.google.inject.internal.InjectorImpl.callInContext(InjectorImpl.java:1092)
+	at com.google.inject.internal.ProviderToInternalFactoryAdapter.get(ProviderToInternalFactoryAdapter.java:40)
+	at com.google.inject.internal.SingletonScope$1.get(SingletonScope.java:194)
+	at com.google.inject.internal.InternalFactoryToProviderAdapter.get(InternalFactoryToProviderAdapter.java:41)
+	at com.google.inject.internal.FactoryProxy.get(FactoryProxy.java:56)
+	at com.google.inject.internal.InjectorImpl$2$1.call(InjectorImpl.java:1019)
+	at com.google.inject.internal.InjectorImpl.callInContext(InjectorImpl.java:1085)
+	at com.google.inject.internal.InjectorImpl$2.get(InjectorImpl.java:1015)
+	... 37 common frames omitted
+2017-09-14 23:02:03,540 [WARN] from application in play-dev-mode-akka.actor.default-dispatcher-18 - Configuration not found for database: No configuration setting found for key 'db'
+2017-09-14 23:02:04,173 [INFO] from play.api.http.EnabledFilters in play-dev-mode-akka.actor.default-dispatcher-18 - Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+
+    play.filters.csrf.CSRFFilter
+    play.filters.headers.SecurityHeadersFilter
+    play.filters.hosts.AllowedHostsFilter
+    play.filters.cors.CORSFilter
+    play.filters.hosts.AllowedHostsFilter
+
+2017-09-14 23:02:04,197 [INFO] from play.api.Play in play-dev-mode-akka.actor.default-dispatcher-18 - Application started (Dev)
+2017-09-14 23:03:47,211 [WARN] from application in play-dev-mode-akka.actor.default-dispatcher-23 - Configuration not found for database: No configuration setting found for key 'db'
+2017-09-14 23:03:47,463 [INFO] from play.api.http.EnabledFilters in play-dev-mode-akka.actor.default-dispatcher-23 - Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+
+    play.filters.csrf.CSRFFilter
+    play.filters.headers.SecurityHeadersFilter
+    play.filters.hosts.AllowedHostsFilter
+    play.filters.cors.CORSFilter
+    play.filters.hosts.AllowedHostsFilter
+
+2017-09-14 23:03:47,470 [INFO] from play.api.Play in play-dev-mode-akka.actor.default-dispatcher-23 - Application started (Dev)

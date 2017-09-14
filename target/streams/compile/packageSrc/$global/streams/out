@@ -1,0 +1,23 @@
+[0m[[0minfo[0m] [0mPackaging D:\Praxisprojekt\dSportBackend_NEU\dsport-backend\target\scala-2.12\dsport-backend_2.12-1.0-SNAPSHOT-sources.jar ...[0m
+[0m[[0mdebug[0m] [0mInput file mappings:[0m
+[0m[[0mdebug[0m] [0m	services\LanguageService.java[0m
+[0m[[0mdebug[0m] [0m	  D:\Praxisprojekt\dSportBackend_NEU\dsport-backend\app\services\LanguageService.java[0m
+[0m[[0mdebug[0m] [0m	messages[0m
+[0m[[0mdebug[0m] [0m	  D:\Praxisprojekt\dSportBackend_NEU\dsport-backend\conf\messages[0m
+[0m[[0mdebug[0m] [0m	dbmodels\Neo4jSessionFactory.java[0m
+[0m[[0mdebug[0m] [0m	  D:\Praxisprojekt\dSportBackend_NEU\dsport-backend\app\dbmodels\Neo4jSessionFactory.java[0m
+[0m[[0mdebug[0m] [0m	routes[0m
+[0m[[0mdebug[0m] [0m	  D:\Praxisprojekt\dSportBackend_NEU\dsport-backend\conf\routes[0m
+[0m[[0mdebug[0m] [0m	logback.xml[0m
+[0m[[0mdebug[0m] [0m	  D:\Praxisprojekt\dSportBackend_NEU\dsport-backend\conf\logback.xml[0m
+[0m[[0mdebug[0m] [0m	controllers\TestController.java[0m
+[0m[[0mdebug[0m] [0m	  D:\Praxisprojekt\dSportBackend_NEU\dsport-backend\app\controllers\TestController.java[0m
+[0m[[0mdebug[0m] [0m	dbmodels\Entity.java[0m
+[0m[[0mdebug[0m] [0m	  D:\Praxisprojekt\dSportBackend_NEU\dsport-backend\app\dbmodels\Entity.java[0m
+[0m[[0mdebug[0m] [0m	dbmodels\User.java[0m
+[0m[[0mdebug[0m] [0m	  D:\Praxisprojekt\dSportBackend_NEU\dsport-backend\app\dbmodels\User.java[0m
+[0m[[0mdebug[0m] [0m	application.conf[0m
+[0m[[0mdebug[0m] [0m	  D:\Praxisprojekt\dSportBackend_NEU\dsport-backend\conf\application.conf[0m
+[0m[[0mdebug[0m] [0m	dbmodels\Post.java[0m
+[0m[[0mdebug[0m] [0m	  D:\Praxisprojekt\dSportBackend_NEU\dsport-backend\app\dbmodels\Post.java[0m
+[0m[[0minfo[0m] [0mDone packaging.[0m

@@ -18,6 +18,9 @@ libraryDependencies ++= Seq(
 libraryDependencies += "org.neo4j" % "neo4j-ogm-core" % "3.0.0-RC1"
 libraryDependencies += "org.neo4j" % "neo4j-ogm-bolt-driver" % "3.0.0-RC1"
 
+libraryDependencies += "com.auth0" % "java-jwt" % "3.2.0"
+
+
 
 
 

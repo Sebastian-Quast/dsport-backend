@@ -4,7 +4,7 @@
 		module="dsport-backend$sources_2.10"
 		revision="1.0-SNAPSHOT"
 		status="integration"
-		publication="20170913134001"
+		publication="20170915104112"
 	/>
 	<configurations>
 		<conf name="default" visibility="public" description=""/>

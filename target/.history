@@ -149,3 +149,6 @@ run
 run
 ;reload; set org.jetbrains.sbt.StructureKeys.sbtStructureOptions in Global := "download resolveClassifiers resolveSbtClassifiers" ;*/*:dumpStructureTo C:/Users/Sebastian/AppData/Local/Temp/sbt-structure.xml
 run
+close
+;reload; set org.jetbrains.sbt.StructureKeys.sbtStructureOptions in Global := "download resolveClassifiers resolveSbtClassifiers" ;*/*:dumpStructureTo C:/Users/Sebastian/AppData/Local/Temp/sbt-structure.xml
+run

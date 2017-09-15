@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
 // @SOURCE:D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/conf/routes
-// @DATE:Wed Sep 13 14:00:18 CEST 2017
+// @DATE:Fri Sep 15 13:32:53 CEST 2017
 
 
 package router {

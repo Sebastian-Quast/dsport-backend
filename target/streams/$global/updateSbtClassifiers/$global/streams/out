@@ -5,7 +5,6 @@
 [0m[[0mdebug[0m] [0m	confs: [default][0m
 [0m[[0mdebug[0m] [0m	validate = true[0m
 [0m[[0mdebug[0m] [0m	refresh = false[0m
-[0m[[0mdebug[0m] [0mno default cache defined: set to C:\Users\Sebastian\.ivy2\cache[0m
 [0m[[0mdebug[0m] [0mresolving dependencies for configuration 'default'[0m
 [0m[[0mdebug[0m] [0m== resolving dependencies for OMGP#dsport-backend$sbt_2.10;1.0-SNAPSHOT [default][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies OMGP#dsport-backend$sbt_2.10;1.0-SNAPSHOT->org.scala-sbt#sbt;0.13.15 [default->default(compile)][0m
@@ -14,6 +13,7 @@
 [0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-reflect;2.10.6 {default=[default(compile)]} => dependency: org.scala-lang#scala-reflect;2.10.6 {default=[default(compile)]}[0m
 [0m[[0minfo[0m] [0mResolving org.scala-sbt#sbt;0.13.15 ...[0m
 [0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: org.scala-sbt#sbt;0.13.15 {default=[default(compile)]}[0m
+[0m[[0mdebug[0m] [0mno default cache defined: set to C:\Users\Sebastian\.ivy2\cache[0m
 [0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: org.scala-sbt#sbt;0.13.15[0m
 [0m[[0mdebug[0m] [0m	found org.scala-sbt#sbt;0.13.15 in sbt-chain[0m
 [0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.6 {compile=[default(compile)]} => dependency: org.scala-lang#scala-library;2.10.6 {compile=[default(compile)]}[0m
@@ -5242,9 +5242,9 @@
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] jfree#jfreechart;1.0.8a!jfreechart.jar[0m
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] junit#junit;3.8.1!junit.jar[0m
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] classworlds#classworlds;1.1-alpha-2!classworlds.jar[0m
-[0m[[0mdebug[0m] [0m:: resolution report :: resolve 5685ms :: artifacts dl 111ms[0m
+[0m[[0mdebug[0m] [0m:: resolution report :: resolve 1840ms :: artifacts dl 85ms[0m
 [0m[[0mdebug[0m] [0m	report for OMGP#dsport-backend$sbt_2.10;1.0-SNAPSHOT default produced in D:\Praxisprojekt\dSportBackend_NEU\dsport-backend\target\resolution-cache\reports\OMGP-dsport-backend$sbt_2.10-default.xml[0m
-[0m[[0mdebug[0m] [0m	resolve done (5685ms resolve - 111ms download)[0m
+[0m[[0mdebug[0m] [0m	resolve done (1840ms resolve - 85ms download)[0m
 [0m[[0mdebug[0m] [0mUsing inline dependencies specified in Scala.[0m
 [0m[[0mdebug[0m] [0m:: resolving dependencies :: OMGP#dsport-backend$sources_2.10;1.0-SNAPSHOT[0m
 [0m[[0mdebug[0m] [0m	confs: [default][0m
@@ -7666,6 +7666,6 @@
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.codehaus.plexus#plexus-archiver;2.7.1!plexus-archiver.jar(src)[0m
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.clapper#classutil_2.10;1.1.0!classutil_2.10.jar(src)[0m
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] com.typesafe.play#sbt-plugin;2.6.3!sbt-plugin.jar(src)[0m
-[0m[[0mdebug[0m] [0m:: resolution report :: resolve 1122ms :: artifacts dl 179ms[0m
+[0m[[0mdebug[0m] [0m:: resolution report :: resolve 1057ms :: artifacts dl 110ms[0m
 [0m[[0mdebug[0m] [0m	report for OMGP#dsport-backend$sources_2.10;1.0-SNAPSHOT default produced in D:\Praxisprojekt\dSportBackend_NEU\dsport-backend\target\resolution-cache\reports\OMGP-dsport-backend$sources_2.10-default.xml[0m
-[0m[[0mdebug[0m] [0m	resolve done (1122ms resolve - 179ms download)[0m
+[0m[[0mdebug[0m] [0m	resolve done (1057ms resolve - 110ms download)[0m

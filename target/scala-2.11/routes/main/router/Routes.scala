@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
 // @SOURCE:D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/conf/routes
-// @DATE:Wed Sep 13 14:00:18 CEST 2017
+// @DATE:Fri Sep 15 13:32:53 CEST 2017
 
 package router
 
@@ -17,18 +17,22 @@ class Routes(
   override val errorHandler: play.api.http.HttpErrorHandler, 
   // @LINE:8
   UserController_0: controllers.UserController,
+  // @LINE:10
+  TestController_1: controllers.TestController,
   val prefix: String
 ) extends GeneratedRouter {
 
    @javax.inject.Inject()
    def this(errorHandler: play.api.http.HttpErrorHandler,
     // @LINE:8
-    UserController_0: controllers.UserController
-  ) = this(errorHandler, UserController_0, "/")
+    UserController_0: controllers.UserController,
+    // @LINE:10
+    TestController_1: controllers.TestController
+  ) = this(errorHandler, UserController_0, TestController_1, "/")
 
   def withPrefix(prefix: String): Routes = {
     router.RoutesPrefix.setPrefix(prefix)
-    new Routes(errorHandler, UserController_0, prefix)
+    new Routes(errorHandler, UserController_0, TestController_1, prefix)
   }
 
   private[this] val defaultPrefix: String = {
@@ -37,6 +41,8 @@ class Routes(
 
   def documentation = List(
     ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """user""", """controllers.UserController.add"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """login""", """controllers.TestController.login"""),
+    ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """testVerify""", """controllers.TestController.testVerify"""),
     Nil
   ).foldLeft(List.empty[(String,String,String)]) { (s,e) => e.asInstanceOf[Any] match {
     case r @ (_,_,_) => s :+ r.asInstanceOf[(String,String,String)]
@@ -62,6 +68,42 @@ class Routes(
     )
   )
 
+  // @LINE:10
+  private[this] lazy val controllers_TestController_login1_route = Route("GET",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("login")))
+  )
+  private[this] lazy val controllers_TestController_login1_invoker = createInvoker(
+    TestController_1.login,
+    play.api.routing.HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.TestController",
+      "login",
+      Nil,
+      "GET",
+      this.prefix + """login""",
+      """""",
+      Seq()
+    )
+  )
+
+  // @LINE:12
+  private[this] lazy val controllers_TestController_testVerify2_route = Route("POST",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("testVerify")))
+  )
+  private[this] lazy val controllers_TestController_testVerify2_invoker = createInvoker(
+    TestController_1.testVerify,
+    play.api.routing.HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.TestController",
+      "testVerify",
+      Nil,
+      "POST",
+      this.prefix + """testVerify""",
+      """""",
+      Seq()
+    )
+  )
+
 
   def routes: PartialFunction[RequestHeader, Handler] = {
   
@@ -69,6 +111,18 @@ class Routes(
     case controllers_UserController_add0_route(params) =>
       call { 
         controllers_UserController_add0_invoker.call(UserController_0.add)
+      }
+  
+    // @LINE:10
+    case controllers_TestController_login1_route(params) =>
+      call { 
+        controllers_TestController_login1_invoker.call(TestController_1.login)
+      }
+  
+    // @LINE:12
+    case controllers_TestController_testVerify2_route(params) =>
+      call { 
+        controllers_TestController_testVerify2_invoker.call(TestController_1.testVerify)
       }
   }
 }

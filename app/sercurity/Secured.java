@@ -1,4 +1,4 @@
-package sercurityAlt;
+package sercurity;
 
 import play.mvc.With;
 

@@ -1,23 +1,12 @@
 package controllers;
 
-import com.auth0.jwt.JWT;
-import com.auth0.jwt.JWTVerifier;
-import com.auth0.jwt.algorithms.Algorithm;
-import com.auth0.jwt.exceptions.JWTCreationException;
-import com.auth0.jwt.exceptions.JWTVerificationException;
-import com.auth0.jwt.interfaces.DecodedJWT;
-import io.jsonwebtoken.JwtBuilder;
-import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
-import sercurityAlt.Role;
-import sercurityAlt.Secured;
+import sercurity.Role;
+import sercurity.Secured;
 import services.JwtService;
 
 import javax.inject.Inject;
-import java.io.UnsupportedEncodingException;
-import java.util.HashMap;
-import java.util.Map;
 
 public class TestController extends Controller {
 
@@ -33,7 +22,7 @@ public class TestController extends Controller {
                 }).orElse(badRequest());
     }
 
-    @Secured({Role.USER})
+    @Secured
     public Result testVerify(){
 
         String userId = (String) ctx().args.get("id");

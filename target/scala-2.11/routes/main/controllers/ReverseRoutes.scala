@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
 // @SOURCE:D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/conf/routes
-// @DATE:Fri Sep 15 13:32:53 CEST 2017
+// @DATE:Mon Sep 18 14:12:13 CEST 2017
 
 import play.api.mvc.Call
 
@@ -12,6 +12,35 @@ import _root_.play.libs.F
 // @LINE:8
 package controllers {
 
+  // @LINE:14
+  class ReverseSessionController(_prefix: => String) {
+    def _defaultPrefix: String = {
+      if (_prefix.endsWith("/")) "" else "/"
+    }
+
+  
+    // @LINE:14
+    def signup(): Call = {
+    
+      () match {
+      
+        // @LINE:14
+        case ()  =>
+          
+          Call("POST", _prefix + { _defaultPrefix } + "userAdd")
+      
+      }
+    
+    }
+  
+    // @LINE:18
+    def login(): Call = {
+      
+      Call("POST", _prefix + { _defaultPrefix } + "login")
+    }
+  
+  }
+
   // @LINE:8
   class ReverseUserController(_prefix: => String) {
     def _defaultPrefix: String = {
@@ -20,30 +49,36 @@ package controllers {
 
   
     // @LINE:8
-    def add(): Call = {
+    def load(): Call = {
       
-      Call("POST", _prefix + { _defaultPrefix } + "user")
+      Call("POST", _prefix + { _defaultPrefix } + "userLoad")
+    }
+  
+    // @LINE:12
+    def deleteUser(): Call = {
+      
+      Call("DELETE", _prefix + { _defaultPrefix } + "userDelete")
+    }
+  
+    // @LINE:10
+    def updateUser(): Call = {
+      
+      Call("POST", _prefix + { _defaultPrefix } + "userUpdate")
     }
   
   }
 
-  // @LINE:10
+  // @LINE:20
   class ReverseTestController(_prefix: => String) {
     def _defaultPrefix: String = {
       if (_prefix.endsWith("/")) "" else "/"
     }
 
   
-    // @LINE:12
+    // @LINE:20
     def testVerify(): Call = {
       
       Call("POST", _prefix + { _defaultPrefix } + "testVerify")
-    }
-  
-    // @LINE:10
-    def login(): Call = {
-      
-      Call("GET", _prefix + { _defaultPrefix } + "login")
     }
   
   }

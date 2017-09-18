@@ -1,4 +1,4 @@
-package sercurityAlt;
+package sercurity;
 
 public enum Role {
     ADMIN,

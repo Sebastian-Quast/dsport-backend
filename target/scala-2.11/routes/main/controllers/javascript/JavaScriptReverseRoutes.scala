@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
 // @SOURCE:D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/conf/routes
-// @DATE:Fri Sep 15 13:32:53 CEST 2017
+// @DATE:Mon Sep 18 14:12:13 CEST 2017
 
 import play.api.routing.JavaScriptReverseRoute
 
@@ -12,6 +12,40 @@ import _root_.play.libs.F
 // @LINE:8
 package controllers.javascript {
 
+  // @LINE:14
+  class ReverseSessionController(_prefix: => String) {
+
+    def _defaultPrefix: String = {
+      if (_prefix.endsWith("/")) "" else "/"
+    }
+
+  
+    // @LINE:14
+    def signup: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.SessionController.signup",
+      """
+        function() {
+        
+          if (true) {
+            return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "userAdd"})
+          }
+        
+        }
+      """
+    )
+  
+    // @LINE:18
+    def login: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.SessionController.login",
+      """
+        function() {
+          return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "login"})
+        }
+      """
+    )
+  
+  }
+
   // @LINE:8
   class ReverseUserController(_prefix: => String) {
 
@@ -21,18 +55,38 @@ package controllers.javascript {
 
   
     // @LINE:8
-    def add: JavaScriptReverseRoute = JavaScriptReverseRoute(
-      "controllers.UserController.add",
+    def load: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.UserController.load",
       """
         function() {
-          return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "user"})
+          return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "userLoad"})
+        }
+      """
+    )
+  
+    // @LINE:12
+    def deleteUser: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.UserController.deleteUser",
+      """
+        function() {
+          return _wA({method:"DELETE", url:"""" + _prefix + { _defaultPrefix } + """" + "userDelete"})
+        }
+      """
+    )
+  
+    // @LINE:10
+    def updateUser: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.UserController.updateUser",
+      """
+        function() {
+          return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "userUpdate"})
         }
       """
     )
   
   }
 
-  // @LINE:10
+  // @LINE:20
   class ReverseTestController(_prefix: => String) {
 
     def _defaultPrefix: String = {
@@ -40,22 +94,12 @@ package controllers.javascript {
     }
 
   
-    // @LINE:12
+    // @LINE:20
     def testVerify: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.TestController.testVerify",
       """
         function() {
           return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "testVerify"})
-        }
-      """
-    )
-  
-    // @LINE:10
-    def login: JavaScriptReverseRoute = JavaScriptReverseRoute(
-      "controllers.TestController.login",
-      """
-        function() {
-          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "login"})
         }
       """
     )

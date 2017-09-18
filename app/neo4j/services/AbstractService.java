@@ -6,6 +6,7 @@ import org.neo4j.ogm.session.Session;
 
 import javax.inject.Inject;
 import java.util.Collection;
+import java.util.Optional;
 
 public abstract class AbstractService<T extends AbstractNode> {
 
@@ -25,19 +26,27 @@ public abstract class AbstractService<T extends AbstractNode> {
         return session.loadAll(getEntityType(), DEPTH_LIST);
     }
 
-    public T find(Long id) {
-        return session.load(getEntityType(), id, DEPTH_ENTITY);
+    public Optional<T> find(Long id) {
+        return Optional.ofNullable(session.load(getEntityType(), id, DEPTH_ENTITY));
     }
 
     public void delete(Long id) {
         session.delete(session.load(getEntityType(), id));
     }
 
-    public T createOrUpdate(T entity) {
+    public Optional<T> createOrUpdate(T entity) {
         session.save(entity, DEPTH_ENTITY);
         return find(entity.getId());
     }
 
     public abstract Class<T> getEntityType();
 
+
+    public static int getDepthList() {
+        return DEPTH_LIST;
+    }
+
+    public static int getDepthEntity() {
+        return DEPTH_ENTITY;
+    }
 }

@@ -4,7 +4,7 @@
 		module="dsport-backend$sbt_2.10"
 		revision="1.0-SNAPSHOT"
 		status="integration"
-		publication="20170920104200"
+		publication="20170920111832"
 	/>
 	<configurations>
 		<conf name="default" visibility="public"/>

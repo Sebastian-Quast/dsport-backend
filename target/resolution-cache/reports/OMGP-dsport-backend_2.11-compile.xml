@@ -7,7 +7,7 @@
 		revision="1.0-SNAPSHOT"
 		conf="compile"
 		confs="universal, universal-docs, universal-src, compile, runtime, test, provided, optional, windows, docker, linux, rpm, debian, compile-internal, runtime-internal, test-internal, plugin, sources, docs, pom, scala-tool"
-		date="20170920104628"/>
+		date="20170920111833"/>
 	<dependencies>
 		<module organisation="com.auth0" name="java-jwt">
 			<revision name="3.2.0" status="release" pubdate="20170505145023" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://www.jwt.io" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="92">

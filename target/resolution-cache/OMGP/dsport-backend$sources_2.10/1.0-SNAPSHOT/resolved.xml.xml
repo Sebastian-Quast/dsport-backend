@@ -4,7 +4,7 @@
 		module="dsport-backend$sources_2.10"
 		revision="1.0-SNAPSHOT"
 		status="integration"
-		publication="20170915104112"
+		publication="20170920090326"
 	/>
 	<configurations>
 		<conf name="default" visibility="public" description=""/>
@@ -84,9 +84,6 @@
 		<dependency org="org.scala-lang.modules" name="scala-pickling_2.10" rev="0.10.1" transitive="false" conf="default->master(*),compile,runtime(*),runtime,compile(*),master">
 			<artifact name="scala-pickling_2.10" type="src" ext="jar" conf="sources" e:classifier="sources"/>
 		</dependency>
-		<dependency org="org.jetbrains" name="sbt-structure-extractor" rev="7.0.0+61-051fb9ba" transitive="false" conf="default->compile,default(compile)" scalaVersion="2.10" sbtVersion="0.13">
-			<artifact name="sbt-structure-extractor" type="src" ext="jar" conf="sources" e:classifier="sources"/>
-		</dependency>
 		<dependency org="com.fasterxml.jackson.core" name="jackson-core" rev="2.7.3" transitive="false" conf="default->default,compile,runtime(*),master(compile),runtime,default(compile),compile(*),master">
 			<artifact name="jackson-core" type="src" ext="jar" conf="sources" e:classifier="sources"/>
 		</dependency>
@@ -116,9 +113,6 @@
 		</dependency>
 		<dependency org="org.scala-sbt" name="task-system" rev="0.13.15" transitive="false" conf="default->compile,default(compile)">
 			<artifact name="task-system" type="src" ext="jar" conf="sources" e:classifier="sources"/>
-		</dependency>
-		<dependency org="net.contentobjects.jnotify" name="jnotify" rev="0.94-play-1" transitive="false" conf="default->compile,default(compile)">
-			<artifact name="jnotify" type="src" ext="jar" conf="sources" e:classifier="sources"/>
 		</dependency>
 		<dependency org="org.fusesource.leveldbjni" name="leveldbjni" rev="1.7" transitive="false" conf="default->default,compile,runtime(*),master(compile),runtime,default(compile),compile(*),master">
 			<artifact name="leveldbjni" type="src" ext="jar" conf="sources" e:classifier="sources"/>
@@ -155,9 +149,6 @@
 		</dependency>
 		<dependency org="org.webjars" name="webjars-locator-core" rev="0.32" transitive="false" conf="default->default,compile,runtime(*),master(compile),runtime,default(compile),compile(*),master">
 			<artifact name="webjars-locator-core" type="src" ext="jar" conf="sources" e:classifier="sources"/>
-		</dependency>
-		<dependency org="org.jetbrains" name="sbt-idea-shell" rev="1.2+7-625c26bc" transitive="false" conf="default->compile,default(compile)" scalaVersion="2.10" sbtVersion="0.13">
-			<artifact name="sbt-idea-shell" type="src" ext="jar" conf="sources" e:classifier="sources"/>
 		</dependency>
 		<dependency org="org.scala-sbt" name="compiler-interface" rev="0.13.15" transitive="false" conf="default->compile,default(compile)">
 			<artifact name="compiler-interface" type="src" ext="jar" conf="sources" e:classifier="sources"/>

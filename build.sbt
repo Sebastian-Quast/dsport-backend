@@ -20,6 +20,8 @@ libraryDependencies += "org.neo4j" % "neo4j-ogm-bolt-driver" % "3.0.0-RC1"
 
 libraryDependencies += "com.auth0" % "java-jwt" % "3.2.0"
 
+libraryDependencies += "com.typesafe.play" %% "play-mailer" % "6.0.1"
+libraryDependencies += "com.typesafe.play" %% "play-mailer-guice" % "6.0.1"
 
 
 

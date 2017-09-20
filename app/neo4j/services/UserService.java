@@ -45,8 +45,8 @@ public class UserService extends AbstractService<User> {
         return find(user.getId());
     }
 
-    public Optional<User> loadUserByUsername(String username) {
-        String query = "Match(user:User {username : \""+ username +"\"}) return user";
+    public Optional<User> findByCredentials(String username, String password) {
+        String query = "Match(user:User {username : \""+ username +"\",password : \""+ password +"\"}) return user";
         return Optional.ofNullable(session.queryForObject(User.class ,query, Collections.emptyMap()));
     }
 

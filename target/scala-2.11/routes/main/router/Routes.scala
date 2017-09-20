@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
 // @SOURCE:D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/conf/routes
-// @DATE:Mon Sep 18 14:12:13 CEST 2017
+// @DATE:Mon Sep 18 18:07:09 CEST 2017
 
 package router
 
@@ -51,6 +51,7 @@ class Routes(
     ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """signup""", """controllers.SessionController.signup"""),
     ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """login""", """controllers.SessionController.login"""),
     ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """testVerify""", """controllers.TestController.testVerify"""),
+    ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """test""", """controllers.TestController.save"""),
     Nil
   ).foldLeft(List.empty[(String,String,String)]) { (s,e) => e.asInstanceOf[Any] match {
     case r @ (_,_,_) => s :+ r.asInstanceOf[(String,String,String)]
@@ -184,6 +185,24 @@ class Routes(
     )
   )
 
+  // @LINE:22
+  private[this] lazy val controllers_TestController_save7_route = Route("POST",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("test")))
+  )
+  private[this] lazy val controllers_TestController_save7_invoker = createInvoker(
+    TestController_2.save,
+    play.api.routing.HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.TestController",
+      "save",
+      Nil,
+      "POST",
+      this.prefix + """test""",
+      """""",
+      Seq()
+    )
+  )
+
 
   def routes: PartialFunction[RequestHeader, Handler] = {
   
@@ -227,6 +246,12 @@ class Routes(
     case controllers_TestController_testVerify6_route(params) =>
       call { 
         controllers_TestController_testVerify6_invoker.call(TestController_2.testVerify)
+      }
+  
+    // @LINE:22
+    case controllers_TestController_save7_route(params) =>
+      call { 
+        controllers_TestController_save7_invoker.call(TestController_2.save)
       }
   }
 }

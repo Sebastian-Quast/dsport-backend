@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
 // @SOURCE:D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/conf/routes
-// @DATE:Mon Sep 18 14:12:13 CEST 2017
+// @DATE:Mon Sep 18 18:07:09 CEST 2017
 
 import play.api.routing.JavaScriptReverseRoute
 
@@ -93,6 +93,16 @@ package controllers.javascript {
       if (_prefix.endsWith("/")) "" else "/"
     }
 
+  
+    // @LINE:22
+    def save: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.TestController.save",
+      """
+        function() {
+          return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "test"})
+        }
+      """
+    )
   
     // @LINE:20
     def testVerify: JavaScriptReverseRoute = JavaScriptReverseRoute(

@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
 // @SOURCE:D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/conf/routes
-// @DATE:Mon Sep 18 14:12:13 CEST 2017
+// @DATE:Mon Sep 18 18:07:09 CEST 2017
 
 import play.api.mvc.Call
 
@@ -74,6 +74,12 @@ package controllers {
       if (_prefix.endsWith("/")) "" else "/"
     }
 
+  
+    // @LINE:22
+    def save(): Call = {
+      
+      Call("POST", _prefix + { _defaultPrefix } + "test")
+    }
   
     // @LINE:20
     def testVerify(): Call = {

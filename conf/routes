@@ -18,3 +18,5 @@ POST                 /signup             controllers.SessionController.signup
 POST                 /login               controllers.SessionController.login
 
 POST                 /testVerify          controllers.TestController.testVerify
+
+POST                 /test                controllers.TestController.save

@@ -68,4 +68,11 @@ public class JwtService {
     public void setJwtHeader(Http.Context ctx, String jwt){
         ctx.response().setHeader(config.getString("auth.header"), jwt);
     }
+
+    public Optional<String> createAndSaveJwt(Http.Context ctx, String subject, String... audiences){
+        return createJwt(subject, audiences).map(jwt -> {
+            setJwtHeader(ctx, jwt);
+            return jwt;
+        });
+    }
 }

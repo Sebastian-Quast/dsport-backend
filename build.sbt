@@ -11,7 +11,7 @@ libraryDependencies += guice
 
 libraryDependencies ++= Seq(
   javaJdbc,
-  cache,
+  ehcache,
   javaWs
 )
 

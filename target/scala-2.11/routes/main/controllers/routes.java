@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
-// @SOURCE:D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/conf/routes
-// @DATE:Mon Sep 18 14:12:13 CEST 2017
+// @SOURCE:C:/Users/Florian/dsport/dsport-backend/conf/routes
+// @DATE:Wed Sep 20 10:46:30 CEST 2017
 
 package controllers;
 

@@ -177,5 +177,10 @@
     <orderEntry type="library" scope="TEST" name="SBT: commons-logging:commons-logging:1.2:jar" level="project" />
     <orderEntry type="library" name="SBT: com.auth0:java-jwt:3.2.0:jar" level="project" />
     <orderEntry type="library" name="SBT: org.bouncycastle:bcprov-jdk15on:1.55:jar" level="project" />
+    <orderEntry type="library" name="SBT: com.sun.mail:javax.mail:1.5.6:jar" level="project" />
+    <orderEntry type="library" name="SBT: com.typesafe.play:play-mailer-guice_2.11:6.0.1:jar" level="project" />
+    <orderEntry type="library" name="SBT: com.typesafe.play:play-mailer_2.11:6.0.1:jar" level="project" />
+    <orderEntry type="library" name="SBT: javax.activation:activation:1.1:jar" level="project" />
+    <orderEntry type="library" name="SBT: org.apache.commons:commons-email:1.5:jar" level="project" />
   </component>
 </module>

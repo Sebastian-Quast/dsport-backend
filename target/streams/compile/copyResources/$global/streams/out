@@ -1,5 +1,5 @@
 [0m[[0mdebug[0m] [0mCopy resource mappings: [0m
-[0m[[0mdebug[0m] [0m	(D:\Praxisprojekt\dSportBackend_NEU\dsport-backend\conf\application.conf,D:\Praxisprojekt\dSportBackend_NEU\dsport-backend\target\scala-2.11\classes\application.conf)[0m
-[0m[[0mdebug[0m] [0m	(D:\Praxisprojekt\dSportBackend_NEU\dsport-backend\conf\logback.xml,D:\Praxisprojekt\dSportBackend_NEU\dsport-backend\target\scala-2.11\classes\logback.xml)[0m
-[0m[[0mdebug[0m] [0m	(D:\Praxisprojekt\dSportBackend_NEU\dsport-backend\conf\messages,D:\Praxisprojekt\dSportBackend_NEU\dsport-backend\target\scala-2.11\classes\messages)[0m
-[0m[[0mdebug[0m] [0m	(D:\Praxisprojekt\dSportBackend_NEU\dsport-backend\conf\routes,D:\Praxisprojekt\dSportBackend_NEU\dsport-backend\target\scala-2.11\classes\routes)[0m
+[0m[[0mdebug[0m] [0m	(C:\Users\Florian\dsport\dsport-backend\conf\application.conf,C:\Users\Florian\dsport\dsport-backend\target\scala-2.11\classes\application.conf)[0m
+[0m[[0mdebug[0m] [0m	(C:\Users\Florian\dsport\dsport-backend\conf\logback.xml,C:\Users\Florian\dsport\dsport-backend\target\scala-2.11\classes\logback.xml)[0m
+[0m[[0mdebug[0m] [0m	(C:\Users\Florian\dsport\dsport-backend\conf\messages,C:\Users\Florian\dsport\dsport-backend\target\scala-2.11\classes\messages)[0m
+[0m[[0mdebug[0m] [0m	(C:\Users\Florian\dsport\dsport-backend\conf\routes,C:\Users\Florian\dsport\dsport-backend\target\scala-2.11\classes\routes)[0m

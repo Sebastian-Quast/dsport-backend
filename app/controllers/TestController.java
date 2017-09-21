@@ -27,7 +27,7 @@ public class TestController extends Controller {
 
     public Result login(){
 
-        return jwtService.createJwt("Sebastian", Role.USER.name())
+        return jwtService.createJwt(2L, Role.USER.name())
                 .map(jwt -> {
                     jwtService.setJwtHeader(ctx(), jwt);
                     return ok("Logged In");

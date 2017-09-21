@@ -58,6 +58,24 @@ public class User extends AbstractNode {
         this.picture = picture;
     }
 
+    public User(Long id, String username, String firstname, String lastname, String email,String password, String picture) {
+        this(username, firstname, lastname, email, password, picture);
+        this.setId(id);
+    }
+
+
+
+    public User(UnregisteredUser unregisteredUser){
+        this(
+                unregisteredUser.getUsername(),
+                unregisteredUser.getFirstname(),
+                unregisteredUser.getLastname(),
+                unregisteredUser.getEmail(),
+                unregisteredUser.getPassword(),
+                null
+        );
+    }
+
     public Friendship addFriend(User user){
         Friendship friendship = new Friendship(this, user);
         friendships.add(friendship);
@@ -69,6 +87,7 @@ public class User extends AbstractNode {
         this.postings.add(posted);
         return posted;
     }
+
 
     public void setUsername(String username) {
         this.username = username;

@@ -3,7 +3,7 @@ package protocols;
 import parser.AbstractBodyParser;
 
 
-public class LoginProtocol {
+public class LoginProtocol extends AbstractProtocol<LoginProtocol> {
     private String username;
     private String password;
 
@@ -27,5 +27,10 @@ public class LoginProtocol {
 
     public String getPassword() {
         return password;
+    }
+
+    @Override
+    public LoginProtocol toModel() {
+        return this;
     }
 }

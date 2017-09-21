@@ -47,7 +47,7 @@ public class SessionController extends Controller {
         //Load requested user from Database
         //User user = userService.findByCredentials(json.findPath(Neo4jKeys.USERNAME).textValue()).get();
         return userService.findByCredentials(protocol.getUsername(), protocol.getPassword())
-                .flatMap(user -> jwtService.createAndSaveJwt(ctx(), user.getUsername(), Role.USER.name()).map(jwt -> user))
+                .flatMap(user -> jwtService.createAndSaveJwt(ctx(), user.getId(), Role.USER.name()).map(jwt -> user))
                 .map(user -> ok(Json.toJson(user)))
                 .orElseGet(() -> badRequest("Login failed"));
 

@@ -5,15 +5,12 @@
 # Testing
 #GET                 /test/insert         main.resources.controllers.TestController.insertRandom()
 
-POST                 /userLoad            controllers.UserController.load
 
-POST                 /userUpdate          controllers.UserController.updateUser()
-
-DELETE               /userDelete          controllers.UserController.deleteUser()
-
-POST                 /userAdd             controllers.SessionController.signup
-
-POST                 /signup             controllers.SessionController.signup
+GET                  /user/:id            controllers.UserController.byId(id)
+GET                  /user                controllers.UserController.all
+POST                 /user                controllers.UserController.create
+PUT                  /user                controllers.UserController.update
+DELETE               /user/:id            controllers.UserController.delete(id)
 
 POST                 /login               controllers.SessionController.login
 

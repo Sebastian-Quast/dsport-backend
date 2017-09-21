@@ -47,11 +47,11 @@ public class JwtService {
         return extractJwtHeader(ctx).flatMap(jwtString -> verify(jwtString, audiences));
     }
 
-    public Optional<String> createJwt(String subject, String... audiences){
+    public Optional<String> createJwt(Long subject, String... audiences){
 
         return getAlgorithm().map(algorithm -> JWT.create()
                 .withAudience(audiences)
-                .withSubject(subject)
+                .withSubject(String.valueOf(subject))
                 .sign(algorithm));
     }
 
@@ -69,8 +69,8 @@ public class JwtService {
         ctx.response().setHeader(config.getString("auth.header"), jwt);
     }
 
-    public Optional<String> createAndSaveJwt(Http.Context ctx, String subject, String... audiences){
-        return createJwt(subject, audiences).map(jwt -> {
+    public Optional<String> createAndSaveJwt(Http.Context ctx, Long userId, String... audiences){
+        return createJwt(userId, audiences).map(jwt -> {
             setJwtHeader(ctx, jwt);
             return jwt;
         });

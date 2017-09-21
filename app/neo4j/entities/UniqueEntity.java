@@ -13,4 +13,7 @@ public abstract class UniqueEntity {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
 }

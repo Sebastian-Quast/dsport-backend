@@ -1,48 +1,46 @@
 package controllers;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import neo4j.config.Neo4jKeys;
+import neo4j.nodes.User;
 import neo4j.services.UserService;
-import play.libs.Json;
-import play.mvc.Controller;
+import play.mvc.BodyParser;
 import play.mvc.Result;
+import protocols.UserProtocol;
+import sercurity.Role;
 import sercurity.Secured;
+import services.SessionService;
 
 import javax.inject.Inject;
 
-public class UserController extends Controller {
+public class UserController extends AbstractController<User, UserService> {
+
+    private SessionService sessionService;
 
     @Inject
-    private UserService userService;
-
-    public Result load(){
-        JsonNode json = request().body().asJson();
-        return userService.find(json.get(Neo4jKeys.ID).asLong())
-                .map(user -> ok(Json.toJson(user))) //Not Null
-                .orElse(notFound("User not found"));// If Null
+    public UserController(UserService service, SessionService sessionService) {
+        super(service);
+        this.sessionService = sessionService;
     }
 
-    //@Secured
-    public Result updateUser() {
-        JsonNode json = request().body().asJson();
-        return userService.find(json.get(Neo4jKeys.ID).asLong())
-                .map(user -> {
-                    userService.updateUser(user, json.findPath(Neo4jKeys.KEY).textValue(), json.findPath(Neo4jKeys.VALUE).textValue());
-                    return ok(Json.toJson(user));
-                })
-                .orElse(notFound("User not Found"));// If Null)
+
+    @Override
+    public Result create() {
+
+
+        return null;
     }
 
-    //@Secured
-    public Result deleteUser() {
-        JsonNode json = request().body().asJson();
+    @Secured
+    @BodyParser.Of(UserProtocol.Parser.class)
+    @Override
+    public Result update() {
 
-       return userService.find(json.get(Neo4jKeys.ID).asLong())
-                .map(user -> {
-                    userService.delete(user.getId());
-                    return ok("User sucessfully deleted");
-                })
-                .orElse(notFound("User not found"));
+        UserProtocol protocol = request().body().as(UserProtocol.class);
+
+        if(!sessionService.isUser(protocol.getId()) && !sessionService.hasRole(Role.ADMIN)){
+            return unauthorized();
+        }
+
+        return toJsonResult(service.createOrUpdate(protocol.toModel()));
     }
 
 

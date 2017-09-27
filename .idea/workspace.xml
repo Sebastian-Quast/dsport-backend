@@ -83,7 +83,7 @@
       <file leaf-file-name="PostController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/PostController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="795">
+            <state relative-caret-position="714">
               <caret line="60" column="20" lean-forward="false" selection-start-line="60" selection-start-column="20" selection-end-line="60" selection-end-column="20" />
               <folding>
                 <element signature="e#2004#2005#0" expanded="true" />
@@ -610,12 +610,12 @@
       <workItem from="1506427669473" duration="5501000" />
       <workItem from="1506454586593" duration="174000" />
       <workItem from="1506455035128" duration="5991000" />
-      <workItem from="1506498281099" duration="2444000" />
+      <workItem from="1506498281099" duration="2568000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="228836000" />
+    <option name="totallyTimeSpent" value="228960000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1041,7 +1041,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/PostController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="795">
+        <state relative-caret-position="714">
           <caret line="60" column="20" lean-forward="false" selection-start-line="60" selection-start-column="20" selection-end-line="60" selection-end-column="20" />
           <folding>
             <element signature="e#2004#2005#0" expanded="true" />

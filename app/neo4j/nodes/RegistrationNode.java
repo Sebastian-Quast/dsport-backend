@@ -4,8 +4,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Property;
 
+import java.util.UUID;
+
 @NodeEntity
-public class UnregisteredUser extends AbstractNode {
+public class RegistrationNode extends AbstractNode {
 
     @JsonProperty("username")
     private String username;
@@ -22,12 +24,19 @@ public class UnregisteredUser extends AbstractNode {
     @JsonProperty("password")
     private String password;
 
-    public UnregisteredUser(String username, String firstname, String lastname, String email, String password) {
+    @JsonProperty("hash")
+    private String hash;
+
+    public RegistrationNode() {
+    }
+
+    public RegistrationNode(String username, String firstname, String lastname, String email, String password) {
         this.username = username;
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
         this.password = password;
+        this.hash = UUID.randomUUID().toString();
     }
 
     public String getUsername() {
@@ -68,5 +77,13 @@ public class UnregisteredUser extends AbstractNode {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getHash() {
+        return hash;
+    }
+
+    public void setHash(String hash) {
+        this.hash = hash;
     }
 }

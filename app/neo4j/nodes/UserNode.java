@@ -2,19 +2,17 @@ package neo4j.nodes;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import neo4j.relationships.Friendship;
+import neo4j.relationships.Pinned;
 import neo4j.relationships.Posted;
-import neo4j.services.UserService;
 import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Relationship;
-import play.mvc.Result;
 
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
 
 
-@NodeEntity(label = "User")
-public class User extends AbstractNode {
+@NodeEntity(label = "UserNode")
+public class UserNode extends AbstractNode {
 
     @JsonProperty("username")
     private String username;
@@ -42,14 +40,19 @@ public class User extends AbstractNode {
     @JsonProperty("postings")
     private Set<Posted> postings = new HashSet<>();
 
-    public User() {
+    @Relationship(type = Pinned.TYPE, direction = Relationship.INCOMING)
+    @JsonProperty("pinnings")
+    private Set<Pinned> pinnings = new HashSet<>();
+
+
+    public UserNode() {
     }
 
-    public User(String firstname) {
+    public UserNode(String firstname) {
         this.firstname = firstname;
     }
 
-    public User(String username, String firstname, String lastname, String email,String password, String picture) {
+    public UserNode(String username, String firstname, String lastname, String email, String password, String picture) {
         this.username = username;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -58,32 +61,19 @@ public class User extends AbstractNode {
         this.picture = picture;
     }
 
-    public User(Long id, String username, String firstname, String lastname, String email,String password, String picture) {
+    public UserNode(Long id, String username, String firstname, String lastname, String email, String password, String picture) {
         this(username, firstname, lastname, email, password, picture);
         this.setId(id);
     }
 
-
-
-    public User(UnregisteredUser unregisteredUser){
-        this(
-                unregisteredUser.getUsername(),
-                unregisteredUser.getFirstname(),
-                unregisteredUser.getLastname(),
-                unregisteredUser.getEmail(),
-                unregisteredUser.getPassword(),
-                null
-        );
-    }
-
-    public Friendship addFriend(User user){
-        Friendship friendship = new Friendship(this, user);
+    public Friendship addFriend(UserNode userNode){
+        Friendship friendship = new Friendship(this, userNode);
         friendships.add(friendship);
         return friendship;
     }
 
-    public Posted addPost(Post post){
-        Posted posted = new Posted(this, post);
+    public Posted addPost(PostNode postNode){
+        Posted posted = new Posted(this, postNode);
         this.postings.add(posted);
         return posted;
     }
@@ -111,5 +101,29 @@ public class User extends AbstractNode {
 
     public String getUsername() {
         return username;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public Set<Friendship> getFriendships() {
+        return friendships;
+    }
+
+    public Set<Posted> getPostings() {
+        return postings;
     }
 }

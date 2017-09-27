@@ -17,7 +17,7 @@ public abstract class AbstractNode extends TimedEntity {
         return updated;
     }
 
-    public void setUpdated() {
-        this.updated = LocalDateTime.now();
+    public void setUpdated(LocalDateTime now) {
+        this.updated = now;
     }
 }

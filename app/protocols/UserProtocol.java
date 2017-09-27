@@ -1,21 +1,21 @@
 package protocols;
 
-import neo4j.nodes.User;
+import neo4j.nodes.UserNode;
 import parser.AbstractBodyParser;
 
-public class UserProtocol extends AbstractProtocol<User> {
+public class UserProtocol extends AbstractProtocol<UserNode>{
 
-    private Long id;
-    private String username;
-    private String firstname;
-    private String lastname;
-    private String email;
-    private String password;
-    private String picture;
+    public Long id;
+    public String username;
+    public String firstname;
+    public String lastname;
+    public String email;
+    public String password;
+    public String picture;
 
     @Override
-    public User toModel() {
-        return new User(id, username, firstname, lastname, email, password, picture);
+    public UserNode toModel() {
+        return new UserNode(id, username, firstname, lastname, email, password, picture);
     }
 
     public static class Parser extends AbstractBodyParser<UserProtocol> {
@@ -36,29 +36,5 @@ public class UserProtocol extends AbstractProtocol<User> {
     }
 
     public UserProtocol() {
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public String getFirstname() {
-        return firstname;
-    }
-
-    public String getLastname() {
-        return lastname;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public Long getId() {
-        return id;
     }
 }

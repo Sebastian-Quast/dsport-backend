@@ -1,11 +1,17 @@
 package neo4j.services;
 
+import exceptions.EmailAlreadyExistsException;
+import exceptions.UsernameAlreadyExistsException;
 import neo4j.nodes.AbstractNode;
 import neo4j.Neo4jSessionFactory;
 import org.neo4j.ogm.session.Session;
+import services.SessionService;
 
 import javax.inject.Inject;
+import java.security.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Optional;
 
 public abstract class AbstractService<T extends AbstractNode> {
@@ -17,7 +23,7 @@ public abstract class AbstractService<T extends AbstractNode> {
     protected Session session;
 
     @Inject
-    public AbstractService(Neo4jSessionFactory neo4jSessionFactory){
+    public AbstractService(Neo4jSessionFactory neo4jSessionFactory) {
         this.session = neo4jSessionFactory.getNeo4jSession();
     }
 
@@ -34,9 +40,15 @@ public abstract class AbstractService<T extends AbstractNode> {
         session.delete(session.load(getEntityType(), id));
     }
 
-    public Optional<T> createOrUpdate(T entity) {
-        session.save(entity, DEPTH_ENTITY);
-        return find(entity.getId());
+    public Optional<T> createOrUpdate(T entity){
+        T updated = find(entity.getId())
+                .map(existing -> {
+                    entity.setCreated(existing.getCreated());
+                    return entity;
+                 }).orElse(entity);
+
+        session.save(updated, DEPTH_ENTITY);
+        return find(updated.getId());
     }
 
     public abstract Class<T> getEntityType();
@@ -48,5 +60,21 @@ public abstract class AbstractService<T extends AbstractNode> {
 
     public static int getDepthEntity() {
         return DEPTH_ENTITY;
+    }
+
+    protected boolean existsQuery(String query) {
+        return session.queryForObject(Boolean.class, query, Collections.emptyMap()) != null;
+    }
+
+    public boolean exists(Long id){
+        return find(id).isPresent();
+    }
+
+    public Optional<T> ifNotExists(T entity){
+        if(exists(entity.getId())){
+            return Optional.empty();
+        } else {
+            return Optional.of(entity);
+        }
     }
 }

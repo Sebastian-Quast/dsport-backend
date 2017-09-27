@@ -6,6 +6,7 @@ import play.libs.mailer.MailerClient;
 
 import javax.inject.Inject;
 import java.time.LocalDate;
+import java.util.Optional;
 
 /**
  * Created by Florian on 20.09.2017.
@@ -50,19 +51,26 @@ public class MailerService {
      *          logo="https://example.de/path/to/example.svg"
      *      }
      * }
-     *
-     * @param to    Email of the recipient
+     *  @param to    Email of the recipient
      * @param title Title of the Email
      * @param subject   Subject of the Email
      * @param text  Text to Send
      */
-    public void send(String to, String title, String subject, String text){
-        Email email = new Email()
-                .setSubject(subject)
-                .setFrom(config.getString(CFG_FROM))
-                .addTo(to)
-                .setBodyHtml(getHTMLBody(title, subject, text));
-        mailerClient.send(email);
+    public Optional<String> send(String to, String title, String subject, String text){
+        String result = null;
+
+        try{
+            Email email = new Email()
+                    .setSubject(subject)
+                    .setFrom(config.getString(CFG_FROM))
+                    .addTo(to)
+                    .setBodyHtml(getHTMLBody(title, subject, text));
+            result = mailerClient.send(email);
+        }catch (Exception ignored){
+            result = ignored.getLocalizedMessage();
+        }
+
+        return Optional.ofNullable(result);
     }
 
     /**
@@ -73,12 +81,12 @@ public class MailerService {
      * @return  Ready to send HTML-Email Body with Background-Image, Header, Footer and Content.
      */
     private String getHTMLBody(String title, String subject, String text){
-        return "<html>" +
-                "    <body style=\"margin: 0\">" +
-                                getHTMLBackground() +
-                                getHTMLHeader() +
-                                getHTMLContent(title, subject, text) +
-                                getHTMLFooter() +
+        return "<html style=\"height: 100%;\">" +
+                "    <body style=\"margin: 0; height: 100%\">" +
+                getHTMLBackground() +
+                getHTMLHeader() +
+                getHTMLContent(title, subject, text) +
+                getHTMLFooter() +
                 "    </body>" +
                 "</html>";
     }
@@ -91,7 +99,7 @@ public class MailerService {
      * @return  Completely styled HTML-Content with Title, Subject and Text
      */
     private String getHTMLContent(String title, String subject, String text){
-        return "<div style=\"background-color: rgba(255,255,255,0.7); width: 60%; margin-left:50%; transform: translate(-50%, 0); padding: 16px; border-radius: 4px\">" +
+        return "<div style=\"background-color: rgba(255,255,255,0.7); width: 60%; margin-left:50%; transform: translate(-50%, 0); padding: 16px; border-radius: 4px;\">" +
                 "            <h2>" + title + "</h2>" +
                 "            <strong>" + subject + "</strong>" +
                 "            <p>" + text + "</p>" +
@@ -112,7 +120,7 @@ public class MailerService {
      */
     private String getHTMLFooter(){
         return "<div style=\"width: 60%; margin-left:50%; transform: translate(-50%, 0); color: white; margin-top: 32px; text-align: center\">" +
-                "            &copy; 2015-" + LocalDate.now().getYear() + config.getString(CFG_COPYRIGHT) +
+                "            &copy; 2015-" + LocalDate.now().getYear() + " " + config.getString(CFG_COPYRIGHT) +
                 "        </div>";
     }
 

@@ -5,15 +5,26 @@
 # Testing
 #GET                 /test/insert         main.resources.controllers.TestController.insertRandom()
 
+#User
+GET             /user/:id               controllers.UserController.byId(id)
+POST            /user/:id/pinned        controllers.PostController.postTo(id)
+#Route für get Pinboard
+#GET             /user/:id/pinned        controllers.PostController.byUser(id)
+POST            /user                   controllers.UserController.create
+PUT             /user                   controllers.UserController.update
+DELETE          /user/:id               controllers.UserController.delete(id)
 
-GET                  /user/:id            controllers.UserController.byId(id)
-GET                  /user                controllers.UserController.all
-POST                 /user                controllers.UserController.create
-PUT                  /user                controllers.UserController.update
-DELETE               /user/:id            controllers.UserController.delete(id)
+#Registration
+POST            /registration           controllers.RegistrationController.register
+GET             /register/:hash         controllers.RegistrationController.confirmRegistration(hash)
 
-POST                 /login               controllers.SessionController.login
+POST            /login                  controllers.SessionController.login
 
-POST                 /testVerify          controllers.TestController.testVerify
+#Post
+PUT             /post                   controllers.PostController.update
 
-POST                 /test                controllers.TestController.save
+POST            /testVerify             controllers.TestController.testVerify
+
+POST            /test                   controllers.TestController.save
+
+GET             /testMail/:email        controllers.TestController.testMail(email)

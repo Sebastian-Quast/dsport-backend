@@ -2,6 +2,7 @@ package neo4j.nodes;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import neo4j.relationships.Friendship;
+import neo4j.relationships.FriendshipRequest;
 import neo4j.relationships.Pinned;
 import neo4j.relationships.Posted;
 import org.neo4j.ogm.annotation.NodeEntity;
@@ -36,6 +37,14 @@ public class UserNode extends AbstractNode {
     @JsonProperty("friendships")
     private Set<Friendship> friendships = new HashSet<>();
 
+    //@Relationship(type = Friendship.TYPE)
+    //@JsonProperty("friendshipRequested")
+    //private Set<FriendshipRequest> friendshipsRequested = new HashSet<>();
+//
+    //@Relationship(type = Friendship.TYPE, direction = Relationship.INCOMING)
+    //@JsonProperty("friendshipRequests")
+    //private Set<FriendshipRequest> friendshipRequests = new HashSet<>();
+
     @Relationship(type = Posted.TYPE)
     @JsonProperty("postings")
     private Set<Posted> postings = new HashSet<>();
@@ -64,18 +73,6 @@ public class UserNode extends AbstractNode {
     public UserNode(Long id, String username, String firstname, String lastname, String email, String password, String picture) {
         this(username, firstname, lastname, email, password, picture);
         this.setId(id);
-    }
-
-    public Friendship addFriend(UserNode userNode){
-        Friendship friendship = new Friendship(this, userNode);
-        friendships.add(friendship);
-        return friendship;
-    }
-
-    public Posted addPost(PostNode postNode){
-        Posted posted = new Posted(this, postNode);
-        this.postings.add(posted);
-        return posted;
     }
 
 

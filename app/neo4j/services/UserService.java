@@ -5,6 +5,7 @@ import exceptions.UsernameAlreadyExistsException;
 import neo4j.Neo4jSessionFactory;
 import neo4j.nodes.RegistrationNode;
 import neo4j.nodes.UserNode;
+import neo4j.relationships.FriendshipRequest;
 
 import javax.inject.Inject;
 import java.util.Collections;
@@ -52,5 +53,10 @@ public class UserService extends AbstractService<UserNode> {
 
     public boolean emailExists(String username, Long id){
         return existsQuery("Match (user:UserNode) WHERE user.email =  \""+ username +"\" AND NOT(ID(user) = "+ (id==null?0L:id) +")  RETURN true");
+    }
+
+    public Optional<FriendshipRequest> requestFriendship(FriendshipRequest request){
+        session.save(request);
+        return Optional.ofNullable(session.load(FriendshipRequest.class, request.getId()));
     }
 }

@@ -1,15 +1,10 @@
 package neo4j.services;
 
-import exceptions.EmailAlreadyExistsException;
-import exceptions.UsernameAlreadyExistsException;
-import neo4j.nodes.AbstractNode;
 import neo4j.Neo4jSessionFactory;
+import neo4j.nodes.AbstractNode;
 import org.neo4j.ogm.session.Session;
-import services.SessionService;
 
 import javax.inject.Inject;
-import java.security.Timestamp;
-import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Optional;

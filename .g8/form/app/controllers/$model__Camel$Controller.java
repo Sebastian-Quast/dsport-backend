@@ -10,7 +10,7 @@ import javax.inject.Inject;
 // Add the following to conf/routes 
 /*
 GET     /$model;format="camel"$        controllers.$model;format="Camel"$Controller.$model;format="camel"$Get
-POST    /$model;format="camel"$        controllers.$model;format="Camel"$Controller.$model;format="camel"$Post
+POST    /$model;format="camel"$        controllers.$model;format="Camel"$Controller.$model;format="camel"$PostNode
 */
 
 /**

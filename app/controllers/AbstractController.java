@@ -1,50 +1,32 @@
 package controllers;
 
-import neo4j.nodes.AbstractNode;
-import neo4j.services.AbstractService;
-import play.i18n.Messages;
 import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
 import services.LanguageService;
+import services.SessionService;
 
 import javax.inject.Inject;
 import java.util.Optional;
 
-public abstract class AbstractController<T extends AbstractNode, S extends AbstractService<T>> extends Controller {
+public abstract class AbstractController extends Controller {
 
-    protected S service;
 
     @Inject
     protected LanguageService languageService;
 
-    public AbstractController(S service){
-        this.service = service;
-    }
-
-
-
-    public Result all(){
-        return toJsonResult(service.findAll());
-    }
-
-    public Result byId(String id){
-        return service.find(Long.valueOf(id)).map(this::toJsonResult).orElse(badRequest(languageService.get("notFound")));
-    }
-
-    public abstract Result update();
-    public abstract Result create();
-
-    public Result delete(String id){
-        service.delete(Long.valueOf(id));
-        return toJsonResult("Ok");
-    }
+    @Inject
+    protected SessionService sessionService;
 
     public Result toJsonResult(Object o){
         return ok(Json.toJson(o));
     }
 
     public Result toOptionalJsonResult(Optional<?> optional){
-        return (Result) optional.map(this::toJsonResult).orElse(badRequest(languageService.get("somethingWentWrong")));
+        return toOptionalJsonResult(optional, badRequest(languageService.get("somethingWentWrong")));
+    }
+
+    public Result toOptionalJsonResult(Optional<?> optional, Result fault){
+        return optional.map(this::toJsonResult).orElse(fault);
     }
 }

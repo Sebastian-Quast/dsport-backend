@@ -1,9 +1,12 @@
 package controllers;
 
-import neo4j.nodes.User;
+import exceptions.EmailAlreadyExistsException;
+import exceptions.UsernameAlreadyExistsException;
+import neo4j.nodes.UserNode;
 import neo4j.services.UserService;
 import play.mvc.BodyParser;
 import play.mvc.Result;
+import protocols.RegistrationProtocol;
 import protocols.UserProtocol;
 import sercurity.Role;
 import sercurity.Secured;
@@ -11,7 +14,7 @@ import services.SessionService;
 
 import javax.inject.Inject;
 
-public class UserController extends AbstractController<User, UserService> {
+public class UserController extends AbstractCRUDController<UserNode, UserService> {
 
     private SessionService sessionService;
 
@@ -22,11 +25,40 @@ public class UserController extends AbstractController<User, UserService> {
     }
 
 
+    @BodyParser.Of(UserProtocol.Parser.class)
+    //@Secured(Role.ADMIN)
     @Override
     public Result create() {
 
+        UserProtocol protocol = request().body().as(UserProtocol.class);
 
-        return null;
+        try {
+            return toOptionalJsonResult(service.createOrUpdate(protocol.toModel()));
+        } catch (UsernameAlreadyExistsException e) {
+            return badRequest(languageService.get("usernameAlreadyExists"));
+        } catch (EmailAlreadyExistsException e) {
+            return badRequest(languageService.get("emailAlreadyExists"));
+        }
+    }
+
+    @Override
+    public boolean shouldRead(UserNode existing) {
+        return false;
+    }
+
+    @Override
+    public boolean shouldDelete(UserNode existing) {
+        return false;
+    }
+
+    @Override
+    public boolean shouldCreate(UserNode toCreate) {
+        return false;
+    }
+
+    @Override
+    public boolean shouldUpdate(UserNode toUpdate) {
+        return false;
     }
 
     @Secured
@@ -36,12 +68,17 @@ public class UserController extends AbstractController<User, UserService> {
 
         UserProtocol protocol = request().body().as(UserProtocol.class);
 
-        if(!sessionService.isUser(protocol.getId()) && !sessionService.hasRole(Role.ADMIN)){
+        if(!sessionService.isUser(protocol.id) && !sessionService.hasRole(Role.ADMIN)){
             return unauthorized();
         }
 
-        return toJsonResult(service.createOrUpdate(protocol.toModel()));
+        try {
+            return toJsonResult(service.createOrUpdate(protocol.toModel()));
+        } catch (UsernameAlreadyExistsException e) {
+            return badRequest(languageService.get("usernameAlreadyExists"));
+        } catch (EmailAlreadyExistsException e) {
+            return badRequest(languageService.get("emailAlreadyExists"));
+        }
     }
-
 
 }

@@ -14,7 +14,7 @@
           <value>
             <ProjectSettingsEntry>
               <option name="sourceDir" value="D:\Praxisprojekt\dSportBackend_NEU\dsport-backend\app" />
-              <option name="confDir" value="C:\Users\Florian\dsport\dsport-backend\app" />
+              <option name="confDir" value="D:\Praxisprojekt\dSportBackend_NEU\dsport-backend\app" />
               <option name="templateImports">
                 <list>
                   <option value="_root_.play.twirl.api.TwirlFeatureImports._" />
@@ -45,7 +45,7 @@
                   <option value="play.libs.F" />
                 </list>
               </option>
-              <option name="uri" value="/C:/Users/Florian/dsport/dsport-backend" />
+              <option name="uri" value="/D:/Praxisprojekt/dSportBackend_NEU/dsport-backend" />
             </ProjectSettingsEntry>
           </value>
         </entry>

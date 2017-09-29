@@ -3,16 +3,15 @@ package controllers;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import neo4j.services.UserService;
 import play.libs.Json;
-import play.mvc.BodyParser;
-import play.mvc.Controller;
-import play.mvc.Http;
-import play.mvc.Result;
+import play.mvc.*;
 import protocols.LoginProtocol;
 import sercurity.Role;
 import sercurity.Secured;
 import services.JwtService;
+import services.MailerService;
 
 import javax.inject.Inject;
+import java.util.UUID;
 
 public class TestController extends Controller {
 
@@ -24,6 +23,9 @@ public class TestController extends Controller {
 
     @Inject
     private JwtService jwtService;
+
+    @Inject
+    private MailerService mailerService;
 
     public Result login(){
 
@@ -40,6 +42,15 @@ public class TestController extends Controller {
         String userId = (String) ctx().args.get("id");
 
         return ok("Access for "+userId);
+    }
+
+    public Result testMail(String to){
+        String link = "https://daily-sport.de:8002/register/"+ UUID.randomUUID().toString();
+        return mailerService.send(to, "Herzlich willkommen bei dSport", "Bitte bestätige deine Registration.", "Damit du deinen Account vollständig nutzen kannst, ist es notwendig, " +
+                "deine Registration zu bestätigen, dazu nutze den folgenden Link " +
+                "<a href=\""+ link+"\">" + link + "</a>")
+                .map(Results::ok)
+                .orElse(badRequest());
     }
 
     @BodyParser.Of(LoginProtocol.Parser.class)

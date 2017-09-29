@@ -34,7 +34,7 @@ public abstract class AbstractBodyParser<T> implements BodyParser<T> {
                     return F.Either.Right(play.libs.Json.fromJson(json, getType()));
                 } catch (Exception e) {
                     return F.Either.Left(Results.badRequest(
-                            "Unable to read User from json: " + e.getMessage()));
+                            "Missing Path: "+e.getLocalizedMessage()));
                 }
             }
         }, executor);

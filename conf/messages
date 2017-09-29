@@ -1,3 +1,9 @@
 welcome                                     =                                       Willkommen
 notFound                                    =                                       Not Found
 somethingWentWrong                          =                                       Something went wrong
+usernameAlreadyExists                       =                                       Username already exists
+emailAlreadyExists                          =                                       Email already exists
+registrationEmailTitle                      =                                       Welcome to dSport
+registrationEmailSubject                    =                                       Please confirm your registration
+registrationEmailText                       =                                       To confirm your registration click the following link
+registrationSuccess                         =                                       Registration succesfull

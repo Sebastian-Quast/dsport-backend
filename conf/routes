@@ -15,7 +15,7 @@ POST            /friendship/user/:id                controllers.FriendshipContro
 POST            /friendship/:id/accept              controllers.FriendshipController.accept(id)
 
 #Route für get Pinboard
-#GET             /user/:id/pinned        controllers.PostController.byUser(id)
+POST            /user/:id/posts                     controllers.PostController.getPinboard(id)
 POST            /user                               controllers.UserController.create
 PUT             /user                               controllers.UserController.update
 DELETE          /user/:id                           controllers.UserController.delete(id)

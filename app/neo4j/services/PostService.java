@@ -2,10 +2,9 @@ package neo4j.services;
 
 import neo4j.Neo4jSessionFactory;
 import neo4j.nodes.PostNode;
-import neo4j.nodes.UserNode;
-import neo4j.relationships.Posted;
 
 import javax.inject.Inject;
+import java.util.Collections;
 import java.util.Optional;
 
 public class PostService extends AbstractService<PostNode> {
@@ -15,4 +14,12 @@ public class PostService extends AbstractService<PostNode> {
 
     @Override
     public Class getEntityType() {return PostNode.class;}
+
+
+    public Optional<Iterable<PostNode>> findAll(String fromId) {
+        String query = "Match(n:UserNode)-[POSTED]-(a:PostNode)" +
+                       "Match(n:UserNode)-[PINNED]-(a:PostNode) WHERE ID(n)= "+fromId+" " +
+                       "return DISTINCT a ORDER BY a.created";
+        return Optional.ofNullable(session.query(PostNode.class, query, Collections.emptyMap()));
+    }
 }

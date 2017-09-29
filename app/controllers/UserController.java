@@ -25,8 +25,8 @@ public class UserController extends AbstractCRUDController<UserNode, UserService
     }
 
 
-    @BodyParser.Of(RegistrationProtocol.Parser.class)
-    @Secured(Role.ADMIN)
+    @BodyParser.Of(UserProtocol.Parser.class)
+    //@Secured(Role.ADMIN)
     @Override
     public Result create() {
 

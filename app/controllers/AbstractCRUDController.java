@@ -14,7 +14,7 @@ public abstract class AbstractCRUDController<NodeType extends AbstractNode, Serv
         this.service = service;
     }
 
-    @Secured(Role.ADMIN)
+    //@Secured(Role.ADMIN)
     public Result all(){
         return toJsonResult(service.findAll());
     }

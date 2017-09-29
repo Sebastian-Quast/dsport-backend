@@ -6,17 +6,18 @@ import neo4j.entities.TimedEntity;
 import neo4j.entities.UniqueEntity;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 public abstract class AbstractNode extends TimedEntity {
     @JsonProperty("updated")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss.SSS")
-    private LocalDateTime updated = LocalDateTime.now();
+    private Date updated = new Date(System.currentTimeMillis());
 
-    public LocalDateTime getUpdated() {
+    public Date getUpdated() {
         return updated;
     }
 
-    public void setUpdated(LocalDateTime now) {
+    public void setUpdated(Date now) {
         this.updated = now;
     }
 }

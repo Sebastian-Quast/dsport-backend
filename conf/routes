@@ -7,6 +7,8 @@
 
 #User
 GET             /user/:id                           controllers.UserController.byId(id)
+GET             /user                               controllers.UserController.all
+POST            /user/test                          controllers.UserController.all
 POST            /user/:id/pinned                    controllers.PostController.postTo(id)
 
 POST            /friendship/user/:id                controllers.FriendshipController.request(id)

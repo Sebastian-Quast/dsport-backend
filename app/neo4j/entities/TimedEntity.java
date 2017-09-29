@@ -5,18 +5,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.neo4j.ogm.annotation.Property;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 public abstract class TimedEntity extends UniqueEntity {
     @Property
     @JsonProperty("created")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss.SSS")
-    private LocalDateTime created = LocalDateTime.now();
+    private Date created = new Date(System.currentTimeMillis());
 
-    public LocalDateTime getCreated() {
+    public Date getCreated() {
         return created;
     }
 
-    public void setCreated(LocalDateTime created) {
+    public void setCreated(Date created) {
         this.created = created;
     }
 }

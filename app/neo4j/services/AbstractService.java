@@ -41,7 +41,7 @@ public abstract class AbstractService<T extends AbstractNode> {
                     entity.setCreated(existing.getCreated());
                     return entity;
                  }).orElse(entity);
-
+        session.clear();
         session.save(updated, DEPTH_ENTITY);
         return find(updated.getId());
     }

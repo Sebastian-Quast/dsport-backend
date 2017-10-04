@@ -2,6 +2,7 @@ package neo4j.nodes;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import neo4j.relationships.Refers;
 import neo4j.relationships.Pinned;
 import neo4j.relationships.Posted;
 import org.neo4j.ogm.annotation.NodeEntity;
@@ -25,22 +26,28 @@ public class PostNode extends AbstractNode {
     @JsonProperty("picture")
     private String picture;
 
-   //@RelationshipEntity(type = Commented.TYPE)
-   //@JsonProperty("comments")
-   //private Set<Commented> comments = new HashSet<>();
 
-    @Relationship(type = Pinned.TYPE)
-    @JsonProperty("pinnings")
-    private Set<Pinned> pinned = new HashSet<>();
+    @JsonProperty("refers")
+    @Relationship(type = Refers.TYPE, direction = Relationship.INCOMING)
+    private Set<Refers> comments;
 
-    @Relationship(type = Posted.TYPE,  direction = Relationship.INCOMING)
     @JsonProperty("posted")
-    private Posted posted = null;
+    @Relationship(type = Posted.TYPE, direction = Relationship.INCOMING)
+    private Set<Posted> posted;
+
+    @JsonProperty("pinnings")
+    @Relationship(type = Pinned.TYPE)
+    private Set<Pinned> pinned;
+
 
     public PostNode() {
+        this.pinned = new HashSet<>();
+        this.posted = new HashSet<>();
+        this.comments = new HashSet<>();
     }
 
     public PostNode(Long id, String text, String title, String picture) {
+        this();
         this.text = text;
         this.title = title;
         this.picture = picture;
@@ -48,16 +55,37 @@ public class PostNode extends AbstractNode {
     }
 
 
-    public Pinned addPinned(UserNode userNode){
+    public void addPinned(UserNode userNode) {
         Pinned pinned = new Pinned(userNode, this);
         this.pinned.add(pinned);
+    }
+
+    public void addPosted(UserNode userNode) {
+        Posted posted = new Posted(userNode, this);
+        this.posted.add(posted);
+    }
+
+    public Set<Refers> getComments() {
+        return comments;
+    }
+
+    public void setComments(Set<Refers> comments) {
+        this.comments = comments;
+    }
+
+    public Set<Pinned> getPinned() {
         return pinned;
     }
 
+    public void setPinned(Set<Pinned> pinned) {
+        this.pinned = pinned;
+    }
 
-    public Posted addPosted(UserNode userNode){
-        Posted posted = new Posted(userNode, this);
-        this.posted = posted;
+    public Set<Posted> getPosted() {
         return posted;
+    }
+
+    public void setPosted(Set<Posted> posted) {
+        this.posted = posted;
     }
 }

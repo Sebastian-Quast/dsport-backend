@@ -2,6 +2,7 @@ package neo4j.services;
 
 import neo4j.Neo4jSessionFactory;
 import neo4j.nodes.PostNode;
+import play.libs.Json;
 
 import javax.inject.Inject;
 import java.util.Collections;
@@ -22,4 +23,5 @@ public class PostService extends AbstractService<PostNode> {
                        "return DISTINCT a ORDER BY a.created";
         return Optional.ofNullable(session.query(PostNode.class, query, Collections.emptyMap()));
     }
+
 }

@@ -2,7 +2,6 @@ package neo4j.relationships;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import neo4j.entities.UniqueEntity;
 import neo4j.nodes.PostNode;
@@ -17,12 +16,11 @@ public class Pinned extends AbstractRelationship {
     public static final String TYPE = "PINNED";
 
     @StartNode
-    @JsonSerialize(as=UniqueEntity.class)
-    @JsonProperty("postNode")
+    @JsonIgnore
     private PostNode postNode;
 
     @EndNode
-    @JsonIgnore
+    @JsonSerialize(as=UniqueEntity.class)
     private UserNode userNode;
 
     public Pinned() {

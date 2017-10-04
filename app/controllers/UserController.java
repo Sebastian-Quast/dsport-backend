@@ -26,7 +26,7 @@ public class UserController extends AbstractCRUDController<UserNode, UserService
 
 
     @BodyParser.Of(UserProtocol.Parser.class)
-    //@Secured(Role.ADMIN)
+   // @Secured(Role.ADMIN)
     @Override
     public Result create() {
 
@@ -68,7 +68,7 @@ public class UserController extends AbstractCRUDController<UserNode, UserService
 
         UserProtocol protocol = request().body().as(UserProtocol.class);
 
-        if(!sessionService.isUser(protocol.id) && !sessionService.hasRole(Role.ADMIN)){
+        if (!sessionService.isUser(protocol.id) && !sessionService.hasRole(Role.ADMIN)) {
             return unauthorized();
         }
 
@@ -81,4 +81,19 @@ public class UserController extends AbstractCRUDController<UserNode, UserService
         }
     }
 
+    @BodyParser.Of(UserProtocol.Parser.class)
+    public Result updatetest() {
+
+        UserProtocol protocol = request().body().as(UserProtocol.class);
+        return toOptionalJsonResult(service.createOrUpdate(protocol.toModel()));
+
+    }
+
+    //test method, delete later to enable secured function
+    @Override
+    public Result byId(String id) {
+        return service.find(Long.valueOf(id))
+                .map(node -> toJsonResult(node))
+                .orElse(badRequest(languageService.get("notFound")));
+    }
 }

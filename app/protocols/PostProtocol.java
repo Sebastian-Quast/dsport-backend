@@ -6,12 +6,9 @@ import parser.AbstractBodyParser;
 public class PostProtocol extends AbstractProtocol<PostNode> {
 
     public Long id;
-    public String user_id;
-    public String owner_id;
     public String text;
     public String title;
     public String picture;
-
 
     @Override
     public PostNode toModel() {

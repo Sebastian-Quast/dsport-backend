@@ -1,9 +1,13 @@
 package controllers;
 
+import com.google.common.collect.Lists;
 import neo4j.nodes.PostNode;
+import neo4j.nodes.UserNode;
+import neo4j.relationships.Posted;
 import neo4j.services.PostService;
 import neo4j.services.UserService;
 import play.libs.F;
+import play.libs.Json;
 import play.mvc.BodyParser;
 import play.mvc.Result;
 import protocols.PostProtocol;
@@ -11,6 +15,10 @@ import sercurity.Role;
 import sercurity.Secured;
 
 import javax.inject.Inject;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class PostController extends AbstractCRUDController<PostNode, PostService> {
 
@@ -57,14 +65,39 @@ public class PostController extends AbstractCRUDController<PostNode, PostService
         return notFound();
     }
 
-    public Result getPinnboard(){
-        return null;
+    @Secured
+    public Result getPosts(String fromId){
+
+        Set<PostNode> postNodes = new HashSet<>();
+
+        if (shouldReadPosts(fromId)){
+            return userService.find(Long.valueOf(fromId))
+                    .map(UserNode::getPostings)
+                    .map(posteds -> {
+                        posteds.forEach(posted ->
+                                postNodes.add(posted.getPostNode()));
+                        return toJsonResult(postNodes);
+                    })
+                    .orElse(badRequest());
+        }else return forbidden();
+    }
+
+    public Result getPinboard(String fromId){
+        if (shouldReadPosts(fromId)){
+            return service.findAll(fromId)
+                    .map(postNode -> toJsonResult(Lists.newArrayList(postNode)))
+                    .orElse(badRequest());
+        }else return forbidden();
     }
 
     @Override
     public boolean shouldRead(PostNode existing) {
         //TODO Or friend of user or pinned to users pinboard
         return userService.find(sessionService.getId()).map(user -> user.getPostings().stream().anyMatch(posted -> posted.getPostNode().equals(existing)) || sessionService.hasRole(Role.ADMIN)).orElse(false);
+    }
+
+    public boolean shouldReadPosts(String fromId){
+        return userService.find(sessionService.getId()).map(userNode -> userNode.getFriendships().stream().anyMatch(friendship -> friendship.getId().equals(fromId)) || sessionService.getId().equals(Long.valueOf(fromId))).orElse(false);
     }
 
     @Override

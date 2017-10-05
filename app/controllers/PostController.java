@@ -73,22 +73,22 @@ public class PostController extends AbstractCRUDController<PostNode, PostService
         return notFound();
     }
 
-    //@Secured
-    //public Result getPosts(String fromId){
+    @Secured
+    public Result getPosts(String fromId){
 
-    //    Set<PostNode> postNodes = new HashSet<>();
+        Set<PostNode> postNodes = new HashSet<>();
 
-    //    if (shouldReadPosts(fromId)){
-    //        return userService.find(Long.valueOf(fromId))
-    //                .map(UserNode::getPostings)
-    //                .map(posteds -> {
-    //                    posteds.forEach(posted ->
-    //                            postNodes.add(posted.getPostNode()));
-    //                    return toJsonResult(postNodes);
-    //                })
-    //                .orElse(badRequest());
-    //    }else return forbidden();
-    //}
+        if (shouldReadPosts(fromId)){
+            return userService.find(Long.valueOf(fromId))
+                    .map(UserNode::getPostings)
+                    .map(posteds -> {
+                        posteds.forEach(posted ->
+                                postNodes.add(posted.getPostNode()));
+                        return toJsonResult(postNodes);
+                    })
+                    .orElse(badRequest());
+        }else return forbidden();
+    }
 
 
     /**
@@ -106,19 +106,16 @@ public class PostController extends AbstractCRUDController<PostNode, PostService
     @Override
     public boolean shouldRead(PostNode existing) {
         //TODO Or friend of user or pinned to users pinboard
-        //return userService.find(sessionService.getId()).map(user -> user.getPostings().stream().anyMatch(posted -> posted.getPostNode().equals(existing)) || sessionService.hasRole(Role.ADMIN)).orElse(false);
-        return true;
+        return userService.find(sessionService.getId()).map(user -> user.getPostings().stream().anyMatch(posted -> posted.getPostNode().equals(existing)) || sessionService.hasRole(Role.ADMIN)).orElse(false);
     }
 
     public boolean shouldReadPosts(String fromId) {
-        //return userService.find(sessionService.getId()).map(userNode -> userNode.getFriendships().stream().anyMatch(friendship -> friendship.getId().equals(fromId)) || sessionService.getId().equals(Long.valueOf(fromId))).orElse(false);
-        return true;
+        return userService.find(sessionService.getId()).map(userNode -> userNode.getFriendships().stream().anyMatch(friendship -> friendship.getId().equals(fromId)) || sessionService.getId().equals(Long.valueOf(fromId))).orElse(false);
     }
 
     @Override
     public boolean shouldDelete(PostNode existing) {
-        //return userService.find(sessionService.getId()).map(user -> user.getPostings().stream().anyMatch(posted -> posted.getPostNode().equals(existing)) || sessionService.hasRole(Role.ADMIN)).orElse(false);
-        return true;
+        return userService.find(sessionService.getId()).map(user -> user.getPostings().stream().anyMatch(posted -> posted.getPostNode().equals(existing)) || sessionService.hasRole(Role.ADMIN)).orElse(false);
     }
 
     @Override
@@ -128,8 +125,7 @@ public class PostController extends AbstractCRUDController<PostNode, PostService
 
     @Override
     public boolean shouldUpdate(PostNode toUpdate) {
-        //return userService.find(sessionService.getId()).map(user -> user.getPostings().stream().anyMatch(posted -> posted.getPostNode().getId().equals(toUpdate.getId())) || sessionService.hasRole(Role.ADMIN)).orElse(false);
-        return true;
+        return userService.find(sessionService.getId()).map(user -> user.getPostings().stream().anyMatch(posted -> posted.getPostNode().getId().equals(toUpdate.getId())) || sessionService.hasRole(Role.ADMIN)).orElse(false);
     }
 
 }

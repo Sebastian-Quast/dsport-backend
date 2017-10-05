@@ -6,7 +6,7 @@
 #GET                 /test/insert         main.resources.controllers.TestController.insertRandom()
 
 #User
-#GET             /user                               controllers.UserController.all
+GET           /user                       controllers.UserController.all
 POST          /user/test                  controllers.UserController.all
 POST          /user                       controllers.UserController.create
 PUT           /user                       controllers.UserController.update

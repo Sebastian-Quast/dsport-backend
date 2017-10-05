@@ -89,6 +89,7 @@ public class UserController extends AbstractCRUDController<UserNode, UserService
 
     }
 
+
     //test method, delete later to enable secured function
     @Override
     public Result byId(String id) {

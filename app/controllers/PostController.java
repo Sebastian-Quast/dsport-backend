@@ -30,11 +30,19 @@ public class PostController extends AbstractCRUDController<PostNode, PostService
         this.userService = userService;
     }
 
+    //test method, delete later to enable secured function
+    @Override
+    public Result byId(String id) {
+        return service.find(Long.valueOf(id))
+                .map(node -> toJsonResult(node))
+                .orElse(badRequest(languageService.get("notFound")));
+    }
+
     @Secured
     @BodyParser.Of(PostProtocol.Parser.class)
     public Result postTo(String toId) {
         PostProtocol postProtocol = request().body().as(PostProtocol.class);
-        if(shouldCreate(postProtocol.toModel())) {
+        if (shouldCreate(postProtocol.toModel())) {
             return userService.find(sessionService.getId())
                     .flatMap(from -> userService.find(Long.valueOf(toId)).map(to -> F.Tuple(from, to)))
                     .flatMap(fromTo -> service.ifNotExists(postProtocol.toModel()).map(post -> F.Tuple3(fromTo._1, fromTo._2, post)))
@@ -53,7 +61,7 @@ public class PostController extends AbstractCRUDController<PostNode, PostService
     @Override
     public Result update() {
         PostProtocol postProtocol = request().body().as(PostProtocol.class);
-        if(shouldUpdate(postProtocol.toModel())){
+        if (shouldUpdate(postProtocol.toModel())) {
             return service.createOrUpdate(postProtocol.toModel())
                     .map(this::toJsonResult)
                     .orElse(badRequest());
@@ -82,12 +90,17 @@ public class PostController extends AbstractCRUDController<PostNode, PostService
         }else return forbidden();
     }
 
-    public Result getPinboard(String fromId){
-        if (shouldReadPosts(fromId)){
+
+    /**
+     * @param fromId Id of the user which posts and pins should are requested
+     * @return A List of all posts and pins of a specific user
+     */
+    public Result getPinboard(String fromId) {
+        if (shouldReadPosts(fromId)) {
             return service.findAll(fromId)
                     .map(postNode -> toJsonResult(Lists.newArrayList(postNode)))
                     .orElse(badRequest());
-        }else return forbidden();
+        } else return forbidden();
     }
 
     @Override
@@ -96,7 +109,7 @@ public class PostController extends AbstractCRUDController<PostNode, PostService
         return userService.find(sessionService.getId()).map(user -> user.getPostings().stream().anyMatch(posted -> posted.getPostNode().equals(existing)) || sessionService.hasRole(Role.ADMIN)).orElse(false);
     }
 
-    public boolean shouldReadPosts(String fromId){
+    public boolean shouldReadPosts(String fromId) {
         return userService.find(sessionService.getId()).map(userNode -> userNode.getFriendships().stream().anyMatch(friendship -> friendship.getId().equals(fromId)) || sessionService.getId().equals(Long.valueOf(fromId))).orElse(false);
     }
 

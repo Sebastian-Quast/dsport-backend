@@ -6,38 +6,36 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import neo4j.entities.UniqueEntity;
 import neo4j.nodes.CommentNode;
-import neo4j.nodes.UserNode;
+import neo4j.nodes.PostNode;
 import org.neo4j.ogm.annotation.EndNode;
 import org.neo4j.ogm.annotation.RelationshipEntity;
 import org.neo4j.ogm.annotation.StartNode;
 
-@RelationshipEntity(type = Commented.TYPE)
-public class Commented extends AbstractRelationship {
+@RelationshipEntity(type = Refers.TYPE)
+public class Refers extends AbstractRelationship {
 
-    public static final String TYPE = "COMMENTED";
+    public static final String TYPE = "REFERS";
 
     @StartNode
-    @JsonSerialize(as=UniqueEntity.class)
-    @JsonProperty("userNode")
-    UserNode userNode;
-
-
-    @EndNode
-    @JsonSerialize(as=UniqueEntity.class)
+    @JsonSerialize(as = UniqueEntity.class)
     @JsonProperty("commentNode")
     CommentNode commentNode;
 
+    @EndNode
+    @JsonSerialize(as = UniqueEntity.class)
+    @JsonProperty("postNode")
+    PostNode postNode;
 
-    public Commented() {
+    public Refers() {
     }
 
-    public Commented(UserNode userNode, CommentNode commentNode) {
-        this.userNode = userNode;
+    public Refers(PostNode postNode, CommentNode commentNode) {
+        this.postNode = postNode;
         this.commentNode = commentNode;
     }
 
-    public UserNode getUserNode() {
-        return userNode;
+    public PostNode getPostNode() {
+        return postNode;
     }
 
     public CommentNode getCommentNode() {

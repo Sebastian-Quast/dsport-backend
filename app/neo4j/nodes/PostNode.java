@@ -2,6 +2,8 @@ package neo4j.nodes;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import json.JsonCollectionSize;
+import neo4j.relationships.Like;
 import neo4j.relationships.Refers;
 import neo4j.relationships.Pinned;
 import neo4j.relationships.Posted;
@@ -27,23 +29,29 @@ public class PostNode extends AbstractNode {
     private String picture;
 
 
-    @JsonProperty("refers")
     @Relationship(type = Refers.TYPE, direction = Relationship.INCOMING)
+    @JsonProperty("refersPost")
+    //@JsonCollectionSize
     private Set<Refers> comments;
 
-    @JsonProperty("posted")
     @Relationship(type = Posted.TYPE, direction = Relationship.INCOMING)
-    private Set<Posted> posted;
+    @JsonProperty("posted")
+    private Posted posted;
 
-    @JsonProperty("pinnings")
     @Relationship(type = Pinned.TYPE)
+    @JsonProperty("pinned")
+    //@JsonCollectionSize
     private Set<Pinned> pinned;
+
+    @Relationship(type = Like.TYPE, direction = Relationship.INCOMING)
+    @JsonProperty("likes")
+    private Set<Like> likes;
 
 
     public PostNode() {
         this.pinned = new HashSet<>();
-        this.posted = new HashSet<>();
         this.comments = new HashSet<>();
+        this.likes = new HashSet<>();
     }
 
     public PostNode(Long id, String text, String title, String picture) {
@@ -62,7 +70,7 @@ public class PostNode extends AbstractNode {
 
     public void addPosted(UserNode userNode) {
         Posted posted = new Posted(userNode, this);
-        this.posted.add(posted);
+        this.posted = posted;
     }
 
     public Set<Refers> getComments() {
@@ -81,11 +89,24 @@ public class PostNode extends AbstractNode {
         this.pinned = pinned;
     }
 
-    public Set<Posted> getPosted() {
+    public Posted getPosted() {
         return posted;
     }
 
-    public void setPosted(Set<Posted> posted) {
+    public void setPosted(Posted posted) {
         this.posted = posted;
+    }
+
+    public Set<Like> getLikes() {
+        return likes;
+    }
+
+    public void setLikes(Set<Like> likes) {
+        this.likes = likes;
+    }
+
+    @Override
+    public String getLabel() {
+        return "PostNode";
     }
 }

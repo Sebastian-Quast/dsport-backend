@@ -1,7 +1,7 @@
 package neo4j.services;
 
 import neo4j.Neo4jSessionFactory;
-import neo4j.nodes.AbstractNode;
+import neo4j.relationships.AbstractRelationship;
 import org.neo4j.ogm.session.Session;
 
 import javax.inject.Inject;
@@ -9,7 +9,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Optional;
 
-public abstract class AbstractService<T extends AbstractNode> {
+public abstract class AbstractRelationshipService<T extends AbstractRelationship> {
 
     //Tutorial says 0
     private static final int DEPTH_LIST = 1;
@@ -18,7 +18,7 @@ public abstract class AbstractService<T extends AbstractNode> {
     protected Session session;
 
     @Inject
-    public AbstractService(Neo4jSessionFactory neo4jSessionFactory) {
+    public AbstractRelationshipService(Neo4jSessionFactory neo4jSessionFactory) {
         this.session = neo4jSessionFactory.getNeo4jSession();
     }
 
@@ -35,11 +35,12 @@ public abstract class AbstractService<T extends AbstractNode> {
     }
 
     public Optional<T> find(Long id) {
-        //session.clear();
+        session.clear();
         return find(id, DEPTH_ENTITY);
     }
 
     public void delete(Long id) {
+        session.clear();
         session.delete(session.load(getEntityType(), id));
     }
 
@@ -48,7 +49,7 @@ public abstract class AbstractService<T extends AbstractNode> {
                 .map(existing -> {
                     entity.setCreated(existing.getCreated());
                     return entity;
-                 }).orElse(entity);
+                }).orElse(entity);
         session.clear();
         session.save(updated, depth);
         return find(updated.getId());
@@ -76,5 +77,3 @@ public abstract class AbstractService<T extends AbstractNode> {
         }
     }
 }
-
-

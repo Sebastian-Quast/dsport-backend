@@ -6,41 +6,55 @@
 #GET                 /test/insert         main.resources.controllers.TestController.insertRandom()
 
 #User
-GET           /user                       controllers.UserController.all
-POST          /user/test                  controllers.UserController.all
-POST          /user                       controllers.UserController.create
-PUT           /user                       controllers.UserController.update
-DELETE        /user/:id                   controllers.UserController.delete(id)
+GET           /user                         controllers.UserController.all
+POST          /user/test                    controllers.UserController.all
+POST          /user                         controllers.UserController.create
+PUT           /user                         controllers.UserController.update
+DELETE        /user/:id                     controllers.UserController.delete(id)
 
 #Friendship
-POST          /friendship/user/:id        controllers.FriendshipController.request(id)
-#POST         /friendship/:id/accept        controllers.FriendshipController.accept(id)
+POST          /friendship/user/:id          controllers.FriendshipController.request(id)
+POST          /friendship/:id/delete        controllers.FriendshipController.delete(id)
+POST          /friendship/:id/accept        controllers.FriendshipController.accept(id)
+POST          /friendship/:id/decline       controllers.FriendshipController.decline(id)
 
 #Pinboard
-POST          /user/:id/posts             controllers.PostController.getPinboard(id)
+POST          /user/:id/posts               controllers.PostController.getPinboard(id)
 
 
 #Registration
-POST          /registration               controllers.RegistrationController.register
-GET           /register/:hash             controllers.RegistrationController.confirmRegistration(hash)
+POST          /registration                 controllers.RegistrationController.register
+GET           /register/:hash               controllers.RegistrationController.confirmRegistration(hash)
 
 #Login
-POST          /login                      controllers.SessionController.login
+POST          /login                        controllers.SessionController.login
 
 #Post
-PUT           /post                       controllers.PostController.update
-POST          /user/:id/pinned            controllers.PostController.postTo(id)
+PUT           /post                         controllers.PostController.update
+POST          /user/:id/pinned              controllers.PostController.postTo(id)
 
 #Comment
-POST          /post/:id/comment           controllers.CommentController.createComment(id)
-POST          /comment/:id                controllers.CommentController.delete(id)
-PUT           /comment                    controllers.CommentController.update
-POST          /comment/:id/get            controllers.CommentController.byId(id)
+POST          /post/:id/comment             controllers.CommentController.createComment(id)
+POST          /comment/:id/comment          controllers.CommentController.createCommentByComment(id)
+PUT           /comment                      controllers.CommentController.update
+POST          /comment/:id                  controllers.CommentController.delete(id)
+POST          /comment/:id/getById          controllers.CommentController.byId(id)
+POST          /comment/:id/fromPost         controllers.CommentController.getCommentsByPost(id)
+
+#Likes
+POST          /post/:id/like                controllers.LikeController.likePost(id)
+POST          /post/:id/dislike             controllers.LikeController.dislikePost(id)
+POST          /post/:id/like/user           controllers.LikeController.getLikesByPost(id)
+POST          /comment/:id/like             controllers.LikeController.likeComment(id)
+POST          /comment/:id/dislike          controllers.LikeController.dislikeComment(id)
+POST          /comment/:id/like/user        controllers.LikeController.getLikesByComment(id)
 
 
 #Tests
-POST          /post/:id/test              controllers.PostController.byId(id)
-POST          /user/:id/test              controllers.UserController.byId(id)
-POST          /testVerify                 controllers.TestController.testVerify
-POST          /test                       controllers.TestController.save
-GET           /testMail/:email            controllers.TestController.testMail(email)
+POST          /post/:id/test                controllers.PostController.byId(id)
+POST          /user/:id/test                controllers.UserController.byId(id)
+POST          /user/:id/getposts            controllers.PostController.getPosts(id)
+POST          /testVerify                   controllers.TestController.testVerify
+POST          /test                         controllers.TestController.save
+GET           /testMail/:email              controllers.TestController.testMail(email)
+#POST          /post/:id/testLike            controllers.LikeController.test(id)

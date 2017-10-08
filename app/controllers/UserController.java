@@ -6,7 +6,6 @@ import neo4j.nodes.UserNode;
 import neo4j.services.UserService;
 import play.mvc.BodyParser;
 import play.mvc.Result;
-import protocols.RegistrationProtocol;
 import protocols.UserProtocol;
 import sercurity.Role;
 import sercurity.Secured;
@@ -93,8 +92,8 @@ public class UserController extends AbstractCRUDController<UserNode, UserService
     //test method, delete later to enable secured function
     @Override
     public Result byId(String id) {
-        return service.find(Long.valueOf(id))
-                .map(node -> toJsonResult(node))
+        return service.find(Long.valueOf(id),1)
+                .map(this::toJsonResult)
                 .orElse(badRequest(languageService.get("notFound")));
     }
 }

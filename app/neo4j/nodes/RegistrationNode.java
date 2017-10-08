@@ -2,7 +2,6 @@ package neo4j.nodes;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.neo4j.ogm.annotation.NodeEntity;
-import org.neo4j.ogm.annotation.Property;
 
 import java.util.UUID;
 
@@ -85,5 +84,10 @@ public class RegistrationNode extends AbstractNode {
 
     public void setHash(String hash) {
         this.hash = hash;
+    }
+
+    @Override
+    public String getLabel() {
+        return "RegistrationNode";
     }
 }

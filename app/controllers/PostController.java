@@ -3,11 +3,9 @@ package controllers;
 import com.google.common.collect.Lists;
 import neo4j.nodes.PostNode;
 import neo4j.nodes.UserNode;
-import neo4j.relationships.Posted;
 import neo4j.services.PostService;
 import neo4j.services.UserService;
 import play.libs.F;
-import play.libs.Json;
 import play.mvc.BodyParser;
 import play.mvc.Result;
 import protocols.PostProtocol;
@@ -15,9 +13,7 @@ import sercurity.Role;
 import sercurity.Secured;
 
 import javax.inject.Inject;
-import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 public class PostController extends AbstractCRUDController<PostNode, PostService> {
@@ -33,10 +29,11 @@ public class PostController extends AbstractCRUDController<PostNode, PostService
     //test method, delete later to enable secured function
     @Override
     public Result byId(String id) {
-        return service.find(Long.valueOf(id))
+        return service.find(Long.valueOf(id), 2)
                 .map(node -> toJsonResult(node))
                 .orElse(badRequest(languageService.get("notFound")));
     }
+
 
     @Secured
     @BodyParser.Of(PostProtocol.Parser.class)
@@ -102,6 +99,7 @@ public class PostController extends AbstractCRUDController<PostNode, PostService
                     .orElse(badRequest());
         } else return forbidden();
     }
+
 
     @Override
     public boolean shouldRead(PostNode existing) {

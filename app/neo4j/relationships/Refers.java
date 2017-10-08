@@ -1,7 +1,6 @@
 package neo4j.relationships;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import neo4j.entities.UniqueEntity;
@@ -19,12 +18,12 @@ public class Refers extends AbstractRelationship {
     @StartNode
     @JsonSerialize(as = UniqueEntity.class)
     @JsonProperty("commentNode")
-    CommentNode commentNode;
+    private CommentNode commentNode;
 
     @EndNode
     @JsonSerialize(as = UniqueEntity.class)
     @JsonProperty("postNode")
-    PostNode postNode;
+    private PostNode postNode;
 
     public Refers() {
     }

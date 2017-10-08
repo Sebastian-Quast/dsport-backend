@@ -1,8 +1,10 @@
 package neo4j.services;
 
+import javafx.geometry.Pos;
 import neo4j.Neo4jSessionFactory;
 import neo4j.nodes.PostNode;
-import play.libs.Json;
+import neo4j.nodes.UserNode;
+import neo4j.relationships.Like;
 
 import javax.inject.Inject;
 import java.util.Collections;

@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.neo4j.ogm.annotation.Property;
 
-import java.time.LocalDateTime;
 import java.util.Date;
 
 public abstract class TimedEntity extends UniqueEntity {

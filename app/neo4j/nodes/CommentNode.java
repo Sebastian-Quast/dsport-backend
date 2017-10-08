@@ -1,8 +1,8 @@
 package neo4j.nodes;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import neo4j.relationships.Refers;
-import neo4j.relationships.Commented;
+import json.JsonCollectionSize;
+import neo4j.relationships.*;
 import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Relationship;
 
@@ -15,22 +15,39 @@ public class CommentNode extends AbstractNode {
     @JsonProperty("text")
     private String text;
 
-
     @JsonProperty("title")
     private String title;
 
     @JsonProperty("picture")
     private String picture;
 
-    @Relationship(type="COMMENTED", direction = Relationship.INCOMING)
-    private Set<Commented> commented;
+    @Relationship(type= CommentedPost.TYPE, direction = Relationship.INCOMING)
+    @JsonProperty("commentedPost")
+    private CommentedPost commentedPost;
 
-    @Relationship(type = "REFERS")
+    @Relationship(type= CommentedComment.TYPE, direction = Relationship.INCOMING)
+    @JsonProperty("commentedComment")
+    @JsonCollectionSize
+    private Set<CommentedComment> commentedComment;
+
+    @Relationship(type = Refers.TYPE)
+    @JsonProperty("refersPost")
     private Set<Refers> refers;
+
+    @Relationship(type = RefersComment.TYPE)
+    @JsonProperty("refersComment")
+    @JsonCollectionSize
+    private Set<RefersComment> refersComment;
+
+    @Relationship(type = Like.TYPE, direction = Relationship.INCOMING)
+    @JsonProperty("likes")
+    private Set<Like> likes;
 
     public CommentNode() {
         this.refers = new HashSet<>();
-        this.commented = new HashSet<>();
+        this.refersComment = new HashSet<>();
+        this.commentedComment = new HashSet<>();
+        this.likes = new HashSet<>();
     }
 
     public CommentNode(Long id, String text, String title, String picture) {
@@ -41,25 +58,41 @@ public class CommentNode extends AbstractNode {
         this.setId(id);
     }
 
-    public Commented addCommentedBy(UserNode userNode) {
-        Commented commented = new Commented(userNode, this);
-        this.commented.add(commented);
-        return commented;
+    public void addCommentedPost(UserNode userNode) {
+        CommentedPost commented = new CommentedPost(userNode, this);
+        this.commentedPost = commented;
+    }
+
+    public void addCommentedComment(UserNode userNode) {
+        CommentedComment commented = new CommentedComment(userNode, this);
+        this.commentedComment.add(commented);
     }
 
 
-    public Refers addCommented(PostNode postNodes) {
+    public void addRefersPost(PostNode postNodes) {
         Refers refers = new Refers(postNodes, this);
         this.refers.add(refers);
-        return refers;
     }
 
-    public Set<Commented> getCommented() {
-        return commented;
+    public void addRefersComment(CommentNode commentNode) {
+        RefersComment refers = new RefersComment(this, commentNode);
+        this.refersComment.add(refers);
     }
 
-    public void setCommented(Set<Commented> commented) {
-        this.commented = commented;
+    public CommentedPost getCommentedPost() {
+        return commentedPost;
+    }
+
+    public void setCommentedPost(CommentedPost commentedPost) {
+        this.commentedPost = commentedPost;
+    }
+
+    public Set<CommentedComment> getCommentedComment() {
+        return commentedComment;
+    }
+
+    public void setCommentedComment(Set<CommentedComment> commentedComment) {
+        this.commentedComment = commentedComment;
     }
 
     public Set<Refers> getRefers() {
@@ -69,4 +102,23 @@ public class CommentNode extends AbstractNode {
     public void setRefers(Set<Refers> refers) {
         this.refers = refers;
     }
+
+    public Set<RefersComment> getRefersComment() {
+        return refersComment;
+    }
+
+    public void setRefersComment(Set<RefersComment> refersComment) {
+        this.refersComment = refersComment;
+    }
+
+    public Set<Like> getLikes() {
+        return likes;
+    }
+
+    public void setLikes(Set<Like> likes) {
+        this.likes = likes;
+    }
+
+    @Override
+    public String getLabel() {return "CommentNode";};
 }

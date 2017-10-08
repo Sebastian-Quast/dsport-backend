@@ -5,10 +5,9 @@ import exceptions.UsernameAlreadyExistsException;
 import neo4j.Neo4jSessionFactory;
 import neo4j.nodes.RegistrationNode;
 import neo4j.nodes.UserNode;
-import neo4j.relationships.FriendshipRequest;
+import play.libs.F;
 
 import javax.inject.Inject;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Optional;
 
@@ -47,6 +46,10 @@ public class UserService extends AbstractService<UserNode> {
         return super.createOrUpdate(entity);
     }
 
+    public Optional<F.Tuple<UserNode, UserNode>> getUserTuple(Long user1Id, Long user2Id){
+        return find(user1Id)
+                .flatMap(user -> find(Long.valueOf(user2Id)).map(friend -> F.Tuple(user, friend)));
+    }
 
     public boolean usernameExists(String username, Long id){
         return existsQuery("Match (user:UserNode) WHERE user.username =  \""+ username +"\" AND NOT(ID(user) = "+ (id==null?0L:id) +") RETURN true");
@@ -56,8 +59,4 @@ public class UserService extends AbstractService<UserNode> {
         return existsQuery("Match (user:UserNode) WHERE user.email =  \""+ username +"\" AND NOT(ID(user) = "+ (id==null?0L:id) +")  RETURN true");
     }
 
-    public Optional<FriendshipRequest> requestFriendship(FriendshipRequest request){
-        session.save(request);
-        return Optional.ofNullable(session.load(FriendshipRequest.class, request.getId()));
-    }
 }

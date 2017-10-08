@@ -1,10 +1,9 @@
 package neo4j.nodes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import neo4j.relationships.Commented;
-import neo4j.relationships.Friendship;
-import neo4j.relationships.Pinned;
-import neo4j.relationships.Posted;
+import json.JsonCollectionSize;
+import neo4j.relationships.*;
 import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Relationship;
 
@@ -18,49 +17,68 @@ public class UserNode extends AbstractNode {
     @JsonProperty("username")
     private String username;
 
-    @JsonProperty("firstname")
+    //@JsonProperty("firstname")
+    @JsonIgnore
     private String firstname;
 
-    @JsonProperty("lastname")
+    //@JsonProperty("lastname")
+    @JsonIgnore
     private String lastname;
 
-    @JsonProperty("email")
+    //@JsonProperty("email")
+    @JsonIgnore
     private String email;
 
-    @JsonProperty("password")
+    //@JsonProperty("password")
+    @JsonIgnore
     private String password;
 
     @JsonProperty("picture")
     private String picture;
 
-    @Relationship(type = Friendship.TYPE, direction = Relationship.UNDIRECTED)
-    @JsonProperty("friendships")
-    private Set<Friendship> friendships = new HashSet<>();
-
-    @JsonProperty("postings")
     @Relationship(type = Posted.TYPE)
+    @JsonProperty("postings")
+    @JsonCollectionSize
     private Set<Posted> postings;
 
     @Relationship(type = Pinned.TYPE, direction = Relationship.INCOMING)
     @JsonProperty("pinnings")
+    @JsonCollectionSize
     private Set<Pinned> pinnings;
 
-    @Relationship(type= Commented.TYPE)
-    @JsonProperty("comments")
-    private Set<Commented> comments;
+    @Relationship(type = CommentedPost.TYPE)
+    @JsonProperty("commentsByPost")
+    @JsonCollectionSize
+    private Set<CommentedPost> commentsByPost;
 
-    //@Relationship(type = Friendship.TYPE)
-    //@JsonProperty("friendshipRequested")
-    //private Set<FriendshipRequest> friendshipsRequested = new HashSet<>();
+    @Relationship(type = CommentedComment.TYPE)
+    @JsonProperty("commentsByComments")
+    @JsonCollectionSize
+    private Set<CommentedComment> commentsByComment;
 
-    //@Relationship(type = Friendship.TYPE, direction = Relationship.INCOMING)
-    //@JsonProperty("friendshipRequests")
-    //private Set<FriendshipRequest> friendshipRequests = new HashSet<>();
+    @Relationship(type = Like.TYPE)
+    @JsonProperty("likes")
+    private Set<Like> likes;
+
+    @Relationship(type = Friendship.TYPE, direction = Relationship.UNDIRECTED)
+    @JsonProperty("friendships")
+    @JsonCollectionSize
+    private Set<Friendship> friendships = new HashSet<>();
+
+    @Relationship(type = FriendshipRequest.TYPE)
+    @JsonProperty("friendshipRequested")
+    private Set<FriendshipRequest> friendshipsRequested = new HashSet<>();
+
+    @Relationship(type = FriendshipRequest.TYPE, direction = Relationship.INCOMING)
+    @JsonProperty("friendshipRequests")
+    private Set<FriendshipRequest> friendshipRequests = new HashSet<>();
+
 
     public UserNode() {
         this.postings = new HashSet<>();
         this.pinnings = new HashSet<>();
-        this.comments = new HashSet<>();
+        this.commentsByPost = new HashSet<>();
+        this.likes = new HashSet<>();
     }
 
     public UserNode(String username, String firstname, String lastname, String email, String password, String picture) {
@@ -135,12 +153,12 @@ public class UserNode extends AbstractNode {
         this.pinnings = pinnings;
     }
 
-    public Set<Commented> getComments() {
-        return comments;
+    public Set<CommentedPost> getCommentsByPost() {
+        return commentsByPost;
     }
 
-    public void setComments(Set<Commented> comments) {
-        this.comments = comments;
+    public void setCommentsByPost(Set<CommentedPost> commentsByPost) {
+        this.commentsByPost = commentsByPost;
     }
 
     public Set<Friendship> getFriendships() {
@@ -149,5 +167,34 @@ public class UserNode extends AbstractNode {
 
     public void setFriendships(Set<Friendship> friendships) {
         this.friendships = friendships;
+    }
+
+    public Set<CommentedComment> getCommentsByComment() {
+        return commentsByComment;
+    }
+
+    public void setCommentsByComment(Set<CommentedComment> commentsByComment) {
+        this.commentsByComment = commentsByComment;
+    }
+
+    public Set<Like> getLikes() {
+        return likes;
+    }
+
+    public void setLikes(Set<Like> likes) {
+        this.likes = likes;
+    }
+
+    public Set<FriendshipRequest> getFriendshipsRequested() {
+        return friendshipsRequested;
+    }
+
+    public Set<FriendshipRequest> getFriendshipRequests() {
+        return friendshipRequests;
+    }
+
+    @Override
+    public String getLabel() {
+        return "UserNode";
     }
 }

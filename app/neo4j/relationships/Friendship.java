@@ -28,4 +28,20 @@ public class Friendship extends AbstractRelationship {
         this.userNode = userNode;
         this.friend = friend;
     }
+
+    public UserNode getUserNode() {
+        return userNode;
+    }
+
+    public void setUserNode(UserNode userNode) {
+        this.userNode = userNode;
+    }
+
+    public UserNode getFriend() {
+        return friend;
+    }
+
+    public void setFriend(UserNode friend) {
+        this.friend = friend;
+    }
 }

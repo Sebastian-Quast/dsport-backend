@@ -31,41 +31,82 @@ public class FriendshipController extends AbstractController {
 
     @Secured
     public Result request(String id) {
-        return toOptionalJsonResult(userService.find(sessionService.getId())
-                .flatMap(user -> userService.find(Long.valueOf(id)).map(friend -> F.Tuple(user, friend)))
-                .map(userFriend -> friendRequestService.createOrUpdate(new FriendshipRequest(userFriend._1, userFriend._2))));
+        if (!alreadyRequested(id)) {
+            return toOptionalJsonResult(userService.find(sessionService.getId())
+                    .flatMap(user -> userService.find(Long.valueOf(id)).map(friend -> F.Tuple(user, friend)))
+                    .map(userFriend -> friendRequestService.createOrUpdate(new FriendshipRequest(userFriend._1, userFriend._2))));
+        } else return forbidden();
     }
 
-     @Secured
-     public Result accept(String id) {
-         return userService.getUserTuple(sessionService.getId(), Long.valueOf(id))
-                 .flatMap(userNodeUserNodeTuple -> friendRequestService.findRequested(userNodeUserNodeTuple._1, userNodeUserNodeTuple._2))
-                 .map(friendshipRequest -> {
-                    friendRequestService.delete(friendshipRequest.getId());
-                    return toJsonResult(friendshipService.createOrUpdate(new Friendship(friendshipRequest.getUserNode(), friendshipRequest.getFriend())));
-                 }).orElse(badRequest());
-     }
+    @Secured
+    public Result accept(String id) {
+        if (hasRequest(id)) {
+            return userService.getUserTuple(sessionService.getId(), Long.valueOf(id))
+                    .flatMap(userNodeUserNodeTuple -> friendRequestService.findRequested(userNodeUserNodeTuple._1, userNodeUserNodeTuple._2))
+                    .map(friendshipRequest -> {
+                        friendRequestService.delete(friendshipRequest.getId());
+                        return toJsonResult(friendshipService.createOrUpdate(new Friendship(friendshipRequest.getUserNode(), friendshipRequest.getFriend())));
+                    }).orElse(badRequest());
+        } else return forbidden();
 
+    }
 
     @Secured
     public Result decline(String id) {
-        return userService.getUserTuple(sessionService.getId(), Long.valueOf(id))
-                .flatMap(userNodeUserNodeTuple -> friendRequestService.findRequested(userNodeUserNodeTuple._1, userNodeUserNodeTuple._2))
-                .map(friendshipRequest -> {
-                    friendRequestService.delete(friendshipRequest.getId());
-                    return ok();
-                }).orElse(badRequest());
+        if (hasRequest(id)) {
+            return userService.getUserTuple(sessionService.getId(), Long.valueOf(id))
+                    .flatMap(userNodeUserNodeTuple -> friendRequestService.findRequested(userNodeUserNodeTuple._1, userNodeUserNodeTuple._2))
+                    .map(friendshipRequest -> {
+                        friendRequestService.delete(friendshipRequest.getId());
+                        return ok();
+                    }).orElse(badRequest());
+        } else return forbidden();
     }
 
     @Secured
     public Result delete(String id) {
-        return userService.getUserTuple(sessionService.getId(), Long.valueOf(id))
-                .flatMap(userNodeUserNodeTuple -> friendshipService.findFriendship(userNodeUserNodeTuple._1, userNodeUserNodeTuple._2))
-                .map(friendship -> {
-                    friendshipService.delete(friendship.getId());
-                    return ok();
-                }).orElse(badRequest());
+        if (isFriend(id)) {
+            return userService.getUserTuple(sessionService.getId(), Long.valueOf(id))
+                    .flatMap(userNodeUserNodeTuple -> friendshipService.findFriendship(userNodeUserNodeTuple._1, userNodeUserNodeTuple._2))
+                    .map(friendship -> {
+                        friendshipService.delete(friendship.getId());
+                        return ok();
+                    }).orElse(badRequest());
+        } else return forbidden();
     }
 
+
+    public boolean alreadyRequested(String id) {
+        return userService.find(sessionService.getId())
+                .map(UserNode::getFriendshipsRequested)
+                .map(friendshipRequests -> friendshipRequests.stream()
+                        .anyMatch(friendshipRequest ->
+                                friendshipRequest.getUserNode().getId().equals(sessionService.getId())
+                                        && friendshipRequest.getFriend().getId().equals(Long.valueOf(id))))
+                .orElse(false);
+    }
+
+    public boolean hasRequest(String id) {
+        return userService.find(sessionService.getId())
+                .map(UserNode::getFriendshipRequests)
+                .map(friendshipRequests -> friendshipRequests.stream()
+                        .anyMatch(friendshipRequest ->
+                                friendshipRequest.getUserNode().getId().equals(Long.valueOf(id))
+                                        && friendshipRequest.getFriend().getId().equals(sessionService.getId())))
+                .orElse(false);
+    }
+
+    public boolean isFriend(String id) {
+        return userService.find(sessionService.getId())
+                .map(UserNode::getFriendships)
+                .map(friendships -> friendships.stream()
+                        .anyMatch(friendship ->
+                                (friendship.getUserNode().getId().equals(sessionService.getId())
+                                        && friendship.getFriend().getId().equals(Long.valueOf(id)))
+                                        ||
+                                        (friendship.getUserNode().getId().equals(Long.valueOf(id))
+                                                && friendship.getFriend().getId().equals(sessionService.getId()))))
+                .orElse(false);
+    }
 
 }

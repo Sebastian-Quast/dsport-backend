@@ -24,7 +24,6 @@ public class FriendRequestService extends AbstractRelationshipService<Friendship
         String query = "Match(n:UserNode)-[r:FRIENDSHIP_REQUEST]->(m:UserNode) " +
                 "WHERE ID(n)=" + requested.getId() + " AND ID(m)=" + requests.getId() + " " +
                 "RETURN n,r,m";
-        System.out.println(query);
         return Optional.ofNullable(session.queryForObject(FriendshipRequest.class, query, Collections.emptyMap()));
     }
 }

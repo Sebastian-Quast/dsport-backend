@@ -35,7 +35,7 @@ public abstract class AbstractService<T extends AbstractNode> {
     }
 
     public Optional<T> find(Long id) {
-        //session.clear();
+        session.clear();
         return find(id, DEPTH_ENTITY);
     }
 

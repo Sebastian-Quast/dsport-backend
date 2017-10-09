@@ -25,7 +25,7 @@ public class UserController extends AbstractCRUDController<UserNode, UserService
 
 
     @BodyParser.Of(UserProtocol.Parser.class)
-   // @Secured(Role.ADMIN)
+    @Secured(Role.ADMIN)
     @Override
     public Result create() {
 
@@ -92,8 +92,14 @@ public class UserController extends AbstractCRUDController<UserNode, UserService
     //test method, delete later to enable secured function
     @Override
     public Result byId(String id) {
-        return service.find(Long.valueOf(id),1)
+        return service.find(Long.valueOf(id), 1)
                 .map(this::toJsonResult)
                 .orElse(badRequest(languageService.get("notFound")));
+    }
+
+
+    @Secured
+    public Result getLikes() {
+        return service.find(sessionService.getId(), 2).map(userNode -> toJsonResult(userNode.getLikes())).orElse(badRequest());
     }
 }

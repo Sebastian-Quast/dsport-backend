@@ -86,8 +86,4 @@ public class RegistrationNode extends AbstractNode {
         this.hash = hash;
     }
 
-    @Override
-    public String getLabel() {
-        return "RegistrationNode";
-    }
 }

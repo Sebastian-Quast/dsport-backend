@@ -1,16 +1,19 @@
-package neo4j.relationships;
+package neo4j.relationships.friendship;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import neo4j.entities.UniqueEntity;
 import neo4j.nodes.UserNode;
-import org.neo4j.ogm.annotation.*;
+import neo4j.relationships.AbstractRelationship;
+import org.neo4j.ogm.annotation.EndNode;
+import org.neo4j.ogm.annotation.RelationshipEntity;
+import org.neo4j.ogm.annotation.StartNode;
 
-@RelationshipEntity(type = Friendship.TYPE)
-public class Friendship extends AbstractRelationship {
+@RelationshipEntity(type = FriendshipRequest.TYPE)
+public class FriendshipRequest extends AbstractRelationship {
 
-    public static final String TYPE = "FRIENDSHIP";
+    public static final String TYPE = "FRIENDSHIP_REQUEST";
 
     @StartNode
     @JsonIgnore
@@ -21,10 +24,10 @@ public class Friendship extends AbstractRelationship {
     @JsonProperty("friend")
     private UserNode friend;
 
-    public Friendship() {
+    public FriendshipRequest() {
     }
 
-    public Friendship(UserNode userNode, UserNode friend) {
+    public FriendshipRequest(UserNode userNode, UserNode friend) {
         this.userNode = userNode;
         this.friend = friend;
     }

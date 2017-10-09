@@ -19,5 +19,4 @@ public abstract class AbstractNode extends TimedEntity {
         this.updated = now;
     }
 
-    public abstract String getLabel();
 }

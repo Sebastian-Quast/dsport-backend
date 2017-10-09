@@ -1,9 +1,18 @@
 package neo4j.nodes;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import json.JsonCollectionSize;
-import neo4j.relationships.*;
+import neo4j.relationships.comment.CommentedComment;
+import neo4j.relationships.comment.CommentedPost;
+import neo4j.relationships.exercise.Exercised;
+import neo4j.relationships.friendship.Friendship;
+import neo4j.relationships.friendship.FriendshipRequest;
+import neo4j.relationships.like.LikeComment;
+import neo4j.relationships.like.LikePost;
+import neo4j.relationships.post.Pinned;
+import neo4j.relationships.post.Posted;
 import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Relationship;
 
@@ -56,29 +65,44 @@ public class UserNode extends AbstractNode {
     @JsonCollectionSize
     private Set<CommentedComment> commentsByComment;
 
-    @Relationship(type = Like.TYPE)
-    @JsonProperty("likes")
-    private Set<Like> likes;
+    @Relationship(type = LikePost.TYPE)
+    @JsonIgnore
+    @JsonManagedReference
+    private Set<LikePost> likesPost;
+
+    @Relationship(type = LikeComment.TYPE)
+    @JsonIgnore
+    @JsonManagedReference
+    private Set<LikeComment> likesComment;
 
     @Relationship(type = Friendship.TYPE, direction = Relationship.UNDIRECTED)
     @JsonProperty("friendships")
     @JsonCollectionSize
-    private Set<Friendship> friendships = new HashSet<>();
+    private Set<Friendship> friendships;
+
+    @Relationship(type = Exercised.TYPE)
+    @JsonIgnore
+    @JsonManagedReference
+    private Set<Exercised> exercised;
 
     @Relationship(type = FriendshipRequest.TYPE)
-    @JsonProperty("friendshipRequested")
-    private Set<FriendshipRequest> friendshipsRequested = new HashSet<>();
+    @JsonIgnore
+    private Set<FriendshipRequest> friendshipsRequested;
 
     @Relationship(type = FriendshipRequest.TYPE, direction = Relationship.INCOMING)
-    @JsonProperty("friendshipRequests")
-    private Set<FriendshipRequest> friendshipRequests = new HashSet<>();
+    @JsonIgnore
+    private Set<FriendshipRequest> friendshipRequests;
 
 
     public UserNode() {
         this.postings = new HashSet<>();
         this.pinnings = new HashSet<>();
         this.commentsByPost = new HashSet<>();
-        this.likes = new HashSet<>();
+        this.likesPost = new HashSet<>();
+        this.likesComment = new HashSet<>();
+        this.friendshipsRequested = new HashSet<>();
+        this.friendships = new HashSet<>();
+        this.friendshipRequests = new HashSet<>();
     }
 
     public UserNode(String username, String firstname, String lastname, String email, String password, String picture) {
@@ -177,12 +201,20 @@ public class UserNode extends AbstractNode {
         this.commentsByComment = commentsByComment;
     }
 
-    public Set<Like> getLikes() {
-        return likes;
+    public Set<LikePost> getLikes() {
+        return likesPost;
     }
 
-    public void setLikes(Set<Like> likes) {
-        this.likes = likes;
+    public void setLikes(Set<LikePost> likes) {
+        this.likesPost = likes;
+    }
+
+    public Set<LikeComment> getLikesComment() {
+        return likesComment;
+    }
+
+    public void setLikesComment(Set<LikeComment> likesComment) {
+        this.likesComment = likesComment;
     }
 
     public Set<FriendshipRequest> getFriendshipsRequested() {
@@ -193,8 +225,7 @@ public class UserNode extends AbstractNode {
         return friendshipRequests;
     }
 
-    @Override
-    public String getLabel() {
-        return "UserNode";
+    public Set<Exercised> getExercised() {
+        return exercised;
     }
 }

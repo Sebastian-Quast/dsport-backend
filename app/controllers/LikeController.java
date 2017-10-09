@@ -1,10 +1,11 @@
 package controllers;
 
-import neo4j.nodes.PostNode;
 import neo4j.nodes.UserNode;
-import neo4j.relationships.Like;
+import neo4j.relationships.like.LikeComment;
+import neo4j.relationships.like.LikePost;
 import neo4j.services.CommentService;
-import neo4j.services.LikeService;
+import neo4j.services.likeServices.LikeCommentService;
+import neo4j.services.likeServices.LikePostService;
 import neo4j.services.PostService;
 import neo4j.services.UserService;
 import play.libs.F;
@@ -13,6 +14,7 @@ import sercurity.Secured;
 
 import javax.inject.Inject;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 public class LikeController extends AbstractController {
@@ -20,54 +22,66 @@ public class LikeController extends AbstractController {
     private UserService userService;
     private PostService postService;
     private CommentService commentService;
-    private LikeService service;
+    private LikePostService likePostService;
+    private LikeCommentService likeCommentService;
 
     @Inject
-    public LikeController(LikeService service, UserService userService, PostService postService, CommentService commentService) {
-        this.service = service;
+    public LikeController(LikePostService likePostService, LikeCommentService likeCommentService, UserService userService, PostService postService, CommentService commentService) {
+        this.likePostService = likePostService;
+        this.likeCommentService = likeCommentService;
         this.userService = userService;
         this.postService = postService;
         this.commentService = commentService;
     }
 
-    //TODO Überprüfung ob Like existiert
+
     @Secured
     public Result likePost(String postId) {
-        return toOptionalJsonResult(userService.find(sessionService.getId())
-                .flatMap(userNode -> postService.find(Long.valueOf(postId)).map(postNode -> F.Tuple(userNode, postNode)))
-                .map(userNodePostNodeTuple -> service.createOrUpdate(new Like(userNodePostNodeTuple._1, userNodePostNodeTuple._2))));
+        if (!hasLikedPost(postId).isPresent()){
+            return toOptionalJsonResult(userService.find(sessionService.getId())
+                    .flatMap(userNode -> postService.find(Long.valueOf(postId)).map(postNode -> F.Tuple(userNode, postNode)))
+                    .map(userNodePostNodeTuple -> likePostService.createOrUpdate(new LikePost(userNodePostNodeTuple._1, userNodePostNodeTuple._2))));
+        }else return dislikePost(postId);
+
     }
 
 
     @Secured
     public Result dislikePost(String postId) {
-        session().clear();
-        return userService.find(sessionService.getId())
-                .flatMap(userNode -> postService.find(Long.valueOf(postId)).map(postNode -> F.Tuple(userNode, postNode))
-                        .flatMap(userNodePostNodeTuple -> service.findLike(userNodePostNodeTuple._1, userNodePostNodeTuple._2))
-                        .map(like -> {
-                            service.delete(like.getId());
-                            return ok();
-                        })).orElse(notFound());
+        if (hasLikedPost(postId).isPresent()) {
+            return userService.find(sessionService.getId())
+                    .flatMap(userNode -> postService.find(Long.valueOf(postId)).map(postNode -> F.Tuple(userNode, postNode))
+                            .flatMap(userNodePostNodeTuple -> likePostService.findLike(userNodePostNodeTuple._1, userNodePostNodeTuple._2))
+                            .map(like -> {
+                                likePostService.delete(like.getId());
+                                return ok();
+                            })).orElse(notFound());
+        }else return likePost(postId);
     }
 
 
     @Secured
     public Result likeComment(String commentId) {
-        return toOptionalJsonResult(userService.find(sessionService.getId())
-                .flatMap(userNode -> commentService.find(Long.valueOf(commentId)).map(commentNode -> F.Tuple(userNode, commentNode)))
-                .map(userNodeCommentNodeTuple -> service.createOrUpdate(new Like(userNodeCommentNodeTuple._1, userNodeCommentNodeTuple._2))));
+        if (!hasLikedComment(commentId).isPresent()){
+            return toOptionalJsonResult(userService.find(sessionService.getId())
+                    .flatMap(userNode -> commentService.find(Long.valueOf(commentId)).map(commentNode -> F.Tuple(userNode, commentNode)))
+                    .map(userNodeCommentNodeTuple -> likeCommentService.createOrUpdate(new LikeComment(userNodeCommentNodeTuple._1, userNodeCommentNodeTuple._2))));
+        }else return dislikeComment(commentId);
+
     }
 
     @Secured
     public Result dislikeComment(String commentId) {
-        return userService.find(sessionService.getId())
-                .flatMap(userNode -> commentService.find(Long.valueOf(commentId)).map(commentNode -> F.Tuple(userNode, commentNode))
-                        .flatMap(userNodePostNodeTuple -> service.findLike(userNodePostNodeTuple._1, userNodePostNodeTuple._2))
-                        .map(like -> {
-                            service.delete(like.getId());
-                            return toJsonResult(like);
-                        })).orElse(notFound());
+        if (hasLikedComment(commentId).isPresent()){
+            return userService.find(sessionService.getId())
+                    .flatMap(userNode -> commentService.find(Long.valueOf(commentId)).map(commentNode -> F.Tuple(userNode, commentNode))
+                            .flatMap(userNodePostNodeTuple -> likeCommentService.findLike(userNodePostNodeTuple._1, userNodePostNodeTuple._2))
+                            .map(like -> {
+                                likeCommentService.delete(like.getId());
+                                return ok();
+                            })).orElse(notFound());
+        }else return likeComment(commentId);
+
     }
 
     @Secured
@@ -92,4 +106,16 @@ public class LikeController extends AbstractController {
                 .orElse(badRequest());
     }
 
+
+    private Optional<LikePost> hasLikedPost(String id){
+        return userService.find(sessionService.getId())
+                .flatMap(userNode -> postService.find(Long.valueOf(id)).map(postNode -> F.Tuple(userNode, postNode))
+                        .flatMap(userNodePostNodeTuple -> likePostService.findLike(userNodePostNodeTuple._1, userNodePostNodeTuple._2)));
+    }
+
+    private Optional<LikeComment> hasLikedComment(String id){
+        return userService.find(sessionService.getId())
+                .flatMap(userNode -> commentService.find(Long.valueOf(id)).map(postNode -> F.Tuple(userNode, postNode))
+                        .flatMap(userNodePostNodeTuple -> likeCommentService.findLike(userNodePostNodeTuple._1, userNodePostNodeTuple._2)));
+    }
 }

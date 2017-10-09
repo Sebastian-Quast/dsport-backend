@@ -1,8 +1,14 @@
 package neo4j.nodes;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import json.JsonCollectionSize;
-import neo4j.relationships.*;
+import neo4j.relationships.comment.CommentedComment;
+import neo4j.relationships.comment.CommentedPost;
+import neo4j.relationships.comment.RefersComment;
+import neo4j.relationships.like.LikeComment;
+import neo4j.relationships.Refers;
 import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Relationship;
 
@@ -22,7 +28,7 @@ public class CommentNode extends AbstractNode {
     private String picture;
 
     @Relationship(type= CommentedPost.TYPE, direction = Relationship.INCOMING)
-    @JsonProperty("commentedPost")
+    @JsonIgnore
     private CommentedPost commentedPost;
 
     @Relationship(type= CommentedComment.TYPE, direction = Relationship.INCOMING)
@@ -32,6 +38,7 @@ public class CommentNode extends AbstractNode {
 
     @Relationship(type = Refers.TYPE)
     @JsonProperty("refersPost")
+    @JsonCollectionSize
     private Set<Refers> refers;
 
     @Relationship(type = RefersComment.TYPE)
@@ -39,9 +46,11 @@ public class CommentNode extends AbstractNode {
     @JsonCollectionSize
     private Set<RefersComment> refersComment;
 
-    @Relationship(type = Like.TYPE, direction = Relationship.INCOMING)
+    @Relationship(type = LikeComment.TYPE, direction = Relationship.INCOMING)
     @JsonProperty("likes")
-    private Set<Like> likes;
+    @JsonCollectionSize
+    @JsonBackReference
+    private Set<LikeComment> likes;
 
     public CommentNode() {
         this.refers = new HashSet<>();
@@ -111,14 +120,12 @@ public class CommentNode extends AbstractNode {
         this.refersComment = refersComment;
     }
 
-    public Set<Like> getLikes() {
+    public Set<LikeComment> getLikes() {
         return likes;
     }
 
-    public void setLikes(Set<Like> likes) {
+    public void setLikes(Set<LikeComment> likes) {
         this.likes = likes;
     }
 
-    @Override
-    public String getLabel() {return "CommentNode";};
 }

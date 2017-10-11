@@ -8,11 +8,11 @@ public class RepeatBasedProtocol extends AbstractProtocol<RepeatBasedSet> {
     public Long id;
     public String time;
     public String weight;
-    public String distance;
+    public String repeats;
 
     @Override
     public RepeatBasedSet toModel() {
-        return new RepeatBasedSet(id, time, weight, distance);
+        return new RepeatBasedSet(id, time, weight, repeats);
     }
 
     public static class Parser extends AbstractBodyParser<RepeatBasedProtocol> {
@@ -25,10 +25,10 @@ public class RepeatBasedProtocol extends AbstractProtocol<RepeatBasedSet> {
     public RepeatBasedProtocol() {
     }
 
-    public RepeatBasedProtocol(Long id, String time, String weight, String distance) {
+    public RepeatBasedProtocol(Long id, String time, String weight, String repeats) {
         this.id = id;
         this.time = time;
         this.weight = weight;
-        this.distance = distance;
+        this.repeats = repeats;
     }
 }

@@ -6,7 +6,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import json.JsonCollectionSize;
 import neo4j.relationships.comment.CommentedComment;
 import neo4j.relationships.comment.CommentedPost;
-import neo4j.relationships.exercise.Exercised;
+import neo4j.relationships.exercise.Performed;
+import neo4j.relationships.exercise.Owns;
 import neo4j.relationships.friendship.Friendship;
 import neo4j.relationships.friendship.FriendshipRequest;
 import neo4j.relationships.like.LikeComment;
@@ -80,10 +81,15 @@ public class UserNode extends AbstractNode {
     @JsonCollectionSize
     private Set<Friendship> friendships;
 
-    @Relationship(type = Exercised.TYPE)
+    @Relationship(type = Performed.TYPE)
     @JsonIgnore
     @JsonManagedReference
-    private Set<Exercised> exercised;
+    private Set<Performed> performed;
+
+    @Relationship(type = Owns.TYPE)
+    @JsonIgnore
+    @JsonManagedReference
+    private Set<Owns> owns;
 
     @Relationship(type = FriendshipRequest.TYPE)
     @JsonIgnore
@@ -92,6 +98,8 @@ public class UserNode extends AbstractNode {
     @Relationship(type = FriendshipRequest.TYPE, direction = Relationship.INCOMING)
     @JsonIgnore
     private Set<FriendshipRequest> friendshipRequests;
+
+
 
 
     public UserNode() {
@@ -103,6 +111,8 @@ public class UserNode extends AbstractNode {
         this.friendshipsRequested = new HashSet<>();
         this.friendships = new HashSet<>();
         this.friendshipRequests = new HashSet<>();
+        this.owns = new HashSet<>();
+        this.performed = new HashSet<>();
     }
 
     public UserNode(String username, String firstname, String lastname, String email, String password, String picture) {
@@ -118,6 +128,14 @@ public class UserNode extends AbstractNode {
     public UserNode(Long id, String username, String firstname, String lastname, String email, String password, String picture) {
         this(username, firstname, lastname, email, password, picture);
         this.setId(id);
+    }
+
+    public void addPerformed(ExerciseUnitNode exerciseUnitNode) {
+        this.performed.add(new Performed(this,exerciseUnitNode));
+    }
+
+    public void addExercise(ExerciseNode exerciseNode) {
+        this.owns.add(new Owns(this,exerciseNode));
     }
 
 
@@ -225,7 +243,7 @@ public class UserNode extends AbstractNode {
         return friendshipRequests;
     }
 
-    public Set<Exercised> getExercised() {
-        return exercised;
+    public Set<Performed> getPerformed() {
+        return performed;
     }
 }

@@ -2,23 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3c977bc1-53dd-4605-a946-4e0bef84e31e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/neo4j/nodes/ExerciseNode.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/neo4j/relationships/CommentedPost.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/neo4j/SetType.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/neo4j/nodes/sets/AbstractSet.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/neo4j/relationships/exercise/OfType.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/neo4j/relationships/exercise/Owns.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/neo4j/relationships/exercise/With.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/neo4j/services/ExerciseUnitService.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/neo4j/nodes/ExerciseNode.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/neo4j/relationships/exercise/CompletedDistanceBased.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/neo4j/relationships/exercise/CompletedRepeadBased.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/neo4j/relationships/exercise/CompletedTimeBased.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/FriendshipController.java" afterPath="$PROJECT_DIR$/app/controllers/FriendshipController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/LikeController.java" afterPath="$PROJECT_DIR$/app/controllers/LikeController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/UserController.java" afterPath="$PROJECT_DIR$/app/controllers/UserController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/neo4j/nodes/CommentNode.java" afterPath="$PROJECT_DIR$/app/neo4j/nodes/CommentNode.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/neo4j/nodes/PostNode.java" afterPath="$PROJECT_DIR$/app/neo4j/nodes/PostNode.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/ExerciseController.java" afterPath="$PROJECT_DIR$/app/controllers/ExerciseController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/neo4j/nodes/UserNode.java" afterPath="$PROJECT_DIR$/app/neo4j/nodes/UserNode.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/neo4j/services/CommentService.java" afterPath="$PROJECT_DIR$/app/neo4j/services/CommentService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/neo4j/services/LikeService.java" afterPath="$PROJECT_DIR$/app/neo4j/services/LikeService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/neo4j/services/PostService.java" afterPath="$PROJECT_DIR$/app/neo4j/services/PostService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/neo4j/nodes/sets/DistanceBasedSet.java" afterPath="$PROJECT_DIR$/app/neo4j/nodes/sets/DistanceBasedSet.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/neo4j/nodes/sets/RepeatBasedSet.java" afterPath="$PROJECT_DIR$/app/neo4j/nodes/sets/RepeatBasedSet.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/neo4j/nodes/sets/TimeBasedSet.java" afterPath="$PROJECT_DIR$/app/neo4j/nodes/sets/TimeBasedSet.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/neo4j/services/ExerciseService.java" afterPath="$PROJECT_DIR$/app/neo4j/services/ExerciseService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/protocols/ExerciseProtocol.java" afterPath="$PROJECT_DIR$/app/protocols/ExerciseProtocol.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/protocols/RepeatBasedProtocol.java" afterPath="$PROJECT_DIR$/app/protocols/RepeatBasedProtocol.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/conf/routes" afterPath="$PROJECT_DIR$/conf/routes" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/neo4j/relationships/CommentedComment.java" afterPath="$PROJECT_DIR$/app/neo4j/relationships/comment/CommentedComment.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/neo4j/relationships/CommentedPost.java" afterPath="$PROJECT_DIR$/app/neo4j/relationships/comment/CommentedPost.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/neo4j/relationships/Like.java" afterPath="$PROJECT_DIR$/app/neo4j/relationships/like/Like.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/neo4j/relationships/exercise/Exercised.java" afterPath="$PROJECT_DIR$/app/neo4j/relationships/exercise/Performed.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/project/project/target/" />
@@ -65,19 +69,114 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ExerciseController.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/controllers/ExerciseController.java">
+      <file leaf-file-name="UserNode.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/neo4j/nodes/UserNode.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="413">
-              <caret line="52" column="38" lean-forward="false" selection-start-line="52" selection-start-column="38" selection-end-line="52" selection-end-column="38" />
+            <state relative-caret-position="1632">
+              <caret line="114" column="22" lean-forward="false" selection-start-line="114" selection-start-column="22" selection-end-line="114" selection-end-column="22" />
+              <folding>
+                <element signature="e#4121#4122#0" expanded="true" />
+                <element signature="e#4179#4180#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="routes" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/conf/routes">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="799">
+              <caret line="47" column="14" lean-forward="false" selection-start-line="47" selection-start-column="14" selection-end-line="47" selection-end-column="42" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ExerciseUnitNode.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/neo4j/nodes/ExerciseUnitNode.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="32" column="18" lean-forward="false" selection-start-line="32" selection-start-column="12" selection-end-line="32" selection-end-column="18" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1474#1475#0" expanded="true" />
-                <element signature="e#1501#1502#0" expanded="true" />
-                <element signature="e#1612#1613#0" expanded="true" />
-                <element signature="e#1639#1640#0" expanded="true" />
-                <element signature="e#1754#1755#0" expanded="true" />
-                <element signature="e#1781#1782#0" expanded="true" />
+                <element signature="e#1283#1284#0" expanded="true" />
+                <element signature="e#1326#1327#0" expanded="true" />
+                <element signature="e#1366#1367#0" expanded="true" />
+                <element signature="e#1396#1397#0" expanded="true" />
+                <element signature="e#1565#1566#0" expanded="true" />
+                <element signature="e#1592#1593#0" expanded="true" />
+                <element signature="e#1636#1637#0" expanded="true" />
+                <element signature="e#1672#1673#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ExerciseController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/ExerciseController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="867">
+              <caret line="66" column="18" lean-forward="false" selection-start-line="66" selection-start-column="18" selection-end-line="66" selection-end-column="18" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="OfType.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/neo4j/relationships/exercise/OfType.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Owns.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/neo4j/relationships/exercise/Owns.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Performed.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/neo4j/relationships/exercise/Performed.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="20" column="15" lean-forward="false" selection-start-line="20" selection-start-column="15" selection-end-line="20" selection-end-column="15" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="With.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/neo4j/relationships/exercise/With.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="17" column="19" lean-forward="false" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ExerciseProtocol.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/protocols/ExerciseProtocol.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="14" column="26" lean-forward="false" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#300#301#0" expanded="true" />
+                <element signature="e#355#356#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -86,106 +185,12 @@
       <file leaf-file-name="ExerciseNode.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/neo4j/nodes/ExerciseNode.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="60" column="11" lean-forward="false" selection-start-line="60" selection-start-column="11" selection-end-line="60" selection-end-column="11" />
+            <state relative-caret-position="459">
+              <caret line="40" column="38" lean-forward="false" selection-start-line="40" selection-start-column="38" selection-end-line="40" selection-end-column="38" />
               <folding>
                 <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DistanceBasedProtocol.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/protocols/DistanceBasedProtocol.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="16" column="4" lean-forward="false" selection-start-line="16" selection-start-column="4" selection-end-line="21" selection-end-column="5" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#303#304#0" expanded="true" />
-                <element signature="e#366#367#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DistanceBasedSet.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/neo4j/nodes/sets/DistanceBasedSet.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="15" column="31" lean-forward="true" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RepeatBasedSet.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/neo4j/nodes/sets/RepeatBasedSet.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="18" column="11" lean-forward="false" selection-start-line="18" selection-start-column="11" selection-end-line="18" selection-end-column="11" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TimeBasedSet.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/neo4j/nodes/sets/TimeBasedSet.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="17" column="23" lean-forward="false" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="23" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TimeBasedProtocol.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/protocols/TimeBasedProtocol.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="25" column="52" lean-forward="false" selection-start-line="25" selection-start-column="52" selection-end-line="25" selection-end-column="52" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#259#260#0" expanded="true" />
-                <element signature="e#308#309#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserProtocol.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/protocols/UserProtocol.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RepeatBasedProtocol.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/protocols/RepeatBasedProtocol.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="17" column="2" lean-forward="true" selection-start-line="17" selection-start-column="2" selection-end-line="22" selection-end-column="5" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#321#322#0" expanded="true" />
-                <element signature="e#390#391#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ExerciseProtocol.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/protocols/ExerciseProtocol.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" column="23" lean-forward="false" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="23" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#278#279#0" expanded="true" />
-                <element signature="e#334#335#0" expanded="true" />
+                <element signature="e#760#761#0" expanded="true" />
+                <element signature="e#805#806#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -197,6 +202,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
@@ -241,26 +247,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/neo4j/relationships/Friendship.java" />
-        <option value="$PROJECT_DIR$/app/neo4j/services/AbstractService.java" />
-        <option value="$PROJECT_DIR$/app/neo4j/services/FriendRequestService.java" />
-        <option value="$PROJECT_DIR$/app/controllers/FriendshipController.java" />
-        <option value="$PROJECT_DIR$/app/neo4j/relationships/Like.java" />
-        <option value="$PROJECT_DIR$/app/neo4j/relationships/friendship/Friendship.java" />
-        <option value="$PROJECT_DIR$/app/neo4j/relationships/friendship/FriendshipRequest.java" />
-        <option value="$PROJECT_DIR$/app/neo4j/relationships/like/LikeExercise.java" />
-        <option value="$PROJECT_DIR$/app/neo4j/relationships/like/LikeEvent.java" />
-        <option value="$PROJECT_DIR$/app/neo4j/relationships/like/Like.java" />
-        <option value="$PROJECT_DIR$/app/neo4j/relationships/like/Like_Post.java" />
-        <option value="$PROJECT_DIR$/app/neo4j/services/LikeService.java" />
-        <option value="$PROJECT_DIR$/app/neo4j/services/likeServices/LikeService.java" />
-        <option value="$PROJECT_DIR$/app/neo4j/nodes/AbstractNode.java" />
-        <option value="$PROJECT_DIR$/app/neo4j/nodes/RegistrationNode.java" />
-        <option value="$PROJECT_DIR$/logs/application.log" />
-        <option value="$PROJECT_DIR$/app/neo4j/relationships/post/Refers.java" />
-        <option value="$PROJECT_DIR$/app/neo4j/services/likeServices/LikeCommentService.java" />
-        <option value="$PROJECT_DIR$/app/neo4j/services/likeServices/LikePostService.java" />
-        <option value="$PROJECT_DIR$/app/controllers/LikeController.java" />
         <option value="$PROJECT_DIR$/app/neo4j/relationships/like/LikePost.java" />
         <option value="$PROJECT_DIR$/app/neo4j/relationships/like/LikeComment.java" />
         <option value="$PROJECT_DIR$/app/controllers/UserController.java" />
@@ -270,28 +256,48 @@
         <option value="$PROJECT_DIR$/app/neo4j/relationships/comment/CommentedComment.java" />
         <option value="$PROJECT_DIR$/app/neo4j/relationships/comment/CommentedPost.java" />
         <option value="$PROJECT_DIR$/app/neo4j/relationships/comment/RefersComment.java" />
-        <option value="$PROJECT_DIR$/app/neo4j/nodes/UserNode.java" />
         <option value="$PROJECT_DIR$/app/neo4j/nodes/PostNode.java" />
         <option value="$PROJECT_DIR$/app/neo4j/nodes/CommentNode.java" />
         <option value="$PROJECT_DIR$/app/neo4j/relationships/completed/CompletedTimeBased.java" />
         <option value="$PROJECT_DIR$/app/neo4j/relationships/completed/CompletedRepeadBased.java" />
         <option value="$PROJECT_DIR$/app/neo4j/relationships/completed/CompletedDistanceBased.java" />
         <option value="$PROJECT_DIR$/app/neo4j/relationships/exercise/Exercised.java" />
-        <option value="$PROJECT_DIR$/app/neo4j/services/ExerciseService.java" />
-        <option value="$PROJECT_DIR$/conf/routes" />
-        <option value="$PROJECT_DIR$/app/protocols/ExerciseProtocol.java" />
         <option value="$PROJECT_DIR$/app/neo4j/relationships/exercise/CompletedDistanceBased.java" />
-        <option value="$PROJECT_DIR$/app/neo4j/nodes/ExerciseNode.java" />
         <option value="$PROJECT_DIR$/app/protocols/RepeatBasedSet.java" />
         <option value="$PROJECT_DIR$/app/protocols/TimeBasedSet.java" />
         <option value="$PROJECT_DIR$/app/protocols/DistanceBasedSet.java" />
-        <option value="$PROJECT_DIR$/app/neo4j/nodes/sets/DistanceBasedSet.java" />
-        <option value="$PROJECT_DIR$/app/neo4j/nodes/sets/RepeatBasedSet.java" />
-        <option value="$PROJECT_DIR$/app/neo4j/nodes/sets/TimeBasedSet.java" />
         <option value="$PROJECT_DIR$/app/protocols/DistanceBasedProtocol.java" />
-        <option value="$PROJECT_DIR$/app/protocols/RepeatBasedProtocol.java" />
         <option value="$PROJECT_DIR$/app/protocols/TimeBasedProtocol.java" />
+        <option value="$PROJECT_DIR$/app/neo4j/nodes/Exercise/ExerciseType" />
+        <option value="$PROJECT_DIR$/app/neo4j/nodes/Exercise/ExerciseType.java" />
+        <option value="$PROJECT_DIR$/app/neo4j/relationships/exercise/CompletedRepeadBased.java" />
+        <option value="$PROJECT_DIR$/app/protocols/RepeatBasedProtocol.java" />
+        <option value="$PROJECT_DIR$/app/neo4j/nodes/sets/TimeBasedSet.java" />
+        <option value="$PROJECT_DIR$/app/neo4j/nodes/sets/RepeatBasedSet.java" />
+        <option value="$PROJECT_DIR$/app/neo4j/nodes/sets/DistanceBasedSet.java" />
+        <option value="$PROJECT_DIR$/app/neo4j/SetType.java" />
+        <option value="$PROJECT_DIR$/app/neo4j/nodes/Exercise/Exercise.java" />
+        <option value="$PROJECT_DIR$/app/neo4j/nodes/Exercise/ExerciseNode.java" />
+        <option value="$PROJECT_DIR$/app/neo4j/services/Exercise.java" />
+        <option value="$PROJECT_DIR$/app/neo4j/relationships/exercise/Exercise.java" />
+        <option value="$PROJECT_DIR$/app/neo4j/relationships/exercise/Owns.java" />
+        <option value="$PROJECT_DIR$/app/neo4j/relationships/exercise/CompletedSet.java" />
+        <option value="$PROJECT_DIR$/app/neo4j/relationships/exercise/With.java" />
+        <option value="$PROJECT_DIR$/app/neo4j/nodes/sets/AbstractSet.java" />
+        <option value="$PROJECT_DIR$/app/protocols/Exercise.java" />
+        <option value="$PROJECT_DIR$/app/protocols/ExerciseProtocol.java" />
+        <option value="$PROJECT_DIR$/app/neo4j/relationships/exercise/Performed.java" />
+        <option value="$PROJECT_DIR$/app/neo4j/services/ExerciseUnitService.java" />
+        <option value="$PROJECT_DIR$/app/protocols/ExerciseUnitProtocol.java" />
+        <option value="$PROJECT_DIR$/app/neo4j/nodes/exercise/ExerciseNode.java" />
+        <option value="$PROJECT_DIR$/app/neo4j/nodes/exercise/ExerciseUnitNode.java" />
+        <option value="$PROJECT_DIR$/app/neo4j/nodes/ExerciseUnitNode.java" />
+        <option value="$PROJECT_DIR$/app/neo4j/services/ExerciseService.java" />
+        <option value="$PROJECT_DIR$/app/neo4j/relationships/exercise/OfType.java" />
+        <option value="$PROJECT_DIR$/app/neo4j/nodes/ExerciseNode.java" />
         <option value="$PROJECT_DIR$/app/controllers/ExerciseController.java" />
+        <option value="$PROJECT_DIR$/app/neo4j/nodes/UserNode.java" />
+        <option value="$PROJECT_DIR$/conf/routes" />
       </list>
     </option>
   </component>
@@ -345,7 +351,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
+      <pane id="AndroidView" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -382,14 +389,6 @@
               <item name="dsport-backend" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="neo4j" type="462c0819:PsiDirectoryNode" />
-              <item name="nodes" type="462c0819:PsiDirectoryNode" />
-              <item name="sets" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dSport-Backend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dsport-backend" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="neo4j" type="462c0819:PsiDirectoryNode" />
               <item name="relationships" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -405,6 +404,14 @@
               <item name="dsport-backend" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="neo4j" type="462c0819:PsiDirectoryNode" />
+              <item name="relationships" type="462c0819:PsiDirectoryNode" />
+              <item name="post" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="dSport-Backend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dsport-backend" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="neo4j" type="462c0819:PsiDirectoryNode" />
               <item name="services" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -413,46 +420,48 @@
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="protocols" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="dSport-Backend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dsport-backend" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="sercurity" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="dSport-Backend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dsport-backend" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="dSport-Backend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dsport-backend" type="462c0819:PsiDirectoryNode" />
+              <item name="conf" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
-      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../dsport-backend_ALT" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Ignored.Files" />
-    <property name="SearchEverywhereHistoryKey" value="Exercn&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/app/neo4j/nodes/ExerciseNode.java&#10;routes&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/conf/routes&#10;rout&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/conf/routes&#10;likeCon&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/app/controllers/LikeController.java&#10;likec&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/app/neo4j/relationships/like/LikeComment.java&#10;like&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/app/controllers/LikeController.java&#10;CommentS&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/app/neo4j/services/CommentService.java&#10;rou&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/conf/routes&#10;commen&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/app/neo4j/services/CommentService.java&#10;Commenn&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/app/neo4j/nodes/CommentNode.java&#10;commentN&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/app/neo4j/nodes/CommentNode.java&#10;ostS&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/app/neo4j/services/PostService.java&#10;applic&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/conf/application.conf&#10;CommentN&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/app/neo4j/nodes/CommentNode.java&#10;UserN&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/app/neo4j/nodes/UserNode.java&#10;userN&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/app/neo4j/nodes/UserNode.java&#10;comme&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/app/neo4j/nodes/CommentNode.java&#10;AbstracP&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/app/neo4j/nodes/AbstractPostNode.java&#10;Userno&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/app/neo4j/nodes/UserNode.java&#10;users&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/app/neo4j/services/UserService.java&#10;userno&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/app/neo4j/nodes/UserNode.java&#10;commentnode&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/app/neo4j/nodes/CommentNode.java&#10;refer&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/app/neo4j/relationships/Refers.java&#10;PostService&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/app/neo4j/services/PostService.java&#10;commens&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/app/neo4j/services/CommentService.java&#10;roue&#9;PSI&#9;JAVA://javax.annotation.processing.RoundEnvironment&#10;app&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/conf/application.conf&#10;toJsonR&#9;PSI&#9;JAVA://controllers.AbstractController#toJsonResult&#10;sessionF&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/app/neo4j/Neo4jSessionFactory.java&#10;userc&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/app/controllers/UserController.java&#10;application&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/conf/application.conf&#10;appl&#9;ACTION&#9;ChangesView.ApplyPatch&#10;mess&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/conf/messages&#10;Session&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/app/services/SessionService.java&#10;PostCOn&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/app/controllers/PostController.java&#10;PostN&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/app/neo4j/nodes/PostNode.java&#10;posted&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/app/neo4j/relationships/Posted.java&#10;pos&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/app/neo4j/nodes/PostNode.java&#10;Postn&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/app/neo4j/nodes/PostNode.java&#10;applc&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/conf/application.conf&#10;sessionf&#9;PSI&#9;JAVA://neo4j.Neo4jSessionFactory&#10;mesa&#9;FILE&#9;jar://C:/Users/Sebastian/.ivy2/cache/com.typesafe.play/play_2.11/srcs/play_2.11-2.6.3-sources.jar!/play/i18n/MessagesApi.java&#10;mes&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/conf/messages&#10;message&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/conf/messages&#10;UseCon&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/app/controllers/UserController.java" />
+    <property name="SearchEverywhereHistoryKey" value="routes&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/conf/routes&#10;exercip&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/app/protocols/ExerciseProtocol.java&#10;usern&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/app/neo4j/nodes/UserNode.java&#10;Exeru&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/app/neo4j/nodes/exercise/ExerciseUnitNode.java&#10;abstractS&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/app/neo4j/nodes/sets/AbstractSet.java&#10;Exercn&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/app/neo4j/nodes/ExerciseNode.java&#10;rout&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/conf/routes&#10;likeCon&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/app/controllers/LikeController.java&#10;likec&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/app/neo4j/relationships/like/LikeComment.java&#10;like&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/app/controllers/LikeController.java&#10;CommentS&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/app/neo4j/services/CommentService.java&#10;rou&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/conf/routes&#10;commen&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/app/neo4j/services/CommentService.java&#10;Commenn&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/app/neo4j/nodes/CommentNode.java&#10;commentN&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/app/neo4j/nodes/CommentNode.java&#10;ostS&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/app/neo4j/services/PostService.java&#10;applic&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/conf/application.conf&#10;CommentN&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/app/neo4j/nodes/CommentNode.java&#10;UserN&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/app/neo4j/nodes/UserNode.java&#10;userN&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/app/neo4j/nodes/UserNode.java&#10;comme&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/app/neo4j/nodes/CommentNode.java&#10;AbstracP&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/app/neo4j/nodes/AbstractPostNode.java&#10;Userno&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/app/neo4j/nodes/UserNode.java&#10;users&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/app/neo4j/services/UserService.java&#10;userno&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/app/neo4j/nodes/UserNode.java&#10;commentnode&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/app/neo4j/nodes/CommentNode.java&#10;refer&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/app/neo4j/relationships/Refers.java&#10;PostService&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/app/neo4j/services/PostService.java&#10;commens&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/app/neo4j/services/CommentService.java&#10;roue&#9;PSI&#9;JAVA://javax.annotation.processing.RoundEnvironment&#10;app&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/conf/application.conf&#10;toJsonR&#9;PSI&#9;JAVA://controllers.AbstractController#toJsonResult&#10;sessionF&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/app/neo4j/Neo4jSessionFactory.java&#10;userc&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/app/controllers/UserController.java&#10;application&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/conf/application.conf&#10;appl&#9;ACTION&#9;ChangesView.ApplyPatch&#10;mess&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/conf/messages&#10;Session&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/app/services/SessionService.java&#10;PostCOn&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/app/controllers/PostController.java&#10;PostN&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/app/neo4j/nodes/PostNode.java&#10;posted&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/app/neo4j/relationships/Posted.java&#10;pos&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/app/neo4j/nodes/PostNode.java&#10;Postn&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/app/neo4j/nodes/PostNode.java&#10;applc&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/conf/application.conf&#10;sessionf&#9;PSI&#9;JAVA://neo4j.Neo4jSessionFactory&#10;mesa&#9;FILE&#9;jar://C:/Users/Sebastian/.ivy2/cache/com.typesafe.play/play_2.11/srcs/play_2.11-2.6.3-sources.jar!/play/i18n/MessagesApi.java&#10;mes&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/conf/messages&#10;message&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/conf/messages&#10;UseCon&#9;FILE&#9;file://D:/Praxisprojekt/dSportBackend_NEU/dsport-backend/app/controllers/UserController.java" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
     <property name="add_unversioned_files" value="$PROJECT_DIR$/logs/application.log" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\Praxisprojekt\dSportBackend_NEU\dsport-backend\app\views" />
-      <recent name="D:\Praxisprojekt\dSportBackend_NEU\dsport-backend\app\services" />
-      <recent name="D:\Praxisprojekt\dSportBackend_NEU\dsport-backend\app" />
-      <recent name="D:\Praxisprojekt\dSportBackend_NEU\dsport-backend\conf" />
-      <recent name="D:\Praxisprojekt\dSportBackend_NEU\dsport-backend\project" />
-    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
       <recent name="services" />
       <recent name="controllers" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="neo4j.relationships" />
-      <recent name="protocols" />
-      <recent name="neo4j.services" />
-      <recent name="exceptions" />
-      <recent name="parser" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Praxisprojekt\dSportBackend_NEU\dsport-backend\conf" />
@@ -460,6 +469,20 @@
       <recent name="D:\Praxisprojekt\dSportBackend_NEU\dsport-backend\app" />
       <recent name="D:\Praxisprojekt\dSportBackend_NEU\dsport-backend\libs" />
       <recent name="D:\Praxisprojekt\dSportBackend_NEU\dsport-backend\app\ressources" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="neo4j.relationships.exercise" />
+      <recent name="neo4j.nodes.Exercise" />
+      <recent name="neo4j.relationships" />
+      <recent name="protocols" />
+      <recent name="neo4j.services" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Praxisprojekt\dSportBackend_NEU\dsport-backend\app\views" />
+      <recent name="D:\Praxisprojekt\dSportBackend_NEU\dsport-backend\app\services" />
+      <recent name="D:\Praxisprojekt\dSportBackend_NEU\dsport-backend\app" />
+      <recent name="D:\Praxisprojekt\dSportBackend_NEU\dsport-backend\conf" />
+      <recent name="D:\Praxisprojekt\dSportBackend_NEU\dsport-backend\project" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -480,9 +503,9 @@
       <option name="SERVER_MODE" value="false" />
       <option name="SHMEM_ADDRESS" value="javadebug" />
       <option name="HOST" value="127.0.0.1" />
-      <option name="PORT" value="52850" />
+      <option name="PORT" value="57922" />
       <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="52850" />
+        <option name="DEBUG_PORT" value="57922" />
         <option name="LOCAL" value="false" />
       </RunnerSettings>
     </configuration>
@@ -1074,11 +1097,12 @@
       <workItem from="1507454684222" duration="16928000" />
       <workItem from="1507471685346" duration="7584000" />
       <workItem from="1507534482367" duration="15175000" />
+      <workItem from="1507750197529" duration="28000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="395378000" />
+    <option name="totallyTimeSpent" value="412007000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1114,8 +1138,8 @@
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934782" sideWeight="0.4936034" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19673914" sideWeight="0.49253732" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18869936" sideWeight="0.4814815" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="sbt-shell-toolwindow" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29565218" sideWeight="0.4914712" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19083156" sideWeight="0.4814815" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="sbt-shell-toolwindow" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29565218" sideWeight="0.4914712" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16471216" sideWeight="0.5185185" order="5" side_tool="true" content_ui="tabs" />
@@ -1145,7 +1169,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4021739" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934782" sideWeight="0.4978678" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934782" sideWeight="0.4978678" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="SBT" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -1160,13 +1184,13 @@
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934782" sideWeight="0.4936034" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19673914" sideWeight="0.49253732" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16311301" sideWeight="0.4943274" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18869936" sideWeight="0.4814815" order="0" side_tool="false" content_ui="combo" />
       <window_info id="sbt-shell-toolwindow" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29565218" sideWeight="0.4914712" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934782" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2803838" sideWeight="0.50567263" order="5" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16471216" sideWeight="0.5185185" order="5" side_tool="true" content_ui="tabs" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1185,179 +1209,167 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="51" />
+      <option name="time" value="55" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/neo4j/relationships/friendship/FriendshipRequest.java">
+    <entry file="file://$PROJECT_DIR$/app/controllers/CommentController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="13" column="13" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+        <state relative-caret-position="217">
+          <caret line="34" column="57" lean-forward="false" selection-start-line="34" selection-start-column="57" selection-end-line="34" selection-end-column="57" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/neo4j/relationships/like/LikeExercise.java">
+    <entry file="file://$PROJECT_DIR$/app/protocols/CommentProtocol.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="27" column="46" lean-forward="false" selection-start-line="27" selection-start-column="46" selection-end-line="27" selection-end-column="46" />
+        <state relative-caret-position="217">
+          <caret line="16" column="26" lean-forward="true" selection-start-line="16" selection-start-column="26" selection-end-line="16" selection-end-column="26" />
           <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1002#1003#0" expanded="false" />
-            <element signature="e#1032#1033#0" expanded="false" />
-            <element signature="e#1084#1085#0" expanded="false" />
-            <element signature="e#1122#1123#0" expanded="false" />
+            <element signature="e#331#332#0" expanded="false" />
+            <element signature="e#395#396#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/neo4j/services/CommentService.java">
+    <entry file="file://$PROJECT_DIR$/app/controllers/AbstractController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="19" column="1" lean-forward="true" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
+        <state relative-caret-position="221">
+          <caret line="20" column="18" lean-forward="false" selection-start-line="20" selection-start-column="18" selection-end-line="20" selection-end-column="18" />
+          <folding>
+            <element signature="e#441#442#0" expanded="false" />
+            <element signature="e#482#483#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/PostController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="46" column="41" lean-forward="true" selection-start-line="46" selection-start-column="41" selection-end-line="46" selection-end-column="41" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/neo4j/entities/TimedEntity.java">
+    <entry file="file://$PROJECT_DIR$/app/protocols/PostProtocol.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
-          <caret line="8" column="22" lean-forward="false" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
+          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/logs/application.log">
+    <entry file="file://$PROJECT_DIR$/app/protocols/DistanceBasedProtocol.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/neo4j/services/likeServices/LikeCommentService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="25" column="57" lean-forward="false" selection-start-line="25" selection-start-column="57" selection-end-line="25" selection-end-column="57" />
+        <state relative-caret-position="260">
+          <caret line="16" column="4" lean-forward="false" selection-start-line="16" selection-start-column="4" selection-end-line="21" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="false" />
+            <element signature="e#303#304#0" expanded="false" />
+            <element signature="e#366#367#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/protocols/UserProtocol.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/neo4j/relationships/exercise/CompletedTimeBased.java" />
+    <entry file="file://$PROJECT_DIR$/app/neo4j/relationships/exercise/CompletedDistanceBased.java" />
+    <entry file="file://$PROJECT_DIR$/app/neo4j/nodes/Exercise.java" />
+    <entry file="file://$PROJECT_DIR$/app/neo4j/nodes/Exercise/ExerciseType" />
+    <entry file="file://$PROJECT_DIR$/app/sercurity/Role.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="6" lean-forward="true" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/SessionController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="26" column="87" lean-forward="false" selection-start-line="26" selection-start-column="87" selection-end-line="26" selection-end-column="87" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/neo4j/nodes/Exercise/ExerciseType.java" />
+    <entry file="file://$PROJECT_DIR$/app/neo4j/relationships/exercise/CompletedRepeadBased.java" />
+    <entry file="file://$PROJECT_DIR$/app/neo4j/services/PostService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="18" column="29" lean-forward="false" selection-start-line="18" selection-start-column="20" selection-end-line="18" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/neo4j/services/FriendRequestService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/neo4j/services/likeServices/LikePostService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="379">
-          <caret line="27" column="54" lean-forward="false" selection-start-line="27" selection-start-column="54" selection-end-line="27" selection-end-column="54" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+        <state relative-caret-position="204">
+          <caret line="26" column="4" lean-forward="false" selection-start-line="26" selection-start-column="4" selection-end-line="31" selection-end-column="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/neo4j/relationships/like/LikeEvent.java">
+    <entry file="file://$PROJECT_DIR$/app/neo4j/nodes/CommentNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="18" column="36" lean-forward="true" selection-start-line="18" selection-start-column="36" selection-end-line="18" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/neo4j/nodes/PostNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="19" column="32" lean-forward="false" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/protocols/RegistrationProtocol.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/protocols/TimeBasedProtocol.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
-          <caret line="27" column="20" lean-forward="false" selection-start-line="27" selection-start-column="20" selection-end-line="27" selection-end-column="20" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/neo4j/services/AbstractRelationshipService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="215">
-          <caret line="57" column="23" lean-forward="false" selection-start-line="57" selection-start-column="23" selection-end-line="57" selection-end-column="23" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1639#1640#0" expanded="false" />
-            <element signature="e#1698#1699#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.ivy2/cache/com.fasterxml.jackson.core/jackson-annotations/srcs/jackson-annotations-2.8.9-sources.jar!/com/fasterxml/jackson/annotation/JsonIdentityInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="35" column="18" lean-forward="false" selection-start-line="35" selection-start-column="18" selection-end-line="35" selection-end-column="18" />
+          <caret line="25" column="52" lean-forward="false" selection-start-line="25" selection-start-column="52" selection-end-line="25" selection-end-column="52" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/neo4j/relationships/like/LikeComment.java">
+    <entry file="file://$PROJECT_DIR$/app/protocols/RepeatBasedProtocol.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="22" column="18" lean-forward="true" selection-start-line="22" selection-start-column="18" selection-end-line="22" selection-end-column="18" />
+        <state relative-caret-position="218">
+          <caret line="14" column="33" lean-forward="false" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/neo4j/relationships/like/LikePost.java">
+    <entry file="file://$PROJECT_DIR$/app/neo4j/services/AbstractService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="30" lean-forward="true" selection-start-line="18" selection-start-column="30" selection-end-line="18" selection-end-column="30" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/UserController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="27" column="4" lean-forward="false" selection-start-line="27" selection-start-column="4" selection-end-line="27" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/LikeController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="87" column="18" lean-forward="false" selection-start-line="87" selection-start-column="18" selection-end-line="87" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/neo4j/nodes/AbstractNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/neo4j/relationships/post/Pinned.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="23" column="15" lean-forward="false" selection-start-line="23" selection-start-column="15" selection-end-line="23" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/neo4j/relationships/comment/CommentedComment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="25" column="15" lean-forward="false" selection-start-line="25" selection-start-column="15" selection-end-line="25" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/neo4j/relationships/comment/CommentedPost.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="25" column="15" lean-forward="false" selection-start-line="25" selection-start-column="15" selection-end-line="25" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/neo4j/relationships/comment/RefersComment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="23" column="15" lean-forward="false" selection-start-line="23" selection-start-column="15" selection-end-line="23" selection-end-column="15" />
+        <state relative-caret-position="195">
+          <caret line="53" column="0" lean-forward="false" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1378,107 +1390,56 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/neo4j/nodes/RegistrationNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1020">
-          <caret line="87" column="0" lean-forward="false" selection-start-line="87" selection-start-column="0" selection-end-line="87" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/neo4j/nodes/UserNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="986">
-          <caret line="74" column="41" lean-forward="false" selection-start-line="74" selection-start-column="29" selection-end-line="74" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/protocols/AbstractProtocol.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="22" lean-forward="false" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/neo4j/entities/UniqueEntity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="15" column="16" lean-forward="false" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="16" />
-          <folding>
-            <element signature="e#301#302#0" expanded="true" />
-            <element signature="e#329#330#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/neo4j/nodes/PostNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="75" column="3" lean-forward="false" selection-start-line="75" selection-start-column="3" selection-end-line="78" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/neo4j/services/AbstractService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="70" column="23" lean-forward="false" selection-start-line="70" selection-start-column="23" selection-end-line="70" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/CommentController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="34" column="57" lean-forward="false" selection-start-line="34" selection-start-column="57" selection-end-line="34" selection-end-column="57" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/protocols/CommentProtocol.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="16" column="26" lean-forward="true" selection-start-line="16" selection-start-column="26" selection-end-line="16" selection-end-column="26" />
-          <folding>
-            <element signature="e#331#332#0" expanded="false" />
-            <element signature="e#395#396#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/neo4j/nodes/CommentNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="258">
-          <caret line="61" column="29" lean-forward="true" selection-start-line="61" selection-start-column="29" selection-end-line="61" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/AbstractController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="20" column="18" lean-forward="false" selection-start-line="20" selection-start-column="18" selection-end-line="20" selection-end-column="18" />
-          <folding>
-            <element signature="e#441#442#0" expanded="false" />
-            <element signature="e#482#483#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/conf/routes">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="277">
-          <caret line="44" column="84" lean-forward="true" selection-start-line="44" selection-start-column="84" selection-end-line="44" selection-end-column="84" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/neo4j/services/PostService.java">
+    <entry file="file://$PROJECT_DIR$/app/neo4j/relationships/post/Pinned.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
-          <caret line="15" column="49" lean-forward="false" selection-start-line="15" selection-start-column="41" selection-end-line="15" selection-end-column="49" />
+          <caret line="18" column="14" lean-forward="true" selection-start-line="18" selection-start-column="14" selection-end-line="19" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/neo4j/nodes/sets/DistanceBasedSet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="12" column="31" lean-forward="true" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/neo4j/nodes/sets/RepeatBasedSet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="26" column="77" lean-forward="false" selection-start-line="26" selection-start-column="77" selection-end-line="26" selection-end-column="77" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/neo4j/nodes/sets/TimeBasedSet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/neo4j/nodes/sets/AbstractSet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="35" lean-forward="true" selection-start-line="15" selection-start-column="35" selection-end-line="15" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/neo4j/services/ExerciseUnitService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="21" lean-forward="false" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/neo4j/services/FriendshipService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
           <folding />
         </state>
       </provider>
@@ -1486,55 +1447,73 @@
     <entry file="file://$PROJECT_DIR$/app/controllers/FriendshipController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
-          <caret line="32" column="21" lean-forward="true" selection-start-line="32" selection-start-column="21" selection-end-line="32" selection-end-column="21" />
+          <caret line="47" column="155" lean-forward="true" selection-start-line="47" selection-start-column="77" selection-end-line="47" selection-end-column="155" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/PostController.java">
+    <entry file="file://$PROJECT_DIR$/target/scala-2.11/routes/main/router/Routes.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="46" column="41" lean-forward="true" selection-start-line="46" selection-start-column="41" selection-end-line="46" selection-end-column="41" />
-          <folding />
+        <state relative-caret-position="186">
+          <caret line="924" column="0" lean-forward="false" selection-start-line="924" selection-start-column="0" selection-end-line="924" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/protocols/PostProtocol.java">
+    <entry file="file://$PROJECT_DIR$/app/neo4j/SetType.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        <state relative-caret-position="34">
+          <caret line="2" column="19" lean-forward="false" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="19" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/neo4j/services/ExerciseService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="28" lean-forward="false" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
+        <state relative-caret-position="153">
+          <caret line="9" column="11" lean-forward="false" selection-start-line="9" selection-start-column="11" selection-end-line="9" selection-end-column="11" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#272#273#0" expanded="true" />
-            <element signature="e#314#315#0" expanded="true" />
             <element signature="e#378#379#0" expanded="true" />
             <element signature="e#419#420#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/neo4j/relationships/exercise/Exercised.java">
+    <entry file="file://$PROJECT_DIR$/app/protocols/ExerciseUnitProtocol.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="31" column="35" lean-forward="false" selection-start-line="31" selection-start-column="35" selection-end-line="31" selection-end-column="35" />
+        <state relative-caret-position="187">
+          <caret line="12" column="31" lean-forward="false" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#870#871#0" expanded="true" />
+            <element signature="e#246#247#0" expanded="true" />
+            <element signature="e#293#294#0" expanded="true" />
+            <element signature="e#599#600#0" expanded="true" />
+            <element signature="e#627#628#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/neo4j/relationships/exercise/CompletedTimeBased.java">
+    <entry file="jar://$USER_HOME$/.ivy2/cache/com.typesafe.play/play-streams_2.11/srcs/play-streams_2.11-2.6.3-sources.jar!/play/api/libs/streams/Execution.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="70" column="12" lean-forward="false" selection-start-line="70" selection-start-column="12" selection-end-line="70" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/protocols/ExerciseProtocol.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
+          <caret line="14" column="26" lean-forward="false" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#300#301#0" expanded="true" />
+            <element signature="e#355#356#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/neo4j/relationships/exercise/Owns.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
           <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1542,9 +1521,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/neo4j/relationships/exercise/CompletedRepeadBased.java">
+    <entry file="file://$PROJECT_DIR$/app/neo4j/relationships/exercise/Performed.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="20" column="15" lean-forward="false" selection-start-line="20" selection-start-column="15" selection-end-line="20" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/neo4j/relationships/exercise/With.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
+          <caret line="17" column="19" lean-forward="false" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/neo4j/relationships/exercise/OfType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
           <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1552,119 +1547,76 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/neo4j/relationships/exercise/CompletedDistanceBased.java">
+    <entry file="file://$PROJECT_DIR$/app/neo4j/nodes/ExerciseUnitNode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+        <state relative-caret-position="272">
+          <caret line="32" column="18" lean-forward="false" selection-start-line="32" selection-start-column="12" selection-end-line="32" selection-end-column="18" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#1283#1284#0" expanded="true" />
+            <element signature="e#1326#1327#0" expanded="true" />
+            <element signature="e#1366#1367#0" expanded="true" />
+            <element signature="e#1396#1397#0" expanded="true" />
+            <element signature="e#1565#1566#0" expanded="true" />
+            <element signature="e#1592#1593#0" expanded="true" />
+            <element signature="e#1636#1637#0" expanded="true" />
+            <element signature="e#1672#1673#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/neo4j/nodes/ExerciseNode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="60" column="11" lean-forward="false" selection-start-line="60" selection-start-column="11" selection-end-line="60" selection-end-column="11" />
+        <state relative-caret-position="459">
+          <caret line="40" column="38" lean-forward="false" selection-start-line="40" selection-start-column="38" selection-end-line="40" selection-end-column="38" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#760#761#0" expanded="true" />
+            <element signature="e#805#806#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/neo4j/nodes/sets/DistanceBasedSet.java">
+    <entry file="jar://$USER_HOME$/.ivy2/cache/com.typesafe.play/play_2.11/srcs/play_2.11-2.6.3-sources.jar!/play/core/j/JavaAction.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="15" column="31" lean-forward="true" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
-          <folding />
+        <state relative-caret-position="175">
+          <caret line="79" column="10" lean-forward="false" selection-start-line="79" selection-start-column="10" selection-end-line="79" selection-end-column="10" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/neo4j/nodes/sets/TimeBasedSet.java">
+    <entry file="jar://$USER_HOME$/.ivy2/cache/com.typesafe.play/play_2.11/srcs/play_2.11-2.6.3-sources.jar!/play/core/j/HttpExecutionContext.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="23" lean-forward="false" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="23" />
-          <folding />
+        <state relative-caret-position="175">
+          <caret line="57" column="8" lean-forward="false" selection-start-line="57" selection-start-column="8" selection-end-line="57" selection-end-column="8" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/protocols/ExerciseProtocol.java">
+    <entry file="file://$PROJECT_DIR$/app/neo4j/nodes/UserNode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="23" lean-forward="false" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="23" />
+        <state relative-caret-position="1632">
+          <caret line="114" column="22" lean-forward="false" selection-start-line="114" selection-start-column="22" selection-end-line="114" selection-end-column="22" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#278#279#0" expanded="true" />
-            <element signature="e#334#335#0" expanded="true" />
+            <element signature="e#4121#4122#0" expanded="true" />
+            <element signature="e#4179#4180#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/protocols/DistanceBasedProtocol.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="16" column="4" lean-forward="false" selection-start-line="16" selection-start-column="4" selection-end-line="21" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#303#304#0" expanded="true" />
-            <element signature="e#366#367#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/neo4j/nodes/sets/RepeatBasedSet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="18" column="11" lean-forward="false" selection-start-line="18" selection-start-column="11" selection-end-line="18" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/protocols/RepeatBasedProtocol.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="2" lean-forward="true" selection-start-line="17" selection-start-column="2" selection-end-line="22" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#321#322#0" expanded="true" />
-            <element signature="e#390#391#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/protocols/TimeBasedProtocol.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="25" column="52" lean-forward="false" selection-start-line="25" selection-start-column="52" selection-end-line="25" selection-end-column="52" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#259#260#0" expanded="true" />
-            <element signature="e#308#309#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/protocols/UserProtocol.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/ExerciseController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="413">
-          <caret line="52" column="38" lean-forward="false" selection-start-line="52" selection-start-column="38" selection-end-line="52" selection-end-column="38" />
+        <state relative-caret-position="867">
+          <caret line="66" column="18" lean-forward="false" selection-start-line="66" selection-start-column="18" selection-end-line="66" selection-end-column="18" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1474#1475#0" expanded="true" />
-            <element signature="e#1501#1502#0" expanded="true" />
-            <element signature="e#1612#1613#0" expanded="true" />
-            <element signature="e#1639#1640#0" expanded="true" />
-            <element signature="e#1754#1755#0" expanded="true" />
-            <element signature="e#1781#1782#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/conf/routes">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="799">
+          <caret line="47" column="14" lean-forward="false" selection-start-line="47" selection-start-column="14" selection-end-line="47" selection-end-column="42" />
+          <folding />
         </state>
       </provider>
     </entry>

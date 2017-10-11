@@ -1,6 +1,7 @@
 package neo4j.relationships;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import neo4j.entities.UniqueEntity;
@@ -13,16 +14,17 @@ import org.neo4j.ogm.annotation.StartNode;
 @RelationshipEntity(type = Refers.TYPE)
 public class Refers extends AbstractRelationship {
 
+    //TODO BUG CLASS CANNOT BE RENAMED OR DELETED OR MOVED TO ANOTHER PACKAGE CAUSES "CLASS NOT FOUND EXCEPTION"
+
+
     public static final String TYPE = "REFERS";
 
     @StartNode
-    @JsonSerialize(as = UniqueEntity.class)
-    @JsonProperty("commentNode")
+    @JsonIgnore
     private CommentNode commentNode;
 
     @EndNode
-    @JsonSerialize(as = UniqueEntity.class)
-    @JsonProperty("postNode")
+    @JsonIgnore
     private PostNode postNode;
 
     public Refers() {

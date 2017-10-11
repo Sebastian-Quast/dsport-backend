@@ -1,4 +1,4 @@
-package neo4j.relationships;
+package neo4j.relationships.post;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import neo4j.entities.UniqueEntity;
 import neo4j.nodes.PostNode;
 import neo4j.nodes.UserNode;
+import neo4j.relationships.AbstractRelationship;
 import org.neo4j.ogm.annotation.EndNode;
 import org.neo4j.ogm.annotation.RelationshipEntity;
 import org.neo4j.ogm.annotation.StartNode;
@@ -16,7 +17,7 @@ public class Posted extends AbstractRelationship {
     public static final String TYPE = "POSTED";
 
     @StartNode
-    @JsonSerialize(as=UniqueEntity.class)
+    @JsonIgnore
     private UserNode userNode;
 
     @EndNode

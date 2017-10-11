@@ -1,8 +1,8 @@
 package controllers;
 
 import neo4j.nodes.UserNode;
-import neo4j.relationships.Friendship;
-import neo4j.relationships.FriendshipRequest;
+import neo4j.relationships.friendship.Friendship;
+import neo4j.relationships.friendship.FriendshipRequest;
 import neo4j.services.FriendRequestService;
 import neo4j.services.FriendshipService;
 import neo4j.services.UserService;
@@ -31,7 +31,7 @@ public class FriendshipController extends AbstractController {
 
     @Secured
     public Result request(String id) {
-        if (!alreadyRequested(id)) {
+        if (!alreadyRequested(id) && !isFriend(id)) {
             return toOptionalJsonResult(userService.find(sessionService.getId())
                     .flatMap(user -> userService.find(Long.valueOf(id)).map(friend -> F.Tuple(user, friend)))
                     .map(userFriend -> friendRequestService.createOrUpdate(new FriendshipRequest(userFriend._1, userFriend._2))));

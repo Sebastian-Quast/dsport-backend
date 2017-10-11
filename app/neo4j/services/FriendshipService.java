@@ -2,7 +2,7 @@ package neo4j.services;
 
 import neo4j.Neo4jSessionFactory;
 import neo4j.nodes.UserNode;
-import neo4j.relationships.Friendship;
+import neo4j.relationships.friendship.Friendship;
 
 import javax.inject.Inject;
 import java.util.Collections;

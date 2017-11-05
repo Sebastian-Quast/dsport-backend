@@ -17,4 +17,6 @@ public class CommentService extends AbstractService<CommentNode> {
         return CommentNode.class;
     }
 
+
+
 }

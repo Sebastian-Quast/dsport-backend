@@ -2,16 +2,13 @@ package neo4j.nodes;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import neo4j.nodes.AbstractNode;
-import neo4j.nodes.UserNode;
 import neo4j.nodes.sets.AbstractSet;
 import neo4j.nodes.sets.DistanceBasedSet;
 import neo4j.nodes.sets.RepeatBasedSet;
 import neo4j.nodes.sets.TimeBasedSet;
 import neo4j.relationships.exercise.OfType;
-import neo4j.relationships.exercise.With;
 import neo4j.relationships.exercise.Performed;
-import neo4j.relationships.like.LikeExercise;
+import neo4j.relationships.exercise.With;
 import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Relationship;
 
@@ -19,7 +16,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @NodeEntity
-public class ExerciseUnitNode extends AbstractNode {
+public class ExerciseUnitNode extends SocialNode {
 
 
     @Relationship(type = With.TYPE)
@@ -37,17 +34,14 @@ public class ExerciseUnitNode extends AbstractNode {
     @JsonBackReference
     private Performed performed;
 
-    @Relationship(type = LikeExercise.TYPE, direction = Relationship.INCOMING)
-    @JsonIgnore
-    @JsonBackReference
-    private Set<LikeExercise> likes;
-
 
     public ExerciseUnitNode() {
+        super();
         this.with = new HashSet<>();
     }
 
     public ExerciseUnitNode(Long id) {
+        this();
         this.setId(id);
     }
 

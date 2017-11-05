@@ -1,12 +1,9 @@
 package neo4j.nodes;
 
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import json.JsonCollectionSize;
-import neo4j.relationships.like.LikePost;
 import neo4j.relationships.Refers;
 import neo4j.relationships.post.Pinned;
 import neo4j.relationships.post.Posted;
@@ -17,7 +14,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @NodeEntity(label = "PostNode")
-public class PostNode extends AbstractNode {
+public class PostNode extends SocialNode {
 
 
     @JsonProperty("text")
@@ -46,17 +43,10 @@ public class PostNode extends AbstractNode {
     @JsonCollectionSize
     protected Set<Pinned> pinned;
 
-    @Relationship(type = LikePost.TYPE, direction = Relationship.INCOMING)
-    @JsonProperty("likes")
-    @JsonCollectionSize
-    @JsonBackReference
-    private Set<LikePost> likes;
-
-
     public PostNode() {
+        super();
         this.pinned = new HashSet<>();
         this.comments = new HashSet<>();
-        this.likes = new HashSet<>();
     }
 
     public PostNode(Long id, String text, String title, String picture) {
@@ -101,14 +91,5 @@ public class PostNode extends AbstractNode {
     public void setPosted(Posted posted) {
         this.posted = posted;
     }
-
-    public Set<LikePost> getLikes() {
-        return likes;
-    }
-
-    public void setLikes(Set<LikePost> likes) {
-        this.likes = likes;
-    }
-
 
 }

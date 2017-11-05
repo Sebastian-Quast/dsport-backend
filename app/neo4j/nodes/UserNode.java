@@ -4,14 +4,14 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import json.JsonCollectionSize;
-import neo4j.relationships.comment.CommentedComment;
-import neo4j.relationships.comment.CommentedPost;
+import neo4j.relationships.Event.Created;
+import neo4j.relationships.Event.Participate;
+import neo4j.relationships.comment.Commented;
 import neo4j.relationships.exercise.Performed;
 import neo4j.relationships.exercise.Owns;
 import neo4j.relationships.friendship.Friendship;
 import neo4j.relationships.friendship.FriendshipRequest;
-import neo4j.relationships.like.LikeComment;
-import neo4j.relationships.like.LikePost;
+import neo4j.relationships.like.Like;
 import neo4j.relationships.post.Pinned;
 import neo4j.relationships.post.Posted;
 import org.neo4j.ogm.annotation.NodeEntity;
@@ -27,16 +27,13 @@ public class UserNode extends AbstractNode {
     @JsonProperty("username")
     private String username;
 
-    //@JsonProperty("firstname")
-    @JsonIgnore
+    @JsonProperty("firstname")
     private String firstname;
 
-    //@JsonProperty("lastname")
-    @JsonIgnore
+    @JsonProperty("lastname")
     private String lastname;
 
-    //@JsonProperty("email")
-    @JsonIgnore
+    @JsonProperty("email")
     private String email;
 
     //@JsonProperty("password")
@@ -56,25 +53,15 @@ public class UserNode extends AbstractNode {
     @JsonCollectionSize
     private Set<Pinned> pinnings;
 
-    @Relationship(type = CommentedPost.TYPE)
-    @JsonProperty("commentsByPost")
+    @Relationship(type = Commented.TYPE)
+    @JsonProperty("comments")
     @JsonCollectionSize
-    private Set<CommentedPost> commentsByPost;
+    private Set<Commented> comments;
 
-    @Relationship(type = CommentedComment.TYPE)
-    @JsonProperty("commentsByComments")
-    @JsonCollectionSize
-    private Set<CommentedComment> commentsByComment;
-
-    @Relationship(type = LikePost.TYPE)
+    @Relationship(type = Like.TYPE)
     @JsonIgnore
     @JsonManagedReference
-    private Set<LikePost> likesPost;
-
-    @Relationship(type = LikeComment.TYPE)
-    @JsonIgnore
-    @JsonManagedReference
-    private Set<LikeComment> likesComment;
+    private Set<Like> likes;
 
     @Relationship(type = Friendship.TYPE, direction = Relationship.UNDIRECTED)
     @JsonProperty("friendships")
@@ -82,14 +69,19 @@ public class UserNode extends AbstractNode {
     private Set<Friendship> friendships;
 
     @Relationship(type = Performed.TYPE)
-    @JsonIgnore
     @JsonManagedReference
+    @JsonIgnore
     private Set<Performed> performed;
 
     @Relationship(type = Owns.TYPE)
-    @JsonIgnore
     @JsonManagedReference
+    @JsonIgnore
     private Set<Owns> owns;
+
+    @Relationship(type = Participate.TYPE)
+    @JsonManagedReference
+    @JsonIgnore
+    private Set<Participate> participating;
 
     @Relationship(type = FriendshipRequest.TYPE)
     @JsonIgnore
@@ -99,20 +91,23 @@ public class UserNode extends AbstractNode {
     @JsonIgnore
     private Set<FriendshipRequest> friendshipRequests;
 
-
+    @Relationship(type = Created.TYPE)
+    @JsonIgnore
+    private Set<Created> events;
 
 
     public UserNode() {
         this.postings = new HashSet<>();
         this.pinnings = new HashSet<>();
-        this.commentsByPost = new HashSet<>();
-        this.likesPost = new HashSet<>();
-        this.likesComment = new HashSet<>();
+        this.comments = new HashSet<>();
         this.friendshipsRequested = new HashSet<>();
         this.friendships = new HashSet<>();
         this.friendshipRequests = new HashSet<>();
         this.owns = new HashSet<>();
         this.performed = new HashSet<>();
+        this.likes = new HashSet<>();
+        this.events = new HashSet<>();
+        this.participating = new HashSet<>();
     }
 
     public UserNode(String username, String firstname, String lastname, String email, String password, String picture) {
@@ -132,6 +127,14 @@ public class UserNode extends AbstractNode {
 
     public void addPerformed(ExerciseUnitNode exerciseUnitNode) {
         this.performed.add(new Performed(this,exerciseUnitNode));
+    }
+
+    public void addParticipate(EventNode eventNode) {
+        this.participating.add(new Participate(this,eventNode));
+    }
+
+    public void addEvent(EventNode eventNode){
+        events.add(new Created(this, eventNode));
     }
 
     public void addExercise(ExerciseNode exerciseNode) {
@@ -195,12 +198,12 @@ public class UserNode extends AbstractNode {
         this.pinnings = pinnings;
     }
 
-    public Set<CommentedPost> getCommentsByPost() {
-        return commentsByPost;
+    public Set<Commented> getComments() {
+        return comments;
     }
 
-    public void setCommentsByPost(Set<CommentedPost> commentsByPost) {
-        this.commentsByPost = commentsByPost;
+    public void setComments(Set<Commented> comments) {
+        this.comments = comments;
     }
 
     public Set<Friendship> getFriendships() {
@@ -209,30 +212,6 @@ public class UserNode extends AbstractNode {
 
     public void setFriendships(Set<Friendship> friendships) {
         this.friendships = friendships;
-    }
-
-    public Set<CommentedComment> getCommentsByComment() {
-        return commentsByComment;
-    }
-
-    public void setCommentsByComment(Set<CommentedComment> commentsByComment) {
-        this.commentsByComment = commentsByComment;
-    }
-
-    public Set<LikePost> getLikes() {
-        return likesPost;
-    }
-
-    public void setLikes(Set<LikePost> likes) {
-        this.likesPost = likes;
-    }
-
-    public Set<LikeComment> getLikesComment() {
-        return likesComment;
-    }
-
-    public void setLikesComment(Set<LikeComment> likesComment) {
-        this.likesComment = likesComment;
     }
 
     public Set<FriendshipRequest> getFriendshipsRequested() {
@@ -245,5 +224,29 @@ public class UserNode extends AbstractNode {
 
     public Set<Performed> getPerformed() {
         return performed;
+    }
+
+    public void setLikes(Set<Like> likes) {
+        this.likes = likes;
+    }
+
+    public Set<Created> getEvents() {
+        return events;
+    }
+
+    public void setEvents(Set<Created> events) {
+        this.events = events;
+    }
+
+    public Set<Participate> getParticipating() {
+        return participating;
+    }
+
+    public void setParticipating(Set<Participate> participating) {
+        this.participating = participating;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
     }
 }

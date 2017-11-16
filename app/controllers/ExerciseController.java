@@ -1,14 +1,18 @@
 package controllers;
 
+import neo4j.nodes.ExerciseNode;
+import neo4j.nodes.ExerciseUnitNode;
+import neo4j.nodes.sets.AbstractSet;
+import neo4j.relationships.exercise.OfType;
 import neo4j.services.ExerciseService;
+import neo4j.services.ExerciseUnitService;
 import neo4j.services.UserService;
 import play.libs.F;
+import play.libs.Json;
 import play.mvc.BodyParser;
 import play.mvc.Result;
-import protocols.DistanceBasedProtocol;
 import protocols.ExerciseProtocol;
-import protocols.RepeatBasedProtocol;
-import protocols.TimeBasedProtocol;
+import protocols.ExerciseUnitProtocol;
 import sercurity.Secured;
 
 import javax.inject.Inject;
@@ -16,71 +20,77 @@ import javax.inject.Inject;
 public class ExerciseController extends AbstractController {
 
     private UserService userService;
-    private ExerciseService service;
+    private ExerciseUnitService service;
+    private ExerciseService exerciseService;
 
     @Inject
-    public ExerciseController(ExerciseService service, UserService userService) {
+    public ExerciseController(ExerciseUnitService service, ExerciseService exerciseService, UserService userService) {
         this.service = service;
+        this.exerciseService = exerciseService;
         this.userService = userService;
+    }
+
+
+    @Secured
+    @BodyParser.Of(ExerciseUnitProtocol.Parser.class)
+    public Result createExerciseUnit(String exerciseId) {
+
+        ExerciseUnitProtocol exerciseUnitProtocol = request().body().as(ExerciseUnitProtocol.class);
+
+        return toJsonResult(exerciseService.find(Long.valueOf(exerciseId))
+                .flatMap(exerciseNode -> {
+                    ExerciseUnitNode exerciseUnitNode = exerciseUnitProtocol.toModel();
+                    exerciseUnitNode.setOfType(new OfType(exerciseUnitNode, exerciseNode));
+                    return service.createOrUpdate(exerciseUnitNode);
+                })
+                .flatMap(exerciseUnitNode -> userService.find(sessionService.getId()).map(userNode -> F.Tuple(exerciseUnitNode, userNode)))
+                .map(eu -> {
+                    System.out.println(eu._1.getId());
+                    System.out.println(eu._2.getId());
+                    eu._2.addPerformed(eu._1);
+                    return userService.createOrUpdate(eu._2).map(u -> eu._1);
+                }));
     }
 
     @Secured
     @BodyParser.Of(ExerciseProtocol.Parser.class)
     public Result createExercise(){
-        ExerciseProtocol exerciseProtocol = request().body().as(ExerciseProtocol.class);
-
-        return service.createOrUpdate(exerciseProtocol.toModel())
-                .flatMap(exerciseNode -> userService.find(sessionService.getId()).map(userNode -> F.Tuple(exerciseNode, userNode)))
-                .map(exerciseNodeUserNodeTuple -> {
-                    exerciseNodeUserNodeTuple._1.addExercised(exerciseNodeUserNodeTuple._2);
-                    return toJsonResult(service.createOrUpdate(exerciseNodeUserNodeTuple._1));
-                }).orElse(badRequest());
+        return toOptionalJsonResult(userService.find(sessionService.getId())
+                .flatMap(userNode -> {
+                    ExerciseNode exerciseNode = request().body().as(ExerciseProtocol.class).toModel();
+                    userNode.addExercise(exerciseNode);
+                    return userService.createOrUpdate(userNode).map(userNode1 -> exerciseNode);
+                }));
     }
 
     @Secured
-    @BodyParser.Of(DistanceBasedProtocol.Parser.class)
-    public Result addDistanceBasedSet(String id){
-        if(shouldCreate(id)){
+    public Result addSet(String id) {
+
+        if (shouldCreate(id)) {
             return service.find(Long.valueOf(id))
                     .map(exerciseNode -> {
-                        exerciseNode.addDistanceBased(request().body().as(DistanceBasedProtocol.class).toModel());
+                        AbstractSet set = (AbstractSet) Json.fromJson(request().body().asJson(), exerciseNode.getSetType());
+                        if (!set.checkCompleteness()) return badRequest();
+                        exerciseNode.addSet(set);
+                        //exerciseNode.addSet(request().body().as(DistanceBasedProtocol.class).toModel());
                         return toJsonResult(service.createOrUpdate(exerciseNode));
                     })
                     .orElse(badRequest());
-        }else return forbidden();
+        } else return forbidden();
     }
+
 
     @Secured
-    @BodyParser.Of(TimeBasedProtocol.Parser.class)
-    public Result addTimeBasedSet(String id){
-        if(shouldCreate(id)){
-            return service.find(Long.valueOf(id))
-                    .map(exerciseNode -> {
-                        exerciseNode.addTimeBased(request().body().as(TimeBasedProtocol.class).toModel());
-                        return toJsonResult(service.createOrUpdate(exerciseNode));
-                    })
-                    .orElse(badRequest());
-        }else return forbidden();
+    public Result getSets(String id) {
+        return service.find(Long.valueOf(id)).map(exerciseNode -> toJsonResult(service.getSets(exerciseNode.getSetType(), exerciseNode))).orElse(badRequest());
     }
 
-    @Secured
-    @BodyParser.Of(RepeatBasedProtocol.Parser.class)
-    public Result AddRepeatBasedSet(String id){
-        if(shouldCreate(id)){
-            return service.find(Long.valueOf(id))
-                    .map(exerciseNode -> {
-                        exerciseNode.addRepeatBased(request().body().as(RepeatBasedProtocol.class).toModel());
-                        return toJsonResult(service.createOrUpdate(exerciseNode));
-                    })
-                    .orElse(badRequest());
-        }else return forbidden();
-    }
 
-    public boolean shouldCreate(String id){
+    public boolean shouldCreate(String id) {
         return userService.find(sessionService.getId())
-                .map(userNode -> userNode.getExercised())
+                .map(userNode -> userNode.getPerformed())
                 .map(exerciseds -> exerciseds.stream()
                         .anyMatch(exercised -> exercised.getUserNode().getId().equals(sessionService.getId())
-                                && exercised.getExerciseNode().getId().equals(Long.valueOf(id)))).orElse(false);
+                                && exercised.getExerciseUnitNode().getId().equals(Long.valueOf(id)))).orElse(false);
     }
 }

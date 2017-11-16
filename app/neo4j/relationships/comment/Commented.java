@@ -2,9 +2,6 @@ package neo4j.relationships.comment;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import neo4j.entities.UniqueEntity;
 import neo4j.nodes.CommentNode;
 import neo4j.nodes.UserNode;
 import neo4j.relationships.AbstractRelationship;
@@ -12,10 +9,10 @@ import org.neo4j.ogm.annotation.EndNode;
 import org.neo4j.ogm.annotation.RelationshipEntity;
 import org.neo4j.ogm.annotation.StartNode;
 
-@RelationshipEntity(type = CommentedComment.TYPE)
-public class CommentedComment extends AbstractRelationship {
+@RelationshipEntity(type = Commented.TYPE)
+public class Commented extends AbstractRelationship {
 
-    public static final String TYPE = "COMMENTEDCOMMENT";
+    public static final String TYPE = "COMMENTED";
 
     @StartNode
     @JsonIgnore
@@ -27,10 +24,10 @@ public class CommentedComment extends AbstractRelationship {
     CommentNode commentNode;
 
 
-    public CommentedComment() {
+    public Commented() {
     }
 
-    public CommentedComment(UserNode userNode, CommentNode commentNode) {
+    public Commented(UserNode userNode, CommentNode commentNode) {
         this.userNode = userNode;
         this.commentNode = commentNode;
     }

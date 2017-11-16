@@ -3,6 +3,7 @@ package controllers;
 import com.google.common.collect.Lists;
 import neo4j.nodes.PostNode;
 import neo4j.nodes.UserNode;
+import neo4j.relationships.post.Posted;
 import neo4j.services.PostService;
 import neo4j.services.UserService;
 import play.libs.F;
@@ -13,8 +14,6 @@ import sercurity.Role;
 import sercurity.Secured;
 
 import javax.inject.Inject;
-import java.util.HashSet;
-import java.util.Set;
 
 public class PostController extends AbstractCRUDController<PostNode, PostService> {
 
@@ -26,12 +25,11 @@ public class PostController extends AbstractCRUDController<PostNode, PostService
         this.userService = userService;
     }
 
-    //test method, delete later to enable secured function
-    @Override
-    public Result byId(String id) {
-        return service.find(Long.valueOf(id), 2)
-                .map(node -> toJsonResult(node))
-                .orElse(badRequest(languageService.get("notFound")));
+    @Secured
+    public Result findPosts(){
+        return service.findPosts(request().body().asJson().get("query").asText())
+                .map(postNodes -> toJsonResult(Lists.newArrayList(postNodes)))
+                .orElse(badRequest());
     }
 
 
@@ -72,18 +70,10 @@ public class PostController extends AbstractCRUDController<PostNode, PostService
 
     @Secured
     public Result getPosts(String fromId){
-
-        Set<PostNode> postNodes = new HashSet<>();
-
         if (shouldReadPosts(fromId)){
-            return userService.find(Long.valueOf(fromId))
+            return toOptionalJsonResult(userService.find(Long.valueOf(fromId))
                     .map(UserNode::getPostings)
-                    .map(posteds -> {
-                        posteds.forEach(posted ->
-                                postNodes.add(posted.getPostNode()));
-                        return toJsonResult(postNodes);
-                    })
-                    .orElse(badRequest());
+                    .map(posteds -> posteds.stream().map(Posted::getPostNode)));
         }else return forbidden();
     }
 

@@ -20,7 +20,6 @@ public class FriendshipRequest extends AbstractRelationship {
     private UserNode userNode;
 
     @EndNode
-    @JsonSerialize(as=UniqueEntity.class)
     @JsonProperty("friend")
     private UserNode friend;
 

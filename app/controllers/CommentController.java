@@ -1,10 +1,9 @@
 package controllers;
 
 import neo4j.nodes.CommentNode;
-import neo4j.nodes.PostNode;
-import neo4j.services.CommentService;
-import neo4j.services.PostService;
-import neo4j.services.UserService;
+import neo4j.nodes.SocialNode;
+import neo4j.relationships.Refers;
+import neo4j.services.*;
 import play.libs.F;
 import play.mvc.BodyParser;
 import play.mvc.Result;
@@ -12,19 +11,32 @@ import protocols.CommentProtocol;
 import sercurity.Secured;
 
 import javax.inject.Inject;
-import java.util.HashSet;
-import java.util.Set;
 
 public class CommentController extends AbstractCRUDController<CommentNode, CommentService> {
 
     private UserService userService;
-    private PostService postService;
+    private SocialService socialService;
+    private CommentService commentService;
 
     @Inject
-    public CommentController(CommentService service, UserService userService, PostService postService) {
+    public CommentController(CommentService service, UserService userService, SocialService socialService, CommentService commentService) {
         super(service);
         this.userService = userService;
-        this.postService = postService;
+        this.socialService = socialService;
+        this.commentService = commentService;
+    }
+
+    @Secured
+    @BodyParser.Of(CommentProtocol.Parser.class)
+    public Result comment(String id) {
+        return toOptionalJsonResult(userService.find(sessionService.getId())
+                .flatMap(userNode -> socialService.find(Long.valueOf(id)).map(socialNode -> F.Tuple(userNode, socialNode)))
+                .flatMap(ust -> {
+                    CommentNode commentNode = request().body().as(CommentProtocol.class).toModel();
+                    commentNode.setCommented(ust._1);
+                    commentNode.setRefers(ust._2);
+                    return commentService.createOrUpdate(commentNode);
+                }));
     }
 
     @Override
@@ -42,79 +54,12 @@ public class CommentController extends AbstractCRUDController<CommentNode, Comme
         return notFound();
     }
 
-    @Secured
-    @BodyParser.Of(CommentProtocol.Parser.class)
-    public Result createComment(String toId) {
-
-        CommentProtocol commentProtocol = request().body().as(CommentProtocol.class);
-
-        return userService.find(sessionService.getId())
-                .flatMap(from -> postService.find(Long.valueOf(toId)).map(to -> F.Tuple(from, to)))
-                .flatMap(fromTo -> service.ifNotExists(commentProtocol.toModel()).map(comment -> F.Tuple3(fromTo._1, fromTo._2, comment)))
-                .map(fromToComment -> {
-                    fromToComment._3.addRefersPost(fromToComment._2);
-                    fromToComment._3.addCommentedPost(fromToComment._1);
-                    return toJsonResult(service.createOrUpdate(fromToComment._3));
-                }).orElse(badRequest());
-    }
 
     @Secured
-    @BodyParser.Of(CommentProtocol.Parser.class)
-    public Result createCommentByComment(String toId) {
-
-        CommentProtocol commentProtocol = request().body().as(CommentProtocol.class);
-
-        return userService.find(sessionService.getId())
-                .flatMap(from -> service.find(Long.valueOf(toId)).map(to -> F.Tuple(from, to)))
-                .flatMap(fromTo -> service.ifNotExists(commentProtocol.toModel()).map(comment -> F.Tuple3(fromTo._1, fromTo._2, comment)))
-                .map(fromToComment -> {
-                    fromToComment._3.addRefersComment(fromToComment._2);
-                    fromToComment._3.addCommentedComment(fromToComment._1);
-                    return toJsonResult(service.createOrUpdate(fromToComment._3));
-                }).orElse(badRequest());
-    }
-
-
-    //test method, delete later to enable secured function
-    @Override
-    public Result delete(String id) {
-        return service.find(Long.valueOf(id)).map(node -> {
-            service.delete(node.getId());
-            return toJsonResult(node);
-        }).orElseGet(() -> badRequest(languageService.get("notFound")));
-    }
-
-
-    @Override
-    public Result byId(String id) {
-        return service.find(Long.valueOf(id))
-                .map(this::toJsonResult)
-                .orElse(badRequest(languageService.get("notFound")));
-    }
-
-
-    @Secured
-    public Result getCommentsByPost(String postId) {
-        Set<CommentNode> commentNodes = new HashSet<>();
-
-        return postService.find(Long.valueOf(postId), 2)
-                .map(PostNode::getComments)
-                .map(refers -> {
-                    refers.forEach(entry -> commentNodes.add(entry.getCommentNode()));
-                    return toJsonResult(commentNodes);
-                }).orElse(badRequest());
-    }
-
-    @Secured
-    public Result getCommentsByComment(String postId) {
-        Set<CommentNode> commentNodes = new HashSet<>();
-
-        return service.find(Long.valueOf(postId), 1)
-                .map(CommentNode::getCommentedComment)
-                .map(refers -> {
-                    refers.forEach(entry -> commentNodes.add(entry.getCommentNode()));
-                    return toJsonResult(commentNodes);
-                }).orElse(badRequest());
+    public Result getComments(String id) {
+        return toJsonResult(socialService.find(Long.valueOf(id), 1)
+                .map(SocialNode::getComments)
+                .map(refers -> refers.stream().map(Refers::getComment)));
     }
 
 

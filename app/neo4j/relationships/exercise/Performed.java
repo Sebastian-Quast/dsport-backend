@@ -1,17 +1,17 @@
 package neo4j.relationships.exercise;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import neo4j.nodes.ExerciseNode;
+import neo4j.nodes.ExerciseUnitNode;
 import neo4j.nodes.UserNode;
 import neo4j.relationships.AbstractRelationship;
 import org.neo4j.ogm.annotation.EndNode;
 import org.neo4j.ogm.annotation.RelationshipEntity;
 import org.neo4j.ogm.annotation.StartNode;
 
-@RelationshipEntity(type = Exercised.TYPE)
-public class Exercised extends AbstractRelationship {
+@RelationshipEntity(type = Performed.TYPE)
+public class Performed extends AbstractRelationship {
 
-    public static final String TYPE = "EXERCISED";
+    public static final String TYPE = "PERFORMED";
 
     @StartNode
     @JsonIgnore
@@ -19,14 +19,14 @@ public class Exercised extends AbstractRelationship {
 
     @EndNode
     @JsonIgnore
-    private ExerciseNode exerciseNode;
+    private ExerciseUnitNode exerciseUnitNode;
 
-    public Exercised() {
+    public Performed() {
     }
 
-    public Exercised(UserNode userNode, ExerciseNode exerciseNode) {
+    public Performed(UserNode userNode, ExerciseUnitNode exerciseUnitNode) {
         this.userNode = userNode;
-        this.exerciseNode = exerciseNode;
+        this.exerciseUnitNode = exerciseUnitNode;
     }
 
     public UserNode getUserNode() {
@@ -37,11 +37,11 @@ public class Exercised extends AbstractRelationship {
         this.userNode = userNode;
     }
 
-    public ExerciseNode getExerciseNode() {
-        return exerciseNode;
+    public ExerciseUnitNode getExerciseUnitNode() {
+        return exerciseUnitNode;
     }
 
-    public void setExerciseNode(ExerciseNode exerciseNode) {
-        this.exerciseNode = exerciseNode;
+    public void setExerciseUnitNode(ExerciseUnitNode exerciseUnitNode) {
+        this.exerciseUnitNode = exerciseUnitNode;
     }
 }

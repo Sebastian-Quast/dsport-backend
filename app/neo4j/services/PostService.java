@@ -23,4 +23,10 @@ public class PostService extends AbstractService<PostNode> {
         return Optional.ofNullable(session.query(PostNode.class, query, Collections.emptyMap()));
     }
 
+    public Optional<Iterable<PostNode>> findPosts(String substring){
+        //Case insensitive query for query substring
+        String query = "MATCH (p:PostNode) WHERE p.title =~ '(?i)"+substring+".*' RETURN p ORDER BY p.title";
+        return Optional.ofNullable(session.query(PostNode.class, query, Collections.emptyMap()));
+    }
+
 }

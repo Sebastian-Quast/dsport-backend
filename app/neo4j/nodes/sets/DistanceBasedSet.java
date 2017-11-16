@@ -5,10 +5,7 @@ import neo4j.nodes.AbstractNode;
 import org.neo4j.ogm.annotation.NodeEntity;
 
 @NodeEntity
-public class DistanceBasedSet extends AbstractNode {
-
-    @JsonProperty("time")
-    private String time;
+public class DistanceBasedSet extends AbstractSet {
 
     @JsonProperty("distance")
     private String distance;
@@ -17,8 +14,12 @@ public class DistanceBasedSet extends AbstractNode {
     }
 
     public DistanceBasedSet(Long id, String time, String distance) {
-        this.time = time;
+        super(id,time);
         this.distance = distance;
-        this.setId(id);
+    }
+
+    @Override
+    public boolean checkCompleteness() {
+        return super.checkCompleteness() && distance != null;
     }
 }

@@ -6,6 +6,7 @@ import neo4j.relationships.friendship.FriendshipRequest;
 import neo4j.services.FriendRequestService;
 import neo4j.services.FriendshipService;
 import neo4j.services.UserService;
+import org.json.simple.JSONObject;
 import play.libs.F;
 import play.mvc.Result;
 import sercurity.Secured;
@@ -28,6 +29,7 @@ public class FriendshipController extends AbstractController {
         this.userService = userService;
         this.sessionService = sessionService;
     }
+
 
     @Secured
     public Result request(String id) {

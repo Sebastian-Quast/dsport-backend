@@ -37,4 +37,12 @@ public class UserProtocol extends AbstractProtocol<UserNode>{
 
     public UserProtocol() {
     }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
 }

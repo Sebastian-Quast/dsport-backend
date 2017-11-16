@@ -1,5 +1,6 @@
 package neo4j.nodes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.neo4j.ogm.annotation.NodeEntity;
 
@@ -11,19 +12,19 @@ public class RegistrationNode extends AbstractNode {
     @JsonProperty("username")
     private String username;
 
-    @JsonProperty("firstname")
+    @JsonIgnore
     private String firstname;
 
-    @JsonProperty("lastname")
+    @JsonIgnore
     private String lastname;
 
     @JsonProperty("email")
     private String email;
 
-    @JsonProperty("password")
+    @JsonIgnore
     private String password;
 
-    @JsonProperty("hash")
+    @JsonIgnore
     private String hash;
 
     public RegistrationNode() {

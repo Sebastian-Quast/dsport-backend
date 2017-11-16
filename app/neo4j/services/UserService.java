@@ -59,4 +59,10 @@ public class UserService extends AbstractService<UserNode> {
         return existsQuery("Match (user:UserNode) WHERE user.email =  \""+ username +"\" AND NOT(ID(user) = "+ (id==null?0L:id) +")  RETURN true");
     }
 
+    public Optional<Iterable<UserNode>> findUsers(String substring, Long id){
+        //Case insensitive query for query substring
+        String query = "MATCH (n:UserNode) WHERE n.username =~ '(?i)"+substring+".*' AND ID(n)<> "+id+" RETURN n ORDER BY n.username";
+        return Optional.ofNullable(session.query(UserNode.class, query, Collections.emptyMap()));
+    }
+
 }

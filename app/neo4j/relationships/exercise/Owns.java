@@ -27,4 +27,24 @@ public class Owns extends AbstractRelationship {
         this.userNode = userNode;
         this.exerciseNode = exerciseNode;
     }
+
+    public static String getTYPE() {
+        return TYPE;
+    }
+
+    public UserNode getUserNode() {
+        return userNode;
+    }
+
+    public void setUserNode(UserNode userNode) {
+        this.userNode = userNode;
+    }
+
+    public ExerciseNode getExerciseNode() {
+        return exerciseNode;
+    }
+
+    public void setExerciseNode(ExerciseNode exerciseNode) {
+        this.exerciseNode = exerciseNode;
+    }
 }

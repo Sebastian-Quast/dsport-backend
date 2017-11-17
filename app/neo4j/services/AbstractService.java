@@ -43,19 +43,30 @@ public abstract class AbstractService<T extends AbstractNode> {
         session.delete(session.load(getEntityType(), id));
     }
 
-    public Optional<T> createOrUpdate(T entity, int depth){
-        T updated = find(entity.getId())
-                .map(existing -> {
-                    entity.setCreated(existing.getCreated());
-                    return entity;
-                 }).orElse(entity);
-        session.clear();
-        session.save(updated, depth);
-        return find(updated.getId());
+
+    public Optional<T>  createOrUpdate(T entity) {
+        session.save(entity, DEPTH_ENTITY);
+        return find(entity.getId());
     }
 
-    public Optional<T> createOrUpdate(T entity){
-        return createOrUpdate(entity, DEPTH_ENTITY);
+
+    //public Optional<T> createOrUpdate(T entity, int depth){
+    //    T updated = find(entity.getId())
+    //            .map(existing -> {
+    //                entity.setCreated(existing.getCreated());
+    //                return entity;
+    //             }).orElse(entity);
+    //    session.clear();
+    //    session.save(updated, depth);
+    //    return find(updated.getId());
+    //}
+
+    //public Optional<T> createOrUpdate(T entity){
+    //    return createOrUpdate(entity, DEPTH_ENTITY);
+    //}
+
+    public Optional<T> createOrUpdate(T entity, int depth){
+        return createOrUpdate(entity, depth);
     }
 
     public abstract Class<T> getEntityType();

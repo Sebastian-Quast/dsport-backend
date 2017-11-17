@@ -5,7 +5,6 @@ import parser.AbstractBodyParser;
 
 public class ExerciseUnitProtocol extends AbstractProtocol<ExerciseUnitNode> {
 
-
     public Long id;
 
     @Override

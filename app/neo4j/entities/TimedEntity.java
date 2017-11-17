@@ -7,8 +7,8 @@ import org.neo4j.ogm.annotation.Property;
 import java.util.Date;
 
 public abstract class TimedEntity extends UniqueEntity {
-    @Property
-    @JsonProperty("created")
+
+    @JsonProperty
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss.SSS")
     private Date created = new Date(System.currentTimeMillis());
 

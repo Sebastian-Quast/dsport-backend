@@ -12,9 +12,10 @@ public class AbstractSet extends AbstractNode {
     @JsonProperty("time")
     private String time;
 
-    @JsonIgnore
+
     @Relationship(type = With.TYPE, direction = Relationship.INCOMING)
-    private ExerciseUnitNode exerciseUnitNode;
+    @JsonProperty
+    private With exerciseUnitNode;
 
     public AbstractSet() {
     }

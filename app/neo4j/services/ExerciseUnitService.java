@@ -20,7 +20,7 @@ public class ExerciseUnitService extends AbstractService<ExerciseUnitNode> {
     }
 
     public <T> Optional<Iterable<T>> getSets(Class<T> tClass, ExerciseUnitNode exerciseUnitNode){
-        String query = "Match(n:ExerciseUnitNode)-[r]-(p:AbstractSet) WHERE ID(n)="+ exerciseUnitNode.getId()+" return p";
+        String query = "Match (e:ExerciseNode)-[x]-(n:ExerciseUnitNode)-[r]-(p:AbstractSet) WHERE ID(n)="+ exerciseUnitNode.getId()+" return e,x,n,r,p";
         return Optional.ofNullable(session.query(tClass,query, Collections.emptyMap()));
     }
 

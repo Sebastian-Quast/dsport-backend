@@ -20,7 +20,6 @@ public class Neo4jSessionFactory {
     }
 
 
-    //TODO Sometimes cant load entity after some operations
     public Session getNeo4jSession() {
         String uri = config.getString("ogm.db.uri");
         String username = config.getString("ogm.db.username");

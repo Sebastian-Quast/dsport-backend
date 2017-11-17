@@ -2,6 +2,7 @@ package neo4j.nodes;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import json.JsonCollectionSize;
 import neo4j.nodes.sets.AbstractSet;
 import neo4j.nodes.sets.DistanceBasedSet;
 import neo4j.nodes.sets.RepeatBasedSet;
@@ -18,9 +19,8 @@ import java.util.Set;
 @NodeEntity
 public class ExerciseUnitNode extends SocialNode {
 
-
     @Relationship(type = With.TYPE)
-    @JsonIgnore
+    @JsonCollectionSize
     @JsonBackReference
     private Set<With> with;
 
@@ -49,6 +49,10 @@ public class ExerciseUnitNode extends SocialNode {
     public void addSet(AbstractSet abstractSet){
         With with = new With(this, abstractSet);
         this.with.add(with);
+    }
+
+    public OfType getOfType() {
+        return ofType;
     }
 
     public Set<With> getWith() {

@@ -29,11 +29,6 @@ public class PostNode extends SocialNode {
     private String picture;
 
 
-    @Relationship(type = Refers.TYPE, direction = Relationship.INCOMING)
-    @JsonProperty("refersPost")
-    @JsonCollectionSize
-    private Set<Refers> comments;
-
     @Relationship(type = Posted.TYPE, direction = Relationship.INCOMING)
     @JsonIgnore
     private Posted posted;
@@ -41,12 +36,11 @@ public class PostNode extends SocialNode {
     @Relationship(type = Pinned.TYPE)
     @JsonProperty("pinned")
     @JsonCollectionSize
-    protected Set<Pinned> pinned;
+    private Set<Pinned> pinned;
 
     public PostNode() {
         super();
         this.pinned = new HashSet<>();
-        this.comments = new HashSet<>();
     }
 
     public PostNode(Long id, String text, String title, String picture) {
@@ -68,12 +62,28 @@ public class PostNode extends SocialNode {
         this.posted = posted;
     }
 
-    public Set<Refers> getComments() {
-        return comments;
+    public String getText() {
+        return text;
     }
 
-    public void setComments(Set<Refers> comments) {
-        this.comments = comments;
+    public String getTitle() {
+        return title;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
     }
 
     public Set<Pinned> getPinned() {

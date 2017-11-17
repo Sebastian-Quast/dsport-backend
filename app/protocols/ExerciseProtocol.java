@@ -8,11 +8,11 @@ public class ExerciseProtocol extends AbstractProtocol<ExerciseNode> {
 
     public Long id;
     public String name;
-    public SetType type;
+    public SetType setType;
 
     @Override
     public ExerciseNode toModel() {
-        return new ExerciseNode(id, name, type);
+        return new ExerciseNode(id, name, setType);
     }
 
     public static class Parser extends AbstractBodyParser<ExerciseProtocol> {

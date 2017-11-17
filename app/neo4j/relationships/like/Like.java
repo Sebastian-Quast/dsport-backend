@@ -1,4 +1,6 @@
 package neo4j.relationships.like;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import neo4j.nodes.SocialNode;
 import neo4j.nodes.UserNode;
 import neo4j.relationships.AbstractRelationship;
@@ -7,14 +9,16 @@ import org.neo4j.ogm.annotation.RelationshipEntity;
 import org.neo4j.ogm.annotation.StartNode;
 
 @RelationshipEntity(type = Like.TYPE)
-public class Like extends AbstractRelationship{
+public class Like extends AbstractRelationship {
 
     public static final String TYPE = "LIKE";
 
     @StartNode
+    @JsonIgnore
     UserNode user;
 
     @EndNode
+    @JsonIgnore
     SocialNode node;
 
     public Like() {

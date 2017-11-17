@@ -23,6 +23,8 @@ POST          /friendship/:id/decline                 controllers.FriendshipCont
 
 #Pinboard
 POST          /user/:id/posts                         controllers.PostController.getPinboard(id)
+POST          /user/:id/pinboard                      controllers.UserController.getPinboard(id)
+POST          /user/:id/newsfeed                      controllers.UserController.getNewsFeed(id)
 
 
 #Registration
@@ -36,10 +38,12 @@ POST          /login                                  controllers.SessionControl
 PUT           /post                                   controllers.PostController.update
 POST          /user/:id/pinned                        controllers.PostController.postTo(id)
 POST          /posts/find                             controllers.PostController.findPosts
+POST          /posts/picture/update/:id               controllers.PostController.updatePostPicture(id)
 
 #Events
 POST          /event                                  controllers.EventController.create
 POST          /event/update                           controllers.EventController.update
+POST          /event/picture/update/:id               controllers.EventController.updatePicture(id)
 POST          /event/:id/delete                       controllers.EventController.delete(id)
 POST          /user/:id/events                        controllers.EventController.getEvents(id)
 POST          /event/:id/participate                  controllers.ParticipateController.participateEvent(id)
@@ -48,12 +52,19 @@ POST          /event/find                             controllers.EventControlle
 #Comment
 POST          /social/:id/comment                     controllers.CommentController.comment(id)
 PUT           /comment                                controllers.CommentController.update
-DELETE        /comment/:id                            controllers.CommentController.delete(id)
-POST          /social/:id//comment/get                controllers.CommentController.getComments(id)
+POST          /social/:id/comment/get                 controllers.CommentController.getComments(id)
+POST          /comment/picture/update/:id             controllers.CommentController.updateCommentPicture(id)
 
 #Exercises
 POST          /exercise/create                        controllers.ExerciseController.createExercise
 POST          /exercise/:id/units/add                 controllers.ExerciseController.createExerciseUnit(id)
+
+POST          /exercise/units/:id/delete              controllers.ExerciseController.deleteSet(id)
+
+POST          /exercise/:id/exercises                 controllers.ExerciseController.getExercises(id)
+
+POST          /exerciseUnits/:id/get                  controllers.ExerciseController.getExerciseUnits(id)
+
 
 POST          /exerciseunits/:id/sets/add             controllers.ExerciseController.addSet(id)
 POST          /exerciseunits/:id/sets/get             controllers.ExerciseController.getSets(id)
@@ -65,5 +76,6 @@ POST          /likeable/:id/likes/get                 controllers.LikeController
 
 #Tests
 POST          /post/:id/test                          controllers.PostController.byId(id)
+POST          /event/:id/test                         controllers.EventController.byId(id)
 POST          /user/:id/test                          controllers.UserController.byId(id)
 POST          /user/:id/getposts                      controllers.PostController.getPosts(id)

@@ -7,6 +7,7 @@ import play.mvc.Result;
 import sercurity.Secured;
 
 import javax.inject.Inject;
+import java.util.Optional;
 
 public class LikeController extends AbstractController {
 
@@ -21,16 +22,19 @@ public class LikeController extends AbstractController {
 
     @Secured
     public Result like(String id) {
+        session().clear();
         return userService.find(sessionService.getId())
-                .flatMap(userNode -> socialService.find(Long.valueOf(id)).map(likeableNode -> socialService.findExistingLike(userNode, likeableNode)
+                .flatMap(userNode -> socialService.find(Long.valueOf(id))
+                        .map(likeableNode -> socialService.findExistingLike(userNode, likeableNode)
                         .flatMap(like -> socialService.dislike(like))
                         .map(likeableNode1 -> toJsonResult(likeableNode1.getLikes().size()))
                         .orElseGet(() -> {
                             socialService.like(userNode, likeableNode);
                             return toJsonResult(likeableNode.getLikes().size());
-                            /*return toOptionalJsonResult(socialService.find(Long.valueOf(id)).map(likeableNode3 -> likeableNode3.getLikes().size()));*/
                         }))).orElse(badRequest());
+
     }
+
 
 
     @Secured

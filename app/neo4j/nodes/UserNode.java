@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import json.JsonCollectionSize;
-import neo4j.relationships.Event.Created;
+import neo4j.relationships.Event.Arrange;
 import neo4j.relationships.Event.Participate;
 import neo4j.relationships.comment.Commented;
 import neo4j.relationships.exercise.Performed;
@@ -59,8 +59,8 @@ public class UserNode extends AbstractNode {
     private Set<Commented> comments;
 
     @Relationship(type = Like.TYPE)
-    @JsonIgnore
     @JsonManagedReference
+    @JsonCollectionSize
     private Set<Like> likes;
 
     @Relationship(type = Friendship.TYPE, direction = Relationship.UNDIRECTED)
@@ -70,17 +70,17 @@ public class UserNode extends AbstractNode {
 
     @Relationship(type = Performed.TYPE)
     @JsonManagedReference
-    @JsonIgnore
+    @JsonCollectionSize
     private Set<Performed> performed;
 
     @Relationship(type = Owns.TYPE)
     @JsonManagedReference
-    @JsonIgnore
+    @JsonCollectionSize
     private Set<Owns> owns;
 
     @Relationship(type = Participate.TYPE)
     @JsonManagedReference
-    @JsonIgnore
+    @JsonCollectionSize
     private Set<Participate> participating;
 
     @Relationship(type = FriendshipRequest.TYPE)
@@ -91,9 +91,9 @@ public class UserNode extends AbstractNode {
     @JsonIgnore
     private Set<FriendshipRequest> friendshipRequests;
 
-    @Relationship(type = Created.TYPE)
+    @Relationship(type = Arrange.TYPE)
     @JsonIgnore
-    private Set<Created> events;
+    private Set<Arrange> events;
 
 
     public UserNode() {
@@ -134,7 +134,7 @@ public class UserNode extends AbstractNode {
     }
 
     public void addEvent(EventNode eventNode){
-        events.add(new Created(this, eventNode));
+        events.add(new Arrange(this, eventNode));
     }
 
     public void addExercise(ExerciseNode exerciseNode) {
@@ -230,11 +230,11 @@ public class UserNode extends AbstractNode {
         this.likes = likes;
     }
 
-    public Set<Created> getEvents() {
+    public Set<Arrange> getEvents() {
         return events;
     }
 
-    public void setEvents(Set<Created> events) {
+    public void setEvents(Set<Arrange> events) {
         this.events = events;
     }
 
@@ -248,5 +248,13 @@ public class UserNode extends AbstractNode {
 
     public void setPicture(String picture) {
         this.picture = picture;
+    }
+
+    public Set<Like> getLikes() {
+        return likes;
+    }
+
+    public Set<Owns> getOwns() {
+        return owns;
     }
 }

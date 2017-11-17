@@ -3,10 +3,17 @@ package controllers;
 import com.google.common.collect.Lists;
 import exceptions.EmailAlreadyExistsException;
 import exceptions.UsernameAlreadyExistsException;
+import neo4j.nodes.EventNode;
+import neo4j.nodes.PostNode;
+import neo4j.nodes.SocialNode;
 import neo4j.nodes.UserNode;
+import neo4j.nodes.resultnodes.EventNodeResult;
+import neo4j.nodes.resultnodes.SocialResultPair;
 import neo4j.nodes.resultnodes.UserNodeResult;
+import neo4j.services.DataService;
+import neo4j.services.EventService;
+import neo4j.services.PostService;
 import neo4j.services.UserService;
-import org.apache.commons.io.FileUtils;
 import play.mvc.BodyParser;
 import play.mvc.Http;
 import play.mvc.Result;
@@ -18,40 +25,39 @@ import services.SessionService;
 import javax.inject.Inject;
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.Objects;
-import java.util.UUID;
 
 public class UserController extends AbstractCRUDController<UserNode, UserService> {
 
     private SessionService sessionService;
+    private DataService dataService;
+    private PostService postService;
+    private EventService eventService;
 
     @Inject
-    public UserController(UserService service, SessionService sessionService) {
+    public UserController(UserService service, SessionService sessionService, DataService dataService, PostService postService, EventService eventService) {
         super(service);
         this.sessionService = sessionService;
+        this.dataService = dataService;
+        this.postService = postService;
+        this.eventService = eventService;
     }
 
     @Secured
-    public Result findUsers(){
-       return service.findUsers(request().body().asJson().get("query").asText(), sessionService.getId())
-               .map(userNodes -> toJsonResult(toUserNodeResult(Lists.newArrayList(userNodes))))
-               .orElse(badRequest());
+    public Result findUsers() {
+        return service.findUsers(request().body().asJson().get("query").asText(), sessionService.getId())
+                .map(userNodes -> toJsonResult(toUserNodeResult(Lists.newArrayList(userNodes))))
+                .orElse(badRequest());
     }
 
     @Secured
     @BodyParser.Of(BodyParser.MultipartFormData.class)
     public Result updatePicture() {
-
-        String domain = "https://www.daily-sport.de";
-        //TODO Datareference for directory
-        String relativeImageDirectory = "user/data/profile/images";
-        String domainDirectory = "/var/www/vhosts/daily-sport.de/httpdocs";
-        String webUser = "squast";
-        String webGroup = "psaserv";
-
-
-
 
         //Get image file from MultiPartFOrmData
         Http.MultipartFormData<File> multipartFormData = request().body().asMultipartFormData();
@@ -63,29 +69,17 @@ public class UserController extends AbstractCRUDController<UserNode, UserService
             File file = image.getFile();
 
             try {
-                File destination = new File(domainDirectory+ "/" +relativeImageDirectory, UUID.randomUUID()+"."+fileExtension);
 
-                FileUtils.moveFile(file, destination);
-
-                Runtime.getRuntime().exec("chown "+webUser+":"+webGroup+" "+ destination.getAbsolutePath());
-                Runtime.getRuntime().exec("chmod 755 "+ destination.getAbsolutePath());
-
-                String leftUrl = domain + "/" + relativeImageDirectory + "/";
-                String imageUrl = leftUrl + destination.getName();
+                String url = dataService.move(file, fileExtension, DataService.Resource.USER_IMAGE);
 
                 return toOptionalJsonResult(service.find(sessionService.getId()).map(userNode -> {
-                    if (userNode.getPicture() != null){
-                    String oldPicture = userNode.getPicture();
-                    String oldPictureName = oldPicture.substring(leftUrl.length(), oldPicture.length());
-
-                        try {
-                            FileUtils.forceDelete(new File(domainDirectory+ "/" +relativeImageDirectory, oldPictureName));
-                        } catch (IOException ignored) {
-                            ignored.printStackTrace();
-                        }
+                    try {
+                        dataService.deleteWithURL(userNode.getPicture(), DataService.Resource.USER_IMAGE);
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
 
-                    userNode.setPicture(imageUrl);
+                    userNode.setPicture(url);
                     return service.createOrUpdate(userNode);
                 }));
 
@@ -171,9 +165,9 @@ public class UserController extends AbstractCRUDController<UserNode, UserService
         //Bidirectional relationship, check if user is friendNode or UserNode in current friendship relation and return
         return toOptionalJsonResult(service.find(sessionService.getId()).map(userNode -> userNode.getFriendships().stream().map(friendship ->
         {
-            if (!Objects.equals(sessionService.getId(), friendship.getFriend().getId())){
+            if (!Objects.equals(sessionService.getId(), friendship.getFriend().getId())) {
                 return toFriendNodeResult(friendship.getFriend());
-            }else if (!Objects.equals(sessionService.getId(), friendship.getUserNode().getId())){
+            } else if (!Objects.equals(sessionService.getId(), friendship.getUserNode().getId())) {
                 return toFriendNodeResult(friendship.getUserNode());
             }
             return badRequest();
@@ -185,7 +179,7 @@ public class UserController extends AbstractCRUDController<UserNode, UserService
         return toOptionalJsonResult(service.find(sessionService.getId()).map(userNode -> userNode.getFriendshipRequests().stream().map(friendshipRequest -> toRequestUserNodeResult(friendshipRequest.getUserNode()))));
     }
 
-    private ArrayList<UserNodeResult> toUserNodeResult(ArrayList<UserNode> userNodes){
+    private ArrayList<UserNodeResult> toUserNodeResult(ArrayList<UserNode> userNodes) {
         ArrayList<UserNodeResult> userNodeResults = new ArrayList<>();
         for (UserNode userNode : userNodes) {
             userNodeResults.add(new UserNodeResult(userNode, isFriend(String.valueOf(userNode.getId())), hasRequest(String.valueOf(userNode.getId())), alreadyRequested(String.valueOf(userNode.getId()))));
@@ -193,19 +187,19 @@ public class UserController extends AbstractCRUDController<UserNode, UserService
         return userNodeResults;
     }
 
-    public UserNodeResult toSingleUserNodeResult(UserNode userNode){
+    public UserNodeResult toSingleUserNodeResult(UserNode userNode) {
         System.out.println(userNode.toString());
-            return (new UserNodeResult(userNode, isFriend(String.valueOf(userNode.getId())), hasRequest(String.valueOf(userNode.getId())), alreadyRequested(String.valueOf(userNode.getId()))));
+        return (new UserNodeResult(userNode, isFriend(String.valueOf(userNode.getId())), hasRequest(String.valueOf(userNode.getId())), alreadyRequested(String.valueOf(userNode.getId()))));
     }
 
-    private UserNodeResult toFriendNodeResult(UserNode userNode){
+    private UserNodeResult toFriendNodeResult(UserNode userNode) {
         System.out.println(userNode.toString());
-        if (userNode.getId() != sessionService.getId()){
+        if (userNode.getId() != sessionService.getId()) {
             return (new UserNodeResult(userNode, true, false, false));
-        }else return new UserNodeResult(userNode, false, false, false);
+        } else return new UserNodeResult(userNode, false, false, false);
     }
 
-    private UserNodeResult toRequestUserNodeResult(UserNode userNode){
+    private UserNodeResult toRequestUserNodeResult(UserNode userNode) {
         System.out.println(userNode.toString());
         return (new UserNodeResult(userNode, false, true, false));
     }
@@ -222,7 +216,6 @@ public class UserController extends AbstractCRUDController<UserNode, UserService
 
     //TODO one request for all Friends
     private boolean isFriend(String id) {
-        System.out.println("SessionUser ID: " + sessionService.getId());
         return service.find(sessionService.getId())
                 .map(UserNode::getFriendships)
                 .map(friendships -> friendships.stream()
@@ -245,5 +238,37 @@ public class UserController extends AbstractCRUDController<UserNode, UserService
                 .orElse(false);
     }
 
+
+    @Secured
+    public Result getPinboard(String id) {
+        return toOptionalJsonResult(postService.getPinboard(Long.valueOf(id))
+                .map(Lists::newArrayList).map(this::toSocialResult));
+    }
+
+    @Secured
+    public Result getNewsFeed(String id) {
+        return toOptionalJsonResult(postService.getNewsFeed(Long.valueOf(id))
+                .map(Lists::newArrayList).map(this::toSocialResult));
+    }
+
+
+    private ArrayList<SocialResultPair> toSocialResult(ArrayList<SocialNode> socialNodes) {
+        socialNodes.sort((o1,o2) -> o2.getCreated().compareTo(o1.getCreated()));
+        ArrayList<SocialResultPair> socialResultNodes = new ArrayList<>();
+        for (SocialNode socialNode : socialNodes) {
+            if (socialNode instanceof PostNode) {
+                socialResultNodes.add(new SocialResultPair("POST", socialNode, ((PostNode) socialNode).getPosted().getUserNode(),
+                        service.find(sessionService.getId()).map(userNode -> userNode.getLikes().stream().anyMatch(like -> like.getNode().getId().equals(socialNode.getId()))).orElse(false)));
+            } else if (socialNode instanceof EventNode) {
+                socialResultNodes.add(new SocialResultPair("EVENT",
+                        new EventNodeResult((EventNode) socialNode, (service.find(sessionService.getId()).map(userNode -> userNode.getParticipating().stream().anyMatch(participate -> participate.getEvent().getId().equals(socialNode.getId()))).orElse(false))),
+                        ((EventNode) socialNode).getArranged().getUser(),
+                        service.find(sessionService.getId()).map(userNode -> userNode.getLikes().stream().anyMatch(like -> like.getNode().getId().equals(socialNode.getId()))).orElse(false)));
+            }
+        }
+
+        socialNodes.forEach(socialNode -> System.out.println(socialNode.getCreated()));
+        return socialResultNodes;
+    }
 
 }

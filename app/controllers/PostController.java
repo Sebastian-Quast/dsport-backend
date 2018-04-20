@@ -71,7 +71,6 @@ public class PostController extends AbstractCRUDController<PostNode, PostService
     @BodyParser.Of(PostProtocol.Parser.class)
     public Result postTo(String toId) {
         session().clear();
-        System.out.println(sessionService.getId());
         PostProtocol postProtocol = request().body().as(PostProtocol.class);
         if (shouldCreate(postProtocol.toModel())) {
             return userService.find(sessionService.getId())

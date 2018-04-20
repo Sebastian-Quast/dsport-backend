@@ -19,7 +19,6 @@ public class Neo4jSessionFactory {
         this.config = config;
     }
 
-
     public Session getNeo4jSession() {
         String uri = config.getString("ogm.db.uri");
         String username = config.getString("ogm.db.username");

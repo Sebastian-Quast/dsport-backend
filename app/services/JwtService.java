@@ -36,7 +36,7 @@ public class JwtService {
             try {
                 jwt = verifier.verify(jwtString);
             } catch (JWTVerificationException exception){
-                //Unauthorized
+
             }
 
             return Optional.ofNullable(jwt);

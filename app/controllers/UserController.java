@@ -25,11 +25,7 @@ import services.SessionService;
 import javax.inject.Inject;
 import java.io.File;
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Date;
 import java.util.Objects;
 
 public class UserController extends AbstractCRUDController<UserNode, UserService> {
@@ -188,19 +184,16 @@ public class UserController extends AbstractCRUDController<UserNode, UserService
     }
 
     public UserNodeResult toSingleUserNodeResult(UserNode userNode) {
-        System.out.println(userNode.toString());
         return (new UserNodeResult(userNode, isFriend(String.valueOf(userNode.getId())), hasRequest(String.valueOf(userNode.getId())), alreadyRequested(String.valueOf(userNode.getId()))));
     }
 
     private UserNodeResult toFriendNodeResult(UserNode userNode) {
-        System.out.println(userNode.toString());
         if (userNode.getId() != sessionService.getId()) {
             return (new UserNodeResult(userNode, true, false, false));
         } else return new UserNodeResult(userNode, false, false, false);
     }
 
     private UserNodeResult toRequestUserNodeResult(UserNode userNode) {
-        System.out.println(userNode.toString());
         return (new UserNodeResult(userNode, false, true, false));
     }
 
@@ -267,7 +260,6 @@ public class UserController extends AbstractCRUDController<UserNode, UserService
             }
         }
 
-        socialNodes.forEach(socialNode -> System.out.println(socialNode.getCreated()));
         return socialResultNodes;
     }
 

@@ -30,7 +30,6 @@ public class SecuredAction extends Action<Secured> {
         Optional<DecodedJWT> jwt = jwtService.extractJwt(ctx, roles.stream().map(Enum::name).toArray(String[]::new));
 
         return jwt.map(decodedJWT -> {
-            //jwtService.setJwtHeader(ctx, decodedJWT.getToken());
             sessionService.setId(Long.parseLong(decodedJWT.getSubject()));
             sessionService.setRoles(decodedJWT.getAudience().stream().map(Role::valueOf).collect(Collectors.toList()));
             sessionService.setToken(decodedJWT.getToken());

@@ -32,7 +32,7 @@
   <logger title="com.avaje.ebeaninternal.server.core.XmlConfigLoader" level="OFF" name="com.avaje.ebeaninternal.server.core.XmlConfigLoader"/>
   <logger title="com.avaje.ebeaninternal.server.lib.BackgroundThread" level="OFF" name="com.avaje.ebeaninternal.server.lib.BackgroundThread"/>
   <logger title="com.gargoylesoftware.htmlunit.javascript" level="OFF" name="com.gargoylesoftware.htmlunit.javascript"/>
-  <logger name="org.neo4j.ogm" level="debug" />
+  <!--<logger name="org.neo4j.ogm" level="debug" />-->
 
   <root level="WARN">
     <appender-ref ref="ASYNCFILE" />

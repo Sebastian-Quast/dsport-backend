@@ -42,3 +42,5 @@ public abstract class AbstractBodyParser<T> implements BodyParser<T> {
 
     public abstract Class<T> getType();
 }
+
+

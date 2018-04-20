@@ -84,7 +84,6 @@ public class DataService {
         FileUtils.moveFile(file, destination);
 
         Runtime.getRuntime().exec("chown -R " + configHolder.user + ":" + configHolder.group + " " + configHolder.homeDirectory + "/" + configHolder.resourceConfig.parentDirectory);
-        //Runtime.getRuntime().exec("chown "+webUser+":"+webGroup+" "+ destination.getAbsolutePath());
         Runtime.getRuntime().exec("chmod " + configHolder.permission + " " + destination.getAbsolutePath());
 
         return configHolder.domain + "/" + configHolder.resourceConfig.parentDirectory + "/" + configHolder.resourceConfig.subDirectory + "/" + destination.getName();

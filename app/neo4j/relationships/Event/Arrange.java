@@ -28,7 +28,6 @@ public class Arrange extends AbstractRelationship {
     public Arrange(UserNode user, EventNode event) {
         this.user = user;
         this.event = event;
-        System.out.println(event.getCreated());
     }
 
     public UserNode getUser() {
